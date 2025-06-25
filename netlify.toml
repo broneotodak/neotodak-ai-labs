@@ -1,11 +1,6 @@
 [build]
   publish = "."
 
-[[redirects]]
-  from = "/"
-  to = "/neotodak-ai-labs.html"
-  status = 200
-
 [[headers]]
   for = "/*"
   [headers.values]
