@@ -9,9 +9,9 @@ echo "🚀 Deploying neotodak.com..."
 cd /Users/broneotodak/Projects/neotodak-ai-labs
 
 # Check if profile photo exists
-if [ ! -f "images/neo-profile.jpg" ]; then
+if [ ! -f "images/neo-profile.png" ]; then
     echo "❌ Profile photo not found!"
-    echo "Please save your photo as: images/neo-profile.jpg"
+    echo "Please save your photo as: images/neo-profile.png"
     exit 1
 fi
 
