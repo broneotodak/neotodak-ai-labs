@@ -10,7 +10,7 @@
    - **Netlify**: Already configured in environment variables ✅
    - **Local development**: Create `.env.local` file:
      ```
-     WEB3FORMS_ACCESS_KEY=5da1f869-afb6-423a-ae75-027d89c9a675
+     WEB3FORMS_ACCESS_KEY=your_web3forms_access_key_here
      CONTACT_EMAIL=neo@todak.com
      ```
 
