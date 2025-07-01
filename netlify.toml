@@ -5,7 +5,7 @@
 [build.environment]
   NODE_VERSION = "18"
   # Configure secrets scanning
-  SECRETS_SCAN_OMIT_PATHS = "EMAIL_SETUP.md,README.md,*.md"
+  SECRETS_SCAN_OMIT_PATHS = "EMAIL_SETUP.md,README.md,*.md,index-backup.html"
 
 [[headers]]
   for = "/*"

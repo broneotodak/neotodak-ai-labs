@@ -61,7 +61,7 @@ From: neotodak.com/contact`;
       template_id: 'template_contact', // You'll need to configure this
       user_id: 'YOUR_EMAILJS_USER_ID', // You'll need to configure this
       template_params: {
-        to_email: 'neo@todak.com',
+        to_email: process.env.CONTACT_EMAIL,
         from_name: formData.name,
         from_email: formData.contact,
         contact_type: formData.contactType,
@@ -155,7 +155,7 @@ ${formData.description}
 ---
 Sent from: neotodak.com/contact`,
         // Remove HTML for now to avoid formatting issues
-        replyto: formData.contactType === 'email' ? formData.contact : 'neo@todak.com'
+        replyto: formData.contactType === 'email' ? formData.contact : process.env.CONTACT_EMAIL
       })
     }).then(response => {
       console.log('Email response:', response.status, response.statusText);

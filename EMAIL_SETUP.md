@@ -11,7 +11,7 @@
    - **Local development**: Create `.env.local` file:
      ```
      WEB3FORMS_ACCESS_KEY=your_web3forms_access_key_here
-     CONTACT_EMAIL=neo@todak.com
+     CONTACT_EMAIL=your-email@domain.com
      ```
 
 ### Option 2: EmailJS (Free Tier Available)
@@ -40,7 +40,7 @@ The API route (`app/api/contact/route.ts`) currently uses **Web3Forms** as the d
 - **Instant delivery** to your phone/desktop
 
 ### 📧 Email Notification
-- **To**: `neo@todak.com`
+- **To**: `your-email@domain.com` (configured via CONTACT_EMAIL environment variable)
 - **Subject**: `🚀 New Project Proposal from [Name]`
 - **Format**: Beautiful HTML email with all form details
 - **Reply-to**: Client's email (if provided)
