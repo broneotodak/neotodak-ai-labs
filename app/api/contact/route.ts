@@ -21,6 +21,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    if (!process.env.CONTACT_EMAIL) {
+      console.error('Missing CONTACT_EMAIL environment variable');
+      return NextResponse.json(
+        { success: false, message: 'Server configuration error' },
+        { status: 500 }
+      );
+    }
+
     const formData: ContactFormData = await request.json();
     
     // Send ntfy notification (without emojis to avoid encoding issues)
@@ -140,7 +148,7 @@ From: neotodak.com/contact`;
         access_key: process.env.WEB3FORMS_ACCESS_KEY, // Web3Forms access key from environment variables
         subject: `🚀 New Project Proposal from ${formData.name}`,
         from_name: 'Neo Todak Portfolio',
-        to: process.env.CONTACT_EMAIL || 'neo@todak.com',
+        to: process.env.CONTACT_EMAIL,
         message: `🚀 NEW PROJECT PROPOSAL!
 
 👤 Name: ${formData.name}
