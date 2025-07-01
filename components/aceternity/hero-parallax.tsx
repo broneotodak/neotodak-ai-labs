@@ -106,23 +106,13 @@ export const HeroParallax = ({
 export const Header = () => {
   return (
     <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
-        Hi, I'm <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Neo Todak</span>
-      </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-        AI Engineer & Full Stack Developer passionate about building innovative solutions 
-        that bridge the gap between cutting-edge technology and real-world applications.
-      </p>
-      <div className="flex flex-wrap gap-4 mt-8">
-        <div className="px-4 py-2 bg-blue-500/10 border border-blue-500/20 rounded-full text-blue-400 text-sm">
-          🤖 AI Engineering
-        </div>
-        <div className="px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full text-purple-400 text-sm">
-          💻 Full Stack Development
-        </div>
-        <div className="px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm">
-          🚀 Innovation
-        </div>
+      <div className="text-center">
+        <h2 className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 mb-8">
+          My Projects
+        </h2>
+        <p className="text-xl text-neutral-300 max-w-4xl mx-auto">
+          Built, broken, rebuilt, and deployed by me — with my machines.
+        </p>
       </div>
     </div>
   );
