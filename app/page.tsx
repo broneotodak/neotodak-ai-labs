@@ -145,11 +145,10 @@ export default function Home() {
       <div className="h-screen w-full relative flex items-center justify-center">
         <Spotlight className="absolute top-0 left-0 w-full h-full" fill="blue" />
         <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-        
-        <div className="relative z-20 max-w-7xl mx-auto px-4 text-center">
+          <div className="relative z-20 max-w-7xl mx-auto px-4 text-center">
           <TypewriterEffect words={typewriterWords} className="mb-8" />
           <TextGenerateEffect 
-            words="Founder of Todak Studios, creative technologist, and builder of systems where A.I. isn't just a tool — it's a teammate."
+            words="CEO of Todak Studios, creative technologist, and builder of systems where A.I. isn't just a tool — it's a teammate."
             className="text-xl md:text-2xl text-neutral-300 max-w-4xl mx-auto mb-12"
           />
           
