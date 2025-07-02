@@ -33,97 +33,112 @@ const navItems = [
   },
 ];
 
-// Neo's real projects with descriptions and colors
+// Neo's real projects with descriptions and live URLs
 const realProjects = [
   {
     title: "Firasah AI",
     description: "AI facial analysis based on ancient Kitab Firasat wisdom - fusion of classical epistemology and modern machine learning.",
     thumbnail: generateProjectImage("Firasah AI", 'ai'),
-    gradient: "from-purple-600 via-purple-500 to-blue-600"
+    gradient: "from-purple-600 via-purple-500 to-blue-600",
+    link: "https://firasah.neotodak.com/"
   },
   {
     title: "AutoRecruit.AI", 
     description: "AI Recruitment System with ElevenLabs voice calls - automated candidate evaluation through real-time voice interviews.",
     thumbnail: generateProjectImage("AutoRecruit.AI", 'ai'),
-    gradient: "from-green-600 via-emerald-500 to-teal-600"
+    gradient: "from-green-600 via-emerald-500 to-teal-600",
+    link: "https://ars.neotodak.com/"
   },
   {
     title: "TODAK Unified AI Agent",
     description: "WhatsApp Bot with AI integration - Sofia AI assistant with multi-format message handling and conversation memory.",
     thumbnail: generateProjectImage("TODAK Unified AI Agent", 'ai'),
-    gradient: "from-orange-600 via-red-500 to-pink-600"
+    gradient: "from-orange-600 via-red-500 to-pink-600",
+    link: "https://todakai.neotodak.com/"
   },
   {
     title: "VentureCanvas",
     description: "Investment platform with authentication - comprehensive investment management and portfolio tracking system.",
     thumbnail: generateProjectImage("VentureCanvas", 'web'),
-    gradient: "from-blue-600 via-indigo-500 to-purple-600"
+    gradient: "from-blue-600 via-indigo-500 to-purple-600",
+    link: "https://vc.neotodak.com/"
   },
   {
     title: "FlowState Platform",
     description: "Real-time project dashboard with live updates and task management - comprehensive workflow orchestration system.",
     thumbnail: generateProjectImage("FlowState Platform", 'dashboard'),
-    gradient: "from-cyan-600 via-blue-500 to-indigo-600"
+    gradient: "from-cyan-600 via-blue-500 to-indigo-600",
+    link: "https://flowstate.neotodak.com/"
   },
   {
     title: "Kenal Admin System",
     description: "Kenal Admin system with 872 users - comprehensive user management with data scraping and analytics.",
     thumbnail: generateProjectImage("Kenal Admin System", 'admin'),
-    gradient: "from-emerald-600 via-green-500 to-teal-600"
+    gradient: "from-emerald-600 via-green-500 to-teal-600",
+    link: "https://kenal.com/"
   },
   {
     title: "ATLAS Asset Tracking",
     description: "Asset Tracking, Lifecycle, and Automated System - managing 1520+ assets with comprehensive lifecycle tracking.",
     thumbnail: generateProjectImage("ATLAS Asset Tracking", 'system'),
-    gradient: "from-slate-600 via-gray-500 to-zinc-600"
+    gradient: "from-slate-600 via-gray-500 to-zinc-600",
+    link: "#"
   },
   {
     title: "ClaudeN AI Partnership",
     description: "Neo Todak AI partnership system with memory integration - advanced AI collaboration with pgvector memory.",
     thumbnail: generateProjectImage("ClaudeN AI Partnership", 'ai'),
-    gradient: "from-violet-600 via-purple-500 to-fuchsia-600"
+    gradient: "from-violet-600 via-purple-500 to-fuchsia-600",
+    link: "https://clauden.neotodak.com/"
   },
   {
     title: "THR Payroll System",
     description: "Employee data migration and payroll system - comprehensive HR management with automated payroll processing.",
     thumbnail: generateProjectImage("THR Payroll System", 'hr'),
-    gradient: "from-rose-600 via-pink-500 to-red-600"
+    gradient: "from-rose-600 via-pink-500 to-red-600",
+    link: "#"
   },
   {
     title: "LLM Fine-tuning Pipeline",
     description: "Advanced AI model training infrastructure using RunPod and Axolotl - controlled knowledge system deployment.",
     thumbnail: generateProjectImage("LLM Fine-tuning Pipeline", 'ai'),
-    gradient: "from-amber-600 via-yellow-500 to-orange-600"
+    gradient: "from-amber-600 via-yellow-500 to-orange-600",
+    link: "#"
   },
   {
     title: "n8n Automation Systems",
     description: "Central automation brain linked to Supabase, Gmail, filesystem, and webhook actions - workflow orchestration hub.",
     thumbnail: generateProjectImage("n8n Automation Systems", 'automation'),
-    gradient: "from-teal-600 via-cyan-500 to-blue-600"
+    gradient: "from-teal-600 via-cyan-500 to-blue-600",
+    link: "#"
   },
   {
     title: "Supabase Integration Layer",
     description: "Comprehensive database integration layer with real-time synchronization and advanced query optimization.",
     thumbnail: generateProjectImage("Supabase Integration Layer", 'database'),
-    gradient: "from-green-600 via-emerald-500 to-cyan-600"
+    gradient: "from-green-600 via-emerald-500 to-cyan-600",
+    link: "#"
   },
   {
     title: "MLBB Esports Mobile App",
     description: "MLBB Esports mobile application - comprehensive esports tournament management and player analytics platform.",
     thumbnail: generateProjectImage("MLBB Esports Mobile App", 'mobile'),
-    gradient: "from-yellow-600 via-orange-500 to-red-600"
+    gradient: "from-yellow-600 via-orange-500 to-red-600",
+    link: "#"
   },
   {
     title: "Mastra Game Development",
     description: "Game development project with advanced mechanics - immersive gaming experience with modern technologies.",
     thumbnail: generateProjectImage("Mastra Game Development", 'game'),
-    gradient: "from-indigo-600 via-blue-500 to-cyan-600"
+    gradient: "from-indigo-600 via-blue-500 to-cyan-600",
+    link: "https://mastragame.com/"
   },
   {
     title: "Master Control Panel",
     description: "Unified control interface for all TODAK systems - centralized management dashboard with real-time monitoring.",
     thumbnail: generateProjectImage("Master Control Panel", 'dashboard'),
-    gradient: "from-slate-600 via-stone-500 to-gray-600"
+    gradient: "from-slate-600 via-stone-500 to-gray-600",
+    link: "#"
   }
 ];
 
@@ -277,7 +292,7 @@ export default function Home() {
       <div className="relative">
         <HeroParallax products={realProjects.map(project => ({
           title: project.title,
-          link: "#",
+          link: project.link,
           thumbnail: project.thumbnail,
           description: project.description,
           gradient: project.gradient
