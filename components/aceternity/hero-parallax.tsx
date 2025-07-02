@@ -17,6 +17,8 @@ export const HeroParallax = ({
     title: string;
     link: string;
     thumbnail: string;
+    description?: string;
+    gradient?: string;
   }[];
 }) => {
   const firstRow = products.slice(0, 5);
@@ -126,6 +128,8 @@ export const ProductCard = ({
     title: string;
     link: string;
     thumbnail: string;
+    description?: string;
+    gradient?: string;
   };
   translate: MotionValue<number>;
 }) => {
@@ -152,10 +156,17 @@ export const ProductCard = ({
           alt={product.title}
         />
       </Link>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none rounded-lg"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white font-semibold">
-        {product.title}
-      </h2>
+      <div className={`absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-90 bg-gradient-to-br ${product.gradient || 'from-black to-gray-900'} pointer-events-none rounded-lg transition-opacity duration-300`}></div>
+      <div className="absolute inset-0 p-6 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 flex flex-col justify-end">
+        <h2 className="text-white font-bold text-xl mb-2">
+          {product.title}
+        </h2>
+        {product.description && (
+          <p className="text-gray-200 text-sm leading-relaxed">
+            {product.description}
+          </p>
+        )}
+      </div>
     </motion.div>
   );
-}; 
+};

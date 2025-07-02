@@ -33,30 +33,99 @@ const navItems = [
   },
 ];
 
-// Neo's real projects
+// Neo's real projects with descriptions and colors
 const realProjects = [
-  "Firasah AI",
-  "AutoRecruit.AI", 
-  "TODAK Unified AI Agent",
-  "Mastra IP Development",
-  "FlowState Platform",
-  "Legal Framework Automation",
-  "LLM Fine-tuning Pipeline",
-  "n8n Automation Systems",
-  "Supabase Integration Layer",
-  "Claude Desktop Memory System",
-  "LangChain Logic Router",
-  "RunPod Training Infrastructure",
-  "Hugging Face Dataset Pipeline",
-  "AI Phone Interviewer",
-  "Master Control Panel"
+  {
+    title: "Firasah AI",
+    description: "AI facial analysis based on ancient Kitab Firasat wisdom - fusion of classical epistemology and modern machine learning.",
+    thumbnail: generateProjectImage("Firasah AI", 'ai'),
+    gradient: "from-purple-600 via-purple-500 to-blue-600"
+  },
+  {
+    title: "AutoRecruit.AI", 
+    description: "AI Recruitment System with ElevenLabs voice calls - automated candidate evaluation through real-time voice interviews.",
+    thumbnail: generateProjectImage("AutoRecruit.AI", 'ai'),
+    gradient: "from-green-600 via-emerald-500 to-teal-600"
+  },
+  {
+    title: "TODAK Unified AI Agent",
+    description: "WhatsApp Bot with AI integration - Sofia AI assistant with multi-format message handling and conversation memory.",
+    thumbnail: generateProjectImage("TODAK Unified AI Agent", 'ai'),
+    gradient: "from-orange-600 via-red-500 to-pink-600"
+  },
+  {
+    title: "VentureCanvas",
+    description: "Investment platform with authentication - comprehensive investment management and portfolio tracking system.",
+    thumbnail: generateProjectImage("VentureCanvas", 'web'),
+    gradient: "from-blue-600 via-indigo-500 to-purple-600"
+  },
+  {
+    title: "FlowState Platform",
+    description: "Real-time project dashboard with live updates and task management - comprehensive workflow orchestration system.",
+    thumbnail: generateProjectImage("FlowState Platform", 'dashboard'),
+    gradient: "from-cyan-600 via-blue-500 to-indigo-600"
+  },
+  {
+    title: "Kenal Admin System",
+    description: "Kenal Admin system with 872 users - comprehensive user management with data scraping and analytics.",
+    thumbnail: generateProjectImage("Kenal Admin System", 'admin'),
+    gradient: "from-emerald-600 via-green-500 to-teal-600"
+  },
+  {
+    title: "ATLAS Asset Tracking",
+    description: "Asset Tracking, Lifecycle, and Automated System - managing 1520+ assets with comprehensive lifecycle tracking.",
+    thumbnail: generateProjectImage("ATLAS Asset Tracking", 'system'),
+    gradient: "from-slate-600 via-gray-500 to-zinc-600"
+  },
+  {
+    title: "ClaudeN AI Partnership",
+    description: "Neo Todak AI partnership system with memory integration - advanced AI collaboration with pgvector memory.",
+    thumbnail: generateProjectImage("ClaudeN AI Partnership", 'ai'),
+    gradient: "from-violet-600 via-purple-500 to-fuchsia-600"
+  },
+  {
+    title: "THR Payroll System",
+    description: "Employee data migration and payroll system - comprehensive HR management with automated payroll processing.",
+    thumbnail: generateProjectImage("THR Payroll System", 'hr'),
+    gradient: "from-rose-600 via-pink-500 to-red-600"
+  },
+  {
+    title: "LLM Fine-tuning Pipeline",
+    description: "Advanced AI model training infrastructure using RunPod and Axolotl - controlled knowledge system deployment.",
+    thumbnail: generateProjectImage("LLM Fine-tuning Pipeline", 'ai'),
+    gradient: "from-amber-600 via-yellow-500 to-orange-600"
+  },
+  {
+    title: "n8n Automation Systems",
+    description: "Central automation brain linked to Supabase, Gmail, filesystem, and webhook actions - workflow orchestration hub.",
+    thumbnail: generateProjectImage("n8n Automation Systems", 'automation'),
+    gradient: "from-teal-600 via-cyan-500 to-blue-600"
+  },
+  {
+    title: "Supabase Integration Layer",
+    description: "Comprehensive database integration layer with real-time synchronization and advanced query optimization.",
+    thumbnail: generateProjectImage("Supabase Integration Layer", 'database'),
+    gradient: "from-green-600 via-emerald-500 to-cyan-600"
+  },
+  {
+    title: "MLBB Esports Mobile App",
+    description: "MLBB Esports mobile application - comprehensive esports tournament management and player analytics platform.",
+    thumbnail: generateProjectImage("MLBB Esports Mobile App", 'mobile'),
+    gradient: "from-yellow-600 via-orange-500 to-red-600"
+  },
+  {
+    title: "Mastra Game Development",
+    description: "Game development project with advanced mechanics - immersive gaming experience with modern technologies.",
+    thumbnail: generateProjectImage("Mastra Game Development", 'game'),
+    gradient: "from-indigo-600 via-blue-500 to-cyan-600"
+  },
+  {
+    title: "Master Control Panel",
+    description: "Unified control interface for all TODAK systems - centralized management dashboard with real-time monitoring.",
+    thumbnail: generateProjectImage("Master Control Panel", 'dashboard'),
+    gradient: "from-slate-600 via-stone-500 to-gray-600"
+  }
 ];
-
-const projects = realProjects.map(title => ({
-  title,
-  link: "#",
-  thumbnail: generateProjectImage(title, projectTypes[title] || 'ai')
-}));
 
 // AI Tools for hover effect
 const aiTools = [
@@ -136,6 +205,46 @@ const typewriterWords = [
   },
 ];
 
+// Technical Arsenal for stack showcase
+const technicalArsenal = [
+  {
+    title: "Component Mastery",
+    description: "Aceternity UI, shadcn/ui, MUI, Headless UI, Radix UI - mastered 10+ component libraries for enterprise-grade interfaces.",
+    icon: "🎨",
+    tags: ["Aceternity UI", "shadcn/ui", "MUI", "Headless UI"]
+  },
+  {
+    title: "Performance Engineering",
+    description: "Vite, Turbopack, esbuild, Webpack - optimizing build times and runtime performance across multiple bundler ecosystems.",
+    icon: "⚡",
+    tags: ["Vite", "Turbopack", "esbuild", "Webpack"]
+  },
+  {
+    title: "State Architecture",
+    description: "Zustand, Redux Toolkit, TanStack Query, Context API - designing scalable state management from simple to complex.",
+    icon: "🧠",
+    tags: ["Zustand", "Redux Toolkit", "TanStack Query", "Context API"]
+  },
+  {
+    title: "Animation Craft",
+    description: "Framer Motion, GSAP, Three.js - bringing interfaces to life with smooth, purposeful animations and 3D experiences.",
+    icon: "🎭",
+    tags: ["Framer Motion", "GSAP", "Three.js", "CSS Animations"]
+  },
+  {
+    title: "Framework Versatility",
+    description: "React 18, Next.js 14, Vue.js exploration - deep expertise across modern frontend frameworks and their ecosystems.",
+    icon: "⚙️",
+    tags: ["React 18", "Next.js 14", "Vue.js", "TypeScript"]
+  },
+  {
+    title: "Developer Experience",
+    description: "TypeScript, Zod validation, React Hook Form, ESLint - building maintainable, type-safe applications with great DX.",
+    icon: "🛠️",
+    tags: ["TypeScript", "Zod", "React Hook Form", "ESLint"]
+  }
+];
+
 export default function Home() {
   return (
     <div className="w-full relative bg-black">
@@ -164,11 +273,15 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Projects Parallax Section */}
+      </div>      {/* Projects Parallax Section */}
       <div className="relative">
-        <HeroParallax products={projects} />
+        <HeroParallax products={realProjects.map(project => ({
+          title: project.title,
+          link: "#",
+          thumbnail: project.thumbnail,
+          description: project.description,
+          gradient: project.gradient
+        }))} />
       </div>
       
       {/* AI Playground Section with Spotlight */}
@@ -235,6 +348,25 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </div>
+
+      {/* Technical Arsenal Section with Spotlight */}
+      <div className="min-h-screen relative">
+        <Spotlight className="absolute top-0 left-0 w-1/3 h-full" fill="green" />
+        <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+        
+        <div className="relative z-20 max-w-7xl mx-auto px-4 py-20">
+          <div className="text-center mb-20">
+            <TextGenerateEffect 
+              words="Technical Arsenal"
+              className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 mb-8"
+            />
+            <p className="text-xl text-neutral-300 max-w-4xl mx-auto">
+              Battle-tested across 10+ component libraries, 5+ state management solutions, and modern build tooling. 
+              Not just using tools — mastering entire ecosystems.
+            </p>
+          </div>          <HoverEffect items={technicalArsenal} className="mt-16" />
         </div>
       </div>
 
@@ -309,4 +441,4 @@ export default function Home() {
       </div>
     </div>
   );
-} 
+}
