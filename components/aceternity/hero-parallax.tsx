@@ -133,6 +133,12 @@ export const ProductCard = ({
   };
   translate: MotionValue<number>;
 }) => {
+  const handleClick = () => {
+    if (product.link && product.link !== "#") {
+      window.open(product.link, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <motion.div
       style={{
@@ -142,22 +148,20 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product h-96 w-[30rem] relative flex-shrink-0 cursor-pointer"
+      onClick={handleClick}
     >
-      <Link
-        href={product.link}
-        className="block group-hover/product:shadow-2xl "
-      >
+      <div className="absolute inset-0 rounded-lg overflow-hidden">
         <Image
           src={product.thumbnail}
           height="600"
           width="600"
-          className="object-cover object-left-top absolute h-full w-full inset-0 rounded-lg"
+          className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
         />
-      </Link>
-      <div className={`absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-90 bg-gradient-to-br ${product.gradient || 'from-black to-gray-900'} pointer-events-none rounded-lg transition-opacity duration-300`}></div>
-      <div className="absolute inset-0 p-6 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 flex flex-col justify-end">
+      </div>
+      <div className={`absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-90 bg-gradient-to-br ${product.gradient || 'from-black to-gray-900'} rounded-lg transition-opacity duration-300`}></div>
+      <div className="absolute inset-0 p-6 opacity-0 group-hover/product:opacity-100 transition-opacity duration-300 flex flex-col justify-end pointer-events-none">
         <h2 className="text-white font-bold text-xl mb-2">
           {product.title}
         </h2>
