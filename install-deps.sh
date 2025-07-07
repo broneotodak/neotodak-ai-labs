@@ -1,9 +1,8 @@
 #!/bin/bash
 # Install dependencies for enhanced portfolio
+# Note: Dependencies are now in package.json, so just run npm install
 
-cd /mnt/h/Projects/Active/neotodak-ai-labs
-
-echo "Installing 3D and animation dependencies..."
-npm install @react-three/fiber @react-three/drei three framer-motion recharts
+echo "Installing all dependencies..."
+npm install
 
 echo "Dependencies installed successfully!"
