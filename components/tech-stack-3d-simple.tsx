@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useMemo, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Text } from '@react-three/drei';
 import * as THREE from 'three';
@@ -26,48 +26,6 @@ const techNodes = [
   { id: 'nextjs', name: 'Next.js', category: 'frontend', position: [4, 1, 0], color: '#f59e0b' },
   { id: 'react', name: 'React', category: 'frontend', position: [4, -1, 0], color: '#f59e0b' },
   { id: 'tailwind', name: 'Tailwind', category: 'frontend', position: [4, 0, 1], color: '#f59e0b' },
-  
-  // Backend
-  { id: 'python', name: 'Python', category: 'backend', position: [-4, 1, 0], color: '#ef4444' },
-  { id: 'nodejs', name: 'Node.js', category: 'backend', position: [-4, -1, 0], color: '#ef4444' },
-  { id: 'fastapi', name: 'FastAPI', category: 'backend', position: [-4, 0, 1], color: '#ef4444' },
-  
-  // Infrastructure
-  { id: 'docker', name: 'Docker', category: 'infra', position: [0, 0, -3], color: '#6366f1' },
-  { id: 'vercel', name: 'Vercel', category: 'infra', position: [2, 0, -3], color: '#6366f1' },
-  { id: 'runpod', name: 'RunPod', category: 'infra', position: [-2, 0, -3], color: '#6366f1' },
-];
-
-// Connections between technologies
-const connections = [
-  // AI to Orchestration
-  ['claude', 'langchain'],
-  ['gpt4', 'langchain'],
-  ['gemma', 'langchain'],
-  ['llava', 'langchain'],
-  ['langchain', 'n8n'],
-  
-  // Orchestration to Data
-  ['langchain', 'supabase'],
-  ['n8n', 'supabase'],
-  ['supabase', 'pgvector'],
-  ['supabase', 'postgres'],
-  
-  // Frontend connections
-  ['nextjs', 'react'],
-  ['react', 'tailwind'],
-  ['nextjs', 'supabase'],
-  
-  // Backend connections
-  ['python', 'fastapi'],
-  ['nodejs', 'n8n'],
-  ['python', 'langchain'],
-  
-  // Infrastructure
-  ['docker', 'python'],
-  ['docker', 'nodejs'],
-  ['vercel', 'nextjs'],
-  ['runpod', 'python'],
 ];
 
 interface TechNodeProps {
@@ -82,19 +40,15 @@ function TechNode({ node, onHover }: TechNodeProps) {
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.y += 0.01;
-      if (hovered) {
-        meshRef.current.scale.x = meshRef.current.scale.y = meshRef.current.scale.z = 1.2;
-      } else {
-        meshRef.current.scale.x = meshRef.current.scale.y = meshRef.current.scale.z = 1;
-      }
+      const scale = hovered ? 1.2 : 1;
+      meshRef.current.scale.set(scale, scale, scale);
     }
   });
   
   return (
     <group position={node.position as [number, number, number]}>
-      <Sphere
+      <mesh
         ref={meshRef}
-        args={[0.3, 32, 32]}
         onPointerOver={() => {
           setHovered(true);
           onHover(node.name);
@@ -104,6 +58,7 @@ function TechNode({ node, onHover }: TechNodeProps) {
           onHover(null);
         }}
       >
+        <sphereGeometry args={[0.3, 32, 32]} />
         <meshStandardMaterial
           color={node.color}
           emissive={node.color}
@@ -111,7 +66,7 @@ function TechNode({ node, onHover }: TechNodeProps) {
           metalness={0.5}
           roughness={0.5}
         />
-      </Sphere>
+      </mesh>
       <Text
         position={[0, -0.5, 0]}
         fontSize={0.2}
@@ -126,34 +81,38 @@ function TechNode({ node, onHover }: TechNodeProps) {
 }
 
 function ConnectionLines() {
-  const lines = useMemo(() => {
-    return connections.map(([from, to]) => {
-      const fromNode = techNodes.find(n => n.id === from);
-      const toNode = techNodes.find(n => n.id === to);
-      if (!fromNode || !toNode) return null;
-      
-      return {
-        points: [
-          new THREE.Vector3(...fromNode.position),
-          new THREE.Vector3(...toNode.position)
-        ],
-        color: '#4b5563'
-      };
-    }).filter(Boolean);
-  }, []);
-  
+  const connections = [
+    ['claude', 'langchain'],
+    ['gpt4', 'langchain'],
+    ['gemma', 'langchain'],
+    ['llava', 'langchain'],
+    ['langchain', 'n8n'],
+    ['langchain', 'supabase'],
+    ['n8n', 'supabase'],
+    ['supabase', 'pgvector'],
+    ['supabase', 'postgres'],
+  ];
+
   return (
     <>
-      {lines.map((line, i) => (
-        <Line
-          key={i}
-          points={line!.points}
-          color={line!.color}
-          lineWidth={1}
-          opacity={0.3}
-          transparent
-        />
-      ))}
+      {connections.map(([from, to], i) => {
+        const fromNode = techNodes.find(n => n.id === from);
+        const toNode = techNodes.find(n => n.id === to);
+        if (!fromNode || !toNode) return null;
+        
+        const points = [];
+        points.push(new THREE.Vector3(...fromNode.position));
+        points.push(new THREE.Vector3(...toNode.position));
+        
+        const geometry = new THREE.BufferGeometry().setFromPoints(points);
+        
+        return (
+          <line key={i}>
+            <bufferGeometry attach="geometry" {...geometry} />
+            <lineBasicMaterial attach="material" color="#4b5563" opacity={0.3} transparent />
+          </line>
+        );
+      })}
     </>
   );
 }
@@ -212,14 +171,6 @@ export default function TechStack3D() {
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-orange-500"></div>
             <span className="text-gray-300">Frontend</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <span className="text-gray-300">Backend</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-indigo-500"></div>
-            <span className="text-gray-300">Infrastructure</span>
           </div>
         </div>
       </div>

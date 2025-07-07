@@ -9,7 +9,7 @@ import { HoverEffect } from '@/components/aceternity/card-hover-effect';
 import { IconBrain, IconCode, IconDatabase, IconRocket, IconApi, IconCloud } from '@tabler/icons-react';
 
 // Dynamic import for 3D component
-const TechStack3D = dynamic(() => import('@/components/tech-stack-3d'), {
+const TechStack3D = dynamic(() => import('@/components/tech-stack-3d-simple'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[600px] flex items-center justify-center">
