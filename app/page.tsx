@@ -7,8 +7,20 @@ import { TextGenerateEffect } from "@/components/aceternity/text-generate-effect
 import { TypewriterEffect } from "@/components/aceternity/typewriter-effect";
 import { HoverEffect } from "@/components/aceternity/card-hover-effect";
 import { BackgroundBeams } from "@/components/aceternity/background-beams";
-import { IconHome, IconMessage, IconUser, IconBriefcase } from "@tabler/icons-react";
+import { IconHome, IconMessage, IconUser, IconBriefcase, IconCode } from "@tabler/icons-react";
 import { generateProjectImage, projectTypes } from "@/lib/project-images";
+import { getFeaturedProjects, getProjectStats } from "@/lib/projects-data";
+import dynamic from 'next/dynamic';
+
+// Dynamic import for activity feed
+const LiveActivityFeed = dynamic(() => import('@/components/live-activity-feed'), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 animate-pulse">
+      <div className="h-96"></div>
+    </div>
+  )
+});
 
 const navItems = [
   {
@@ -17,18 +29,23 @@ const navItems = [
     icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
+    name: "Projects",
+    link: "/projects",
+    icon: <IconBriefcase className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    name: "Tech Stack",
+    link: "/tech-stack",
+    icon: <IconCode className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
     name: "About",
     link: "#about",
     icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
   {
-    name: "Projects",
-    link: "#projects",
-    icon: <IconBriefcase className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
     name: "Contact",
-    link: "#contact",
+    link: "/contact",
     icon: <IconMessage className="h-4 w-4 text-neutral-500 dark:text-white" />,
   },
 ];
@@ -137,6 +154,9 @@ const typewriterWords = [
 ];
 
 export default function Home() {
+  const featuredProjects = getFeaturedProjects();
+  const stats = getProjectStats();
+
   return (
     <div className="w-full relative bg-black">
       <FloatingNav navItems={navItems} />
@@ -162,6 +182,73 @@ export default function Home() {
             </div>
             <div className="px-6 py-3 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm backdrop-blur-sm">
               ⚡ Fast & Smart
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Live Stats & Activity Dashboard */}
+      <div className="relative z-20 py-20">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Stats Overview */}
+            <div className="lg:col-span-2">
+              <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
+                <h2 className="text-3xl font-bold text-white mb-8">Project Impact</h2>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-cyan-400">{stats.totalProjects}</div>
+                    <div className="text-gray-400 mt-2">Total Projects</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-green-400">{stats.liveProjects}</div>
+                    <div className="text-gray-400 mt-2">Live in Production</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-purple-400">{stats.totalUsers.toLocaleString()}</div>
+                    <div className="text-gray-400 mt-2">Active Users</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-4xl font-bold text-orange-400">{(stats.totalApiCalls / 1000).toFixed(0)}K</div>
+                    <div className="text-gray-400 mt-2">API Calls</div>
+                  </div>
+                </div>
+                
+                <div className="mt-8 pt-8 border-t border-gray-800">
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-semibold text-white">Featured Projects</h3>
+                    <Link href="/projects" className="text-cyan-400 hover:text-cyan-300 text-sm">
+                      View all →
+                    </Link>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {featuredProjects.slice(0, 4).map(project => (
+                      <Link key={project.id} href={`/projects/${project.id}`} className="group">
+                        <div className="bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-all duration-300">
+                          <div className="flex items-center justify-between mb-2">
+                            <h4 className="font-semibold text-white group-hover:text-cyan-400 transition-colors">
+                              {project.title}
+                            </h4>
+                            <span className={`text-xs px-2 py-1 rounded-full ${
+                              project.status === 'live' ? 'bg-green-500/20 text-green-400' :
+                              project.status === 'beta' ? 'bg-yellow-500/20 text-yellow-400' :
+                              'bg-blue-500/20 text-blue-400'
+                            }`}>
+                              {project.status}
+                            </span>
+                          </div>
+                          <p className="text-gray-400 text-sm line-clamp-2">{project.description}</p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Live Activity Feed */}
+            <div>
+              <LiveActivityFeed />
             </div>
           </div>
         </div>

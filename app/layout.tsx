@@ -7,21 +7,21 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  title: 'Neo Todak - AI Engineer & Full Stack Developer',
-  description: 'Personal portfolio of Neo Todak - AI Engineer, Full Stack Developer, and technology enthusiast specializing in artificial intelligence, machine learning, and modern web development.',
-  keywords: 'Neo Todak, AI Engineer, Full Stack Developer, Machine Learning, Artificial Intelligence, React, Next.js, Python, Portfolio',
+  title: 'Neo Todak - Creative Technologist & AI Systems Builder',
+  description: 'Founder of Todak Studios. Creative technologist and builder of systems where AI isn\'t just a tool — it\'s a teammate. Pioneering the edge between creativity and computation.',
+  keywords: 'Neo Todak, Creative Technologist, AI Systems Builder, Todak Studios, Firasah AI, AutoRecruit, Claude Tools Kit, FlowState, LangChain, Machine Learning',
   authors: [{ name: 'Neo Todak' }],
   openGraph: {
-    title: 'Neo Todak - AI Engineer & Developer Portfolio',
-    description: 'Personal portfolio showcasing AI engineering projects, full stack development work, and innovative technology solutions.',
+    title: 'Neo Todak - Creative Technologist & AI Systems Builder',
+    description: 'Building things fast, smart, and with soul. Where AI meets creativity.',
     url: 'https://neotodak.com',
-    siteName: 'Neo Todak Portfolio',
+    siteName: 'NEOTODAK AI Labs',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Neo Todak - AI Engineer & Developer',
-    description: 'AI Engineer and Full Stack Developer passionate about creating innovative technology solutions.',
+    title: 'Neo Todak - AI Systems Builder',
+    description: 'Founder of Todak Studios. Building systems where AI isn\'t just a tool — it\'s a teammate.',
   },
 }
 
