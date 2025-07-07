@@ -12,14 +12,15 @@ export async function generateStaticParams() {
 }
 
 // Server component that fetches data
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = getProjectById(params.slug);
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = getProjectById(slug);
   
   if (!project) {
     notFound();
   }
   
-  const relatedProjects = getRelatedProjects(params.slug);
+  const relatedProjects = getRelatedProjects(slug);
   
   // Pass data to client component
   return <ProjectPageClient project={project} relatedProjects={relatedProjects} />;
