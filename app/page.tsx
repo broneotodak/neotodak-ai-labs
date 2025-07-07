@@ -166,6 +166,17 @@ export default function Home() {
         </div>
       </div>
 
+      {/* Projects Parallax Section */}
+      <div className="relative py-20">
+        <div className="max-w-7xl mx-auto px-4 text-center mb-10">
+          <h2 className="text-4xl font-bold text-white mb-4">Featured Projects</h2>
+          <Link href="/projects" className="text-cyan-400 hover:text-cyan-300">
+            View all projects →
+          </Link>
+        </div>
+        <HeroParallax products={projects} />
+      </div>
+
       {/* Live Stats & Activity Dashboard */}
       <div className="relative z-20 py-20">
         <div className="max-w-7xl mx-auto px-4">
@@ -201,35 +212,6 @@ export default function Home() {
                   </ParallaxCard>
                 </div>
                 
-                <div className="mt-8 pt-8 border-t border-gray-800">
-                  <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-xl font-semibold text-white">Featured Projects</h3>
-                    <Link href="/projects" className="text-cyan-400 hover:text-cyan-300 text-sm">
-                      View all →
-                    </Link>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {featuredProjects.slice(0, 4).map(project => (
-                      <Link key={project.id} href={`/projects/${project.id}`} className="group">
-                        <div className="bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-all duration-300">
-                          <div className="flex items-center justify-between mb-2">
-                            <h4 className="font-semibold text-white group-hover:text-cyan-400 transition-colors">
-                              {project.title}
-                            </h4>
-                            <span className={`text-xs px-2 py-1 rounded-full ${
-                              project.status === 'live' ? 'bg-green-500/20 text-green-400' :
-                              project.status === 'beta' ? 'bg-yellow-500/20 text-yellow-400' :
-                              'bg-blue-500/20 text-blue-400'
-                            }`}>
-                              {project.status}
-                            </span>
-                          </div>
-                          <p className="text-gray-400 text-sm line-clamp-2">{project.description}</p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
             
@@ -241,10 +223,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Projects Parallax Section */}
-      <div className="relative">
-        <HeroParallax products={projects} />
-      </div>
       
       {/* AI Playground Section with Spotlight */}
       <div id="about" className="min-h-screen relative">
