@@ -1,22 +1,12 @@
 'use client';
 
-import React, { Suspense } from 'react';
-import dynamic from 'next/dynamic';
+import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { BackgroundBeams } from '@/components/aceternity/background-beams';
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
 import { HoverEffect } from '@/components/aceternity/card-hover-effect';
-import { IconBrain, IconCode, IconDatabase, IconRocket, IconApi, IconCloud } from '@tabler/icons-react';
-
-// Dynamic import for 3D component
-const TechStack3D = dynamic(() => import('@/components/tech-stack-3d-simple'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-[600px] flex items-center justify-center">
-      <div className="text-cyan-400">Loading 3D visualization...</div>
-    </div>
-  )
-});
+import { IconBrain, IconCode, IconDatabase, IconRocket, IconApi, IconCloud, IconArrowLeft } from '@tabler/icons-react';
 
 // Tool categories with detailed descriptions
 const toolCategories = [
@@ -120,6 +110,14 @@ export default function TechStackPage() {
     <div className="min-h-screen relative bg-black">
       <BackgroundBeams />
       
+      {/* Back Button */}
+      <div className="fixed top-8 left-8 z-50">
+        <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300">
+          <IconArrowLeft className="w-4 h-4" />
+          <span>Back to Home</span>
+        </Link>
+      </div>
+      
       {/* Header */}
       <div className="relative z-20 pt-32 pb-20">
         <div className="max-w-7xl mx-auto px-4 text-center">
@@ -134,7 +132,7 @@ export default function TechStackPage() {
         </div>
       </div>
 
-      {/* 3D Visualization */}
+      {/* Tech Stack Grid Visualization */}
       <div className="relative z-20 max-w-7xl mx-auto px-4 mb-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -142,12 +140,23 @@ export default function TechStackPage() {
           transition={{ duration: 0.5 }}
           className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-3xl p-8"
         >
-          <h2 className="text-3xl font-bold text-white mb-6 text-center">
-            Interactive Tech Stack Visualization
+          <h2 className="text-3xl font-bold text-white mb-8 text-center">
+            Technology Ecosystem Overview
           </h2>
-          <Suspense fallback={<div>Loading...</div>}>
-            <TechStack3D />
-          </Suspense>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {toolCategories.flatMap(cat => cat.tools).map((tool, index) => (
+              <motion.div
+                key={tool.name}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.05 }}
+                className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700 rounded-lg p-4 hover:border-cyan-500 hover:scale-105 transition-all duration-300"
+              >
+                <div className="font-semibold text-cyan-400">{tool.name}</div>
+                <div className="text-xs text-gray-400 mt-1">{tool.role}</div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
 

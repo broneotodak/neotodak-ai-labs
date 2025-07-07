@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { projectsData, getProjectStats, type Project } from '@/lib/projects-data';
 import { BackgroundBeams } from '@/components/aceternity/background-beams';
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
-import { IconExternalLink, IconBrandGithub, IconBook, IconVideo, IconChartBar, IconClock, IconUsers, IconApi, IconFilter, IconX } from '@tabler/icons-react';
+import { IconExternalLink, IconBrandGithub, IconBook, IconVideo, IconChartBar, IconClock, IconUsers, IconApi, IconFilter, IconX, IconArrowLeft } from '@tabler/icons-react';
 
 // Filter categories
 const categories = ['all', 'ai', 'automation', 'saas', 'tool', 'integration', 'research'] as const;
@@ -65,6 +65,14 @@ export default function ProjectsPage() {
   return (
     <div className="min-h-screen relative bg-black">
       <BackgroundBeams />
+      
+      {/* Back Button */}
+      <div className="fixed top-8 left-8 z-50">
+        <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300">
+          <IconArrowLeft className="w-4 h-4" />
+          <span>Back to Home</span>
+        </Link>
+      </div>
       
       {/* Header */}
       <div className="relative z-20 pt-32 pb-20">
