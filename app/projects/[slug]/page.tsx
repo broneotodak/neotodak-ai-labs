@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, notFound } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { getProjectById, getRelatedProjects, type Project } from '@/lib/projects-data';
+import { getProjectById, getRelatedProjects, projectsData, type Project } from '@/lib/projects-data';
 import { BackgroundBeams } from '@/components/aceternity/background-beams';
 import { Spotlight } from '@/components/aceternity/spotlight';
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
@@ -24,6 +24,13 @@ import {
   IconRocket,
   IconLink
 } from '@tabler/icons-react';
+
+// Required for static export with dynamic routes
+export async function generateStaticParams() {
+  return projectsData.map((project) => ({
+    slug: project.id,
+  }));
+}
 
 export default function ProjectPage() {
   const params = useParams();
