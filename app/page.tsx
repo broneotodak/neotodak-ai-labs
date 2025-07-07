@@ -9,6 +9,7 @@ import { TextGenerateEffect } from "@/components/aceternity/text-generate-effect
 import { TypewriterEffect } from "@/components/aceternity/typewriter-effect";
 import { HoverEffect } from "@/components/aceternity/card-hover-effect";
 import { BackgroundBeams } from "@/components/aceternity/background-beams";
+import { ParallaxCard } from "@/components/aceternity/parallax-card";
 import { IconHome, IconMessage, IconUser, IconBriefcase, IconCode } from "@tabler/icons-react";
 import { generateProjectImage, projectTypes } from "@/lib/project-images";
 import { getFeaturedProjects, getProjectStats } from "@/lib/projects-data";
@@ -117,30 +118,6 @@ const aiTools = [
   }
 ];
 
-// Signature projects for detailed showcase
-const signatureProjects = [
-  {
-    title: "Firasah AI",
-    description: "A fusion of ancient epistemology and modern machine learning. Analyzes human traits based on facial features using vision models (LLaVA), then interprets character using LLMs trained on classical texts like Kitab Firasat.",
-    icon: "🔮",
-    tags: ["Vision Models", "Classical Texts", "Character Analysis"],
-    gradient: "from-purple-900/20 to-blue-900/20"
-  },
-  {
-    title: "AutoRecruit.AI",
-    description: "Automated recruitment system with A.I. phone interviewer. Candidates evaluated through real-time voice calls and follow-up logic handled by LangChain-powered flows.",
-    icon: "🤖",
-    tags: ["Voice AI", "LangChain", "Automation"],
-    gradient: "from-green-900/20 to-emerald-900/20"
-  },
-  {
-    title: "TODAK Unified AI Agent",
-    description: "Internal AI system where Gemma (local LLM) generates raw responses, and GPT refines them. Memory is contextual, stored by project with rewrite loops and feedback logs.",
-    icon: "🧠",
-    tags: ["Local LLM", "Memory Systems", "Feedback Loops"],
-    gradient: "from-orange-900/20 to-red-900/20"
-  }
-];
 
 const typewriterWords = [
   {
@@ -198,22 +175,30 @@ export default function Home() {
               <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-8">
                 <h2 className="text-3xl font-bold text-white mb-8">Project Impact</h2>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-cyan-400">{stats.totalProjects}</div>
-                    <div className="text-gray-400 mt-2">Total Projects</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-green-400">{stats.liveProjects}</div>
-                    <div className="text-gray-400 mt-2">Live in Production</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-purple-400">{stats.totalUsers.toLocaleString()}</div>
-                    <div className="text-gray-400 mt-2">Active Users</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-orange-400">{(stats.totalApiCalls / 1000).toFixed(0)}K</div>
-                    <div className="text-gray-400 mt-2">API Calls</div>
-                  </div>
+                  <ParallaxCard offset={30} className="text-center">
+                    <div className="bg-gradient-to-br from-cyan-900/20 to-cyan-800/10 backdrop-blur-sm border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-500/40 transition-all duration-300">
+                      <div className="text-4xl font-bold text-cyan-400">{stats.totalProjects}</div>
+                      <div className="text-gray-400 mt-2">Total Projects</div>
+                    </div>
+                  </ParallaxCard>
+                  <ParallaxCard offset={40} className="text-center">
+                    <div className="bg-gradient-to-br from-green-900/20 to-green-800/10 backdrop-blur-sm border border-green-500/20 rounded-2xl p-6 hover:border-green-500/40 transition-all duration-300">
+                      <div className="text-4xl font-bold text-green-400">{stats.liveProjects}</div>
+                      <div className="text-gray-400 mt-2">Live in Production</div>
+                    </div>
+                  </ParallaxCard>
+                  <ParallaxCard offset={50} className="text-center">
+                    <div className="bg-gradient-to-br from-purple-900/20 to-purple-800/10 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6 hover:border-purple-500/40 transition-all duration-300">
+                      <div className="text-4xl font-bold text-purple-400">{stats.totalUsers.toLocaleString()}</div>
+                      <div className="text-gray-400 mt-2">Active Users</div>
+                    </div>
+                  </ParallaxCard>
+                  <ParallaxCard offset={60} className="text-center">
+                    <div className="bg-gradient-to-br from-orange-900/20 to-orange-800/10 backdrop-blur-sm border border-orange-500/20 rounded-2xl p-6 hover:border-orange-500/40 transition-all duration-300">
+                      <div className="text-4xl font-bold text-orange-400">{(stats.totalApiCalls / 1000).toFixed(0)}K</div>
+                      <div className="text-gray-400 mt-2">API Calls</div>
+                    </div>
+                  </ParallaxCard>
                 </div>
                 
                 <div className="mt-8 pt-8 border-t border-gray-800">
@@ -281,52 +266,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Signature Projects Section with Background Beams */}
-      <div id="projects" className="min-h-screen relative">
-        <BackgroundBeams />
-        <div className="relative z-20 max-w-7xl mx-auto px-4 py-20">
-          <div className="text-center mb-20">
-            <TextGenerateEffect 
-              words="Signature Projects"
-              className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500 mb-6"
-            />
-            <p className="text-xl text-neutral-300 max-w-3xl mx-auto">
-              Built, broken, rebuilt, and deployed by me — with my machines. Welcome to my playground.
-            </p>
-          </div>
-
-          <div className="space-y-16">
-            {signatureProjects.map((project, index) => (
-              <div
-                key={project.title}
-                className={`p-8 rounded-3xl border border-neutral-800/50 bg-gradient-to-br ${project.gradient} backdrop-blur-xl hover:border-neutral-700/50 transition-all duration-500 group`}
-              >
-                <div className="flex items-center gap-6 mb-6">
-                  <div className="text-5xl group-hover:scale-110 transition-transform duration-300">
-                    {project.icon}
-                  </div>
-                  <h3 className="text-4xl font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
-                    {project.title}
-                  </h3>
-                </div>
-                <p className="text-neutral-300 text-lg mb-8 leading-relaxed group-hover:text-neutral-200 transition-colors duration-300">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-4 py-2 bg-neutral-800/50 text-neutral-300 rounded-full text-sm backdrop-blur-sm border border-neutral-700/50 hover:border-neutral-600/50 transition-colors duration-300"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
 
       {/* Personal Profile Section with Spotlight */}
       <div className="min-h-screen relative flex items-center justify-center">
