@@ -1,5 +1,5 @@
 // Auto-generated from memory system
-// Last updated: 2025-07-14T17:09:39.865Z
+// Last updated: 2025-07-14T17:12:05.871Z
 
 export interface Project {
   id: string;
@@ -52,7 +52,7 @@ export const projectsData: Project[] = [
       "live": "https://thr.neotodak.com"
     },
     "metrics": {},
-    "image": "💼",
+    "icon": "💼",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -78,10 +78,10 @@ export const projectsData: Project[] = [
       "live": "https://flowstate.todak.io"
     },
     "metrics": {
-      "users": 369,
-      "apiCalls": 29191
+      "users": 177,
+      "apiCalls": 10037
     },
-    "image": "🌊",
+    "icon": "🌊",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -108,7 +108,7 @@ export const projectsData: Project[] = [
       "github": "https://github.com/broneotodak/claude-tools-kit"
     },
     "metrics": {},
-    "image": "🛠️",
+    "icon": "🛠️",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -134,7 +134,7 @@ export const projectsData: Project[] = [
       "live": "https://atlas.neotodak.com"
     },
     "metrics": {},
-    "image": "📦",
+    "icon": "📦",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -160,10 +160,10 @@ export const projectsData: Project[] = [
       "live": "https://ars.neotodak.com"
     },
     "metrics": {
-      "users": 100,
-      "apiCalls": 44609
+      "users": 504,
+      "apiCalls": 34128
     },
-    "image": "🤖",
+    "icon": "🤖",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -189,10 +189,10 @@ export const projectsData: Project[] = [
       "live": "https://todak.ai"
     },
     "metrics": {
-      "users": 594,
-      "apiCalls": 29322
+      "users": 272,
+      "apiCalls": 25130
     },
-    "image": "🏢",
+    "icon": "🏢",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -216,7 +216,7 @@ export const projectsData: Project[] = [
       "live": "https://venture-canvas.neotodak.com"
     },
     "metrics": {},
-    "image": "📈",
+    "icon": "📈",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -242,10 +242,10 @@ export const projectsData: Project[] = [
       "live": "https://firasah.neotodak.com"
     },
     "metrics": {
-      "users": 590,
-      "apiCalls": 52697
+      "users": 320,
+      "apiCalls": 23946
     },
-    "image": "🔮",
+    "icon": "🔮",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -271,7 +271,7 @@ export const projectsData: Project[] = [
       "live": "https://kenal-admin.netlify.app"
     },
     "metrics": {},
-    "image": "📊",
+    "icon": "📊",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -297,7 +297,7 @@ export const projectsData: Project[] = [
       "live": "https://n8n.todak.io"
     },
     "metrics": {},
-    "image": "⚡",
+    "icon": "⚡",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -321,7 +321,7 @@ export const projectsData: Project[] = [
     ],
     "links": {},
     "metrics": {},
-    "image": "💜",
+    "icon": "💜",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -347,7 +347,7 @@ export const projectsData: Project[] = [
       "live": "https://mind.neotodak.com"
     },
     "metrics": {},
-    "image": "🧠",
+    "icon": "🧠",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -369,7 +369,7 @@ export const projectsData: Project[] = [
     "techStack": [],
     "links": {},
     "metrics": {},
-    "image": "🕷️",
+    "icon": "🕷️",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
@@ -393,7 +393,7 @@ export const projectsData: Project[] = [
       "live": "https://www.mastragame.com"
     },
     "metrics": {},
-    "image": "🎮",
+    "icon": "🎮",
     "highlights": [],
     "challenges": [],
     "outcomes": [],
