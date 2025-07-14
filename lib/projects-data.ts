@@ -1,9 +1,43 @@
 // Auto-generated from memory system
-// Last updated: 2025-07-14T16:59:31.293Z
+// Last updated: 2025-07-14T17:09:39.865Z
 
-import type { Project } from '@/types/project'
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  longDescription?: string;
+  category: 'ai' | 'automation' | 'saas' | 'tool' | 'integration' | 'research';
+  status: 'live' | 'beta' | 'development' | 'archived';
+  featured: boolean;
+  complexity: 1 | 2 | 3 | 4 | 5;
+  techStack: string[];
+  links: {
+    live?: string;
+    github?: string;
+    docs?: string;
+    demo?: string;
+    video?: string;
+  };
+  metrics?: {
+    users?: number;
+    uptime?: number;
+    apiCalls?: number;
+    lastUpdated?: string;
+  };
+  images: {
+    thumbnail: string;
+    screenshots?: string[];
+  };
+  icon?: string;
+  highlights: string[];
+  challenges: string[];
+  outcomes: string[];
+  relatedProjects?: string[];
+  startDate: string;
+  endDate?: string;
+}
 
-export const projects: Project[] = [
+export const projectsData: Project[] = [
   {
     "id": "thr-intelligence",
     "title": "THR Intelligence",
@@ -21,7 +55,14 @@ export const projects: Project[] = [
     "image": "💼",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": true,
+    "longDescription": "AI-powered HRMS with Custom AI Dashboard",
+    "images": {
+      "thumbnail": "/projects/thr-intelligence-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "flowstate-ai",
@@ -37,13 +78,20 @@ export const projects: Project[] = [
       "live": "https://flowstate.todak.io"
     },
     "metrics": {
-      "users": 467,
-      "apiCalls": 41552
+      "users": 369,
+      "apiCalls": 29191
     },
     "image": "🌊",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": true,
+    "longDescription": "Real-time AI activity monitoring",
+    "images": {
+      "thumbnail": "/projects/flowstate-ai-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "claude-tools-kit",
@@ -63,7 +111,14 @@ export const projects: Project[] = [
     "image": "🛠️",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "Memory management tools for Claude AI",
+    "images": {
+      "thumbnail": "/projects/claude-tools-kit-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "atlas-ai",
@@ -82,7 +137,14 @@ export const projects: Project[] = [
     "image": "📦",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "Enterprise asset management system",
+    "images": {
+      "thumbnail": "/projects/atlas-ai-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "ars-intelligence",
@@ -98,13 +160,20 @@ export const projects: Project[] = [
       "live": "https://ars.neotodak.com"
     },
     "metrics": {
-      "users": 370,
-      "apiCalls": 23115
+      "users": 100,
+      "apiCalls": 44609
     },
     "image": "🤖",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": true,
+    "longDescription": "AI recruitment system with voice interviews",
+    "images": {
+      "thumbnail": "/projects/ars-intelligence-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "todak-ai-hq",
@@ -120,13 +189,20 @@ export const projects: Project[] = [
       "live": "https://todak.ai"
     },
     "metrics": {
-      "users": 378,
-      "apiCalls": 38824
+      "users": 594,
+      "apiCalls": 29322
     },
     "image": "🏢",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": true,
+    "longDescription": "AI-powered digital headquarters",
+    "images": {
+      "thumbnail": "/projects/todak-ai-hq-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "venture-canvas",
@@ -143,7 +219,14 @@ export const projects: Project[] = [
     "image": "📈",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "Business venture planning tool",
+    "images": {
+      "thumbnail": "/projects/venture-canvas-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "firasah-ai",
@@ -159,13 +242,20 @@ export const projects: Project[] = [
       "live": "https://firasah.neotodak.com"
     },
     "metrics": {
-      "users": 297,
-      "apiCalls": 15855
+      "users": 590,
+      "apiCalls": 52697
     },
     "image": "🔮",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": true,
+    "longDescription": "AI-powered facial analysis",
+    "images": {
+      "thumbnail": "/projects/firasah-ai-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "kenal-admin",
@@ -184,7 +274,14 @@ export const projects: Project[] = [
     "image": "📊",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "AI-enhanced admin dashboard",
+    "images": {
+      "thumbnail": "/projects/kenal-admin-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "n8n-integration-hub",
@@ -203,7 +300,14 @@ export const projects: Project[] = [
     "image": "⚡",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "Workflow automation platform",
+    "images": {
+      "thumbnail": "/projects/n8n-integration-hub-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "clauden",
@@ -220,7 +324,14 @@ export const projects: Project[] = [
     "image": "💜",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "AI partnership system",
+    "images": {
+      "thumbnail": "/projects/clauden-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "neo-mind-portal",
@@ -239,7 +350,14 @@ export const projects: Project[] = [
     "image": "🧠",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "Personal AI knowledge management",
+    "images": {
+      "thumbnail": "/projects/neo-mind-portal-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "ultimate-web-scraping",
@@ -254,7 +372,14 @@ export const projects: Project[] = [
     "image": "🕷️",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "Web scraping toolkit",
+    "images": {
+      "thumbnail": "/projects/ultimate-web-scraping-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   },
   {
     "id": "mastra-game",
@@ -271,23 +396,56 @@ export const projects: Project[] = [
     "image": "🎮",
     "highlights": [],
     "challenges": [],
-    "outcomes": []
+    "outcomes": [],
+    "featured": false,
+    "longDescription": "5v5 MOBA game with SEA culture",
+    "images": {
+      "thumbnail": "/projects/mastra-game-thumbnail.png"
+    },
+    "startDate": "2024-01-01",
+    "relatedProjects": []
   }
-]
+];
 
-export const projectCategories = [
-  { id: 'all', label: 'All Projects', count: 14 },
-  { id: 'ai', label: 'AI & ML', count: 5 },
-  { id: 'automation', label: 'Automation', count: 1 },
-  { id: 'saas', label: 'SaaS', count: 7 },
-  { id: 'tool', label: 'Developer Tools', count: 1 },
-  { id: 'integration', label: 'Integrations', count: 0 },
-  { id: 'research', label: 'Research', count: 0 }
-]
+// Helper functions
+export function getProjectById(id: string): Project | undefined {
+  return projectsData.find(p => p.id === id);
+}
 
-export const projectStats = {
-  total: 14,
-  live: 10,
-  users: 1512,
-  apiCalls: 119346
+export function getFeaturedProjects(): Project[] {
+  return projectsData.filter(p => p.featured).sort((a, b) => {
+    const statusOrder = { live: 0, beta: 1, development: 2, archived: 3 };
+    if (statusOrder[a.status] !== statusOrder[b.status]) {
+      return statusOrder[a.status] - statusOrder[b.status];
+    }
+    return b.complexity - a.complexity;
+  });
+}
+
+export function getProjectsByCategory(category: Project['category']): Project[] {
+  return projectsData.filter(p => p.category === category);
+}
+
+export function getRelatedProjects(projectId: string): Project[] {
+  const project = getProjectById(projectId);
+  if (!project || !project.relatedProjects) return [];
+  
+  return project.relatedProjects
+    .map(id => getProjectById(id))
+    .filter(Boolean) as Project[];
+}
+
+export function getProjectStats() {
+  const total = projectsData.length;
+  const live = projectsData.filter(p => p.status === 'live').length;
+  const totalUsers = projectsData.reduce((acc, p) => acc + (p.metrics?.users || 0), 0);
+  const totalApiCalls = projectsData.reduce((acc, p) => acc + (p.metrics?.apiCalls || 0), 0);
+  
+  return {
+    totalProjects: total,
+    liveProjects: live,
+    totalUsers,
+    totalApiCalls,
+    categories: [...new Set(projectsData.map(p => p.category))].length
+  };
 }
