@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { projectsData, getProjectStats, type Project } from '@/lib/projects-data';
+import { useAnalytics } from '@/lib/analytics/use-analytics';
 import { BackgroundBeams } from '@/components/aceternity/background-beams';
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
 import { IconExternalLink, IconBrandGithub, IconBook, IconVideo, IconChartBar, IconClock, IconUsers, IconApi, IconFilter, IconX, IconArrowLeft } from '@tabler/icons-react';
@@ -14,6 +15,7 @@ const statuses = ['all', 'live', 'beta', 'development', 'archived'] as const;
 const complexities = ['all', '1', '2', '3', '4', '5'] as const;
 
 export default function ProjectsPage() {
+  const analytics = useAnalytics();
   const [selectedCategory, setSelectedCategory] = useState<typeof categories[number]>('all');
   const [selectedStatus, setSelectedStatus] = useState<typeof statuses[number]>('all');
   const [selectedComplexity, setSelectedComplexity] = useState<typeof complexities[number]>('all');
@@ -175,7 +177,10 @@ export default function ProjectsPage() {
                       {categories.map(cat => (
                         <button
                           key={cat}
-                          onClick={() => setSelectedCategory(cat)}
+                          onClick={() => {
+                            setSelectedCategory(cat);
+                            analytics.trackProjectFilter('category', cat);
+                          }}
                           className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
                             selectedCategory === cat
                               ? 'bg-cyan-500 text-black font-semibold'
@@ -195,7 +200,10 @@ export default function ProjectsPage() {
                       {statuses.map(status => (
                         <button
                           key={status}
-                          onClick={() => setSelectedStatus(status)}
+                          onClick={() => {
+                            setSelectedStatus(status);
+                            analytics.trackProjectFilter('status', status);
+                          }}
                           className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
                             selectedStatus === status
                               ? 'bg-purple-500 text-white font-semibold'
@@ -215,7 +223,10 @@ export default function ProjectsPage() {
                       {complexities.map(complexity => (
                         <button
                           key={complexity}
-                          onClick={() => setSelectedComplexity(complexity)}
+                          onClick={() => {
+                            setSelectedComplexity(complexity);
+                            analytics.trackProjectFilter('complexity', complexity);
+                          }}
                           className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
                             selectedComplexity === complexity
                               ? 'bg-orange-500 text-white font-semibold'
@@ -278,7 +289,11 @@ export default function ProjectsPage() {
                 transition={{ delay: index * 0.05 }}
                 className={`group ${viewMode === 'list' ? 'flex gap-6' : ''}`}
               >
-                <Link href={`/projects/${project.id}`} className="block">
+                <Link 
+                  href={`/projects/${project.id}`} 
+                  className="block"
+                  onClick={() => analytics.trackProjectClick(project.id, project.title, project.category)}
+                >
                   <div className={`relative bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 ${viewMode === 'list' ? 'flex-1' : 'h-full'}`}>
                     {/* Status Badge */}
                     <div className="flex justify-between items-start mb-4">
@@ -331,21 +346,66 @@ export default function ProjectsPage() {
                     {/* Links */}
                     <div className="flex gap-3">
                       {project.links.live && (
-                        <div className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors text-sm">
+                        <a
+                          href={project.links.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            analytics.trackProjectLinkClick(project.id, 'live', project.links.live!);
+                          }}
+                          className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors text-sm"
+                        >
                           <IconExternalLink className="w-4 h-4" />
                           <span>Live</span>
-                        </div>
+                        </a>
                       )}
                       {project.links.github && (
-                        <div className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm">
+                        <a
+                          href={project.links.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            analytics.trackProjectLinkClick(project.id, 'github', project.links.github!);
+                          }}
+                          className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm"
+                        >
                           <IconBrandGithub className="w-4 h-4" />
                           <span>Code</span>
-                        </div>
+                        </a>
                       )}
                       {project.links.docs && (
-                        <div className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm">
+                        <a
+                          href={project.links.docs}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            analytics.trackProjectLinkClick(project.id, 'docs', project.links.docs!);
+                          }}
+                          className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm"
+                        >
                           <IconBook className="w-4 h-4" />
                           <span>Docs</span>
+                        </a>
+                      )}
+                      {project.links.demo && (
+                        <a
+                          href={project.links.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            analytics.trackProjectLinkClick(project.id, 'demo', project.links.demo!);
+                          }}
+                          className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm"
+                        >
+                          <IconVideo className="w-4 h-4" />
+                          <span>Demo</span>
+                        </a>
+                      )}
+                    </div>
                         </div>
                       )}
                     </div>

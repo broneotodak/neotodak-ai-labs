@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { FloatingNav } from '@/components/aceternity/floating-navbar';
 import { BackgroundBeams } from '@/components/aceternity/background-beams';
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
+import { useAnalytics } from '@/lib/analytics/use-analytics';
 import { motion } from 'framer-motion';
 import { IconHome, IconMessage, IconBriefcase, IconCode, IconTerminal2, IconBrain, IconCloud } from '@tabler/icons-react';
 
@@ -143,6 +144,8 @@ function FloatingOrbs() {
 }
 
 export default function Home() {
+  const analytics = useAnalytics();
+  
   return (
     <div className="min-h-screen bg-black text-white">
       <FloatingNav navItems={navItems} />
@@ -174,12 +177,20 @@ export default function Home() {
             
             <div className="flex flex-wrap gap-6 justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/projects" className="px-8 py-3 border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all duration-300 inline-block font-mono">
+                <Link 
+                  href="/projects" 
+                  className="px-8 py-3 border border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-black transition-all duration-300 inline-block font-mono"
+                  onClick={() => analytics.trackNavigation('/projects', 'hero_cta')}
+                >
                   VIEW PROJECTS
                 </Link>
               </motion.div>
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link href="/contact" className="px-8 py-3 border border-gray-600 text-gray-400 hover:border-white hover:text-white transition-all duration-300 inline-block font-mono">
+                <Link 
+                  href="/contact" 
+                  className="px-8 py-3 border border-gray-600 text-gray-400 hover:border-white hover:text-white transition-all duration-300 inline-block font-mono"
+                  onClick={() => analytics.trackNavigation('/contact', 'hero_cta')}
+                >
                   CONTACT
                 </Link>
               </motion.div>
@@ -224,7 +235,10 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="group"
               >
-                <Link href="/projects">
+                <Link 
+                  href="/projects"
+                  onClick={() => analytics.trackNavigation('/projects', `service_card_${item.title.toLowerCase().replace(' ', '_')}`)}
+                >
                   <div className="border border-gray-800 p-8 hover:border-cyan-400/50 transition-all duration-300">
                     <div className="text-cyan-400 mb-4">{item.icon}</div>
                     <h3 className="text-xl font-mono mb-2 group-hover:text-cyan-400 transition-colors">{item.title}</h3>
