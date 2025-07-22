@@ -51,18 +51,20 @@ export default function ProjectsPage() {
   };
 
   // Complexity indicator
-  const ComplexityIndicator = ({ level }: { level: number }) => (
-    <div className="flex gap-1">
-      {[1, 2, 3, 4, 5].map(i => (
-        <div
-          key={i}
-          className={`w-2 h-2 rounded-full ${
-            i <= level ? 'bg-purple-400' : 'bg-gray-600'
-          }`}
-        />
-      ))}
-    </div>
-  );
+  const ComplexityIndicator = ({ level }: { level: number }) => {
+    return (
+      <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map(i => (
+          <div
+            key={i}
+            className={`w-2 h-2 rounded-full ${
+              i <= level ? 'bg-purple-400' : 'bg-gray-600'
+            }`}
+          />
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen relative bg-black">
@@ -110,40 +112,10 @@ export default function ProjectsPage() {
               transition={{ delay: 0.3 }}
               className="text-center"
             >
-              <div className="text-4xl font-bold text-purple-400">{stats.totalUsers.toLocaleString()}</div>
-              <div className="text-gray-400">Total Users</div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-center"
-            >
-              <div className="text-4xl font-bold text-orange-400">{(stats.totalApiCalls / 1000).toFixed(0)}K</div>
-              <div className="text-gray-400">API Calls</div>
+              <div className="text-4xl font-bold text-purple-400">{filteredProjects.length}</div>
+              <div className="text-gray-400">Filtered Results</div>
             </motion.div>
           </div>
-
-          {/* Search Bar */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="max-w-2xl mx-auto mb-8"
-          >
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search projects, technologies..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-4 bg-gray-900/50 border border-gray-800 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-all duration-300 backdrop-blur-sm"
-              />
-              <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-500">
-                <IconFilter className="w-5 h-5" />
-              </div>
-            </div>
-          </motion.div>
 
           {/* Filter Toggle */}
           <div className="text-center mb-8">
@@ -157,144 +129,24 @@ export default function ProjectsPage() {
         </div>
       </div>
 
-      {/* Filters */}
-      <AnimatePresence>
-        {showFilters && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="relative z-20 mb-12 overflow-hidden"
-          >
-            <div className="max-w-7xl mx-auto px-4">
-              <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* Category Filter */}
-                  <div>
-                    <label className="text-gray-400 text-sm mb-3 block">Category</label>
-                    <div className="flex flex-wrap gap-2">
-                      {categories.map(cat => (
-                        <button
-                          key={cat}
-                          onClick={() => {
-                            setSelectedCategory(cat);
-                            analytics.trackProjectFilter('category', cat);
-                          }}
-                          className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
-                            selectedCategory === cat
-                              ? 'bg-cyan-500 text-black font-semibold'
-                              : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
-                          }`}
-                        >
-                          {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Status Filter */}
-                  <div>
-                    <label className="text-gray-400 text-sm mb-3 block">Status</label>
-                    <div className="flex flex-wrap gap-2">
-                      {statuses.map(status => (
-                        <button
-                          key={status}
-                          onClick={() => {
-                            setSelectedStatus(status);
-                            analytics.trackProjectFilter('status', status);
-                          }}
-                          className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
-                            selectedStatus === status
-                              ? 'bg-purple-500 text-white font-semibold'
-                              : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
-                          }`}
-                        >
-                          {status.charAt(0).toUpperCase() + status.slice(1)}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Complexity Filter */}
-                  <div>
-                    <label className="text-gray-400 text-sm mb-3 block">Complexity</label>
-                    <div className="flex flex-wrap gap-2">
-                      {complexities.map(complexity => (
-                        <button
-                          key={complexity}
-                          onClick={() => {
-                            setSelectedComplexity(complexity);
-                            analytics.trackProjectFilter('complexity', complexity);
-                          }}
-                          className={`px-4 py-2 rounded-full text-sm transition-all duration-300 ${
-                            selectedComplexity === complexity
-                              ? 'bg-orange-500 text-white font-semibold'
-                              : 'bg-gray-800/50 text-gray-300 hover:bg-gray-700/50'
-                          }`}
-                        >
-                          {complexity === 'all' ? 'All' : `Level ${complexity}`}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* View Mode Toggle */}
-                <div className="mt-6 flex justify-between items-center">
-                  <div className="text-gray-400">
-                    Showing {filteredProjects.length} of {projectsData.length} projects
-                  </div>
-                  <div className="flex gap-2">
-                    <button
-                      onClick={() => setViewMode('grid')}
-                      className={`p-2 rounded ${viewMode === 'grid' ? 'bg-gray-700' : 'bg-gray-800/50'}`}
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() => setViewMode('list')}
-                      className={`p-2 rounded ${viewMode === 'list' ? 'bg-gray-700' : 'bg-gray-800/50'}`}
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Projects Grid/List */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 pb-20">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={viewMode}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className={viewMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' : 'space-y-6'}
-          >
+      {/* Simple Project Grid - No filters for now */}
+      <section className="relative z-20 pb-32">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                className={`group ${viewMode === 'list' ? 'flex gap-6' : ''}`}
+                transition={{ delay: index * 0.1 }}
+                className="group"
               >
                 <Link 
-                  href={`/projects/${project.id}`} 
+                  href={`/projects/${project.id}`}
                   className="block"
                   onClick={() => analytics.trackProjectClick(project.id, project.title, project.category)}
                 >
-                  <div className={`relative bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 ${viewMode === 'list' ? 'flex-1' : 'h-full'}`}>
+                  <div className="relative bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 h-full">
                     {/* Status Badge */}
                     <div className="flex justify-between items-start mb-4">
                       <span className={`px-3 py-1 rounded-full text-xs border ${getStatusColor(project.status)}`}>
@@ -324,24 +176,6 @@ export default function ProjectsPage() {
                         </span>
                       )}
                     </div>
-
-                    {/* Metrics */}
-                    {project.metrics && (
-                      <div className="grid grid-cols-2 gap-4 mb-4 pt-4 border-t border-gray-800">
-                        {project.metrics.users && (
-                          <div className="flex items-center gap-2 text-sm">
-                            <IconUsers className="w-4 h-4 text-cyan-400" />
-                            <span className="text-gray-300">{project.metrics.users.toLocaleString()} users</span>
-                          </div>
-                        )}
-                        {project.metrics.uptime && (
-                          <div className="flex items-center gap-2 text-sm">
-                            <IconChartBar className="w-4 h-4 text-green-400" />
-                            <span className="text-gray-300">{project.metrics.uptime}% uptime</span>
-                          </div>
-                        )}
-                      </div>
-                    )}
 
                     {/* Links */}
                     <div className="flex gap-3">
@@ -375,60 +209,14 @@ export default function ProjectsPage() {
                           <span>Code</span>
                         </a>
                       )}
-                      {project.links.docs && (
-                        <a
-                          href={project.links.docs}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            analytics.trackProjectLinkClick(project.id, 'docs', project.links.docs!);
-                          }}
-                          className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm"
-                        >
-                          <IconBook className="w-4 h-4" />
-                          <span>Docs</span>
-                        </a>
-                      )}
-                      {project.links.demo && (
-                        <a
-                          href={project.links.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            analytics.trackProjectLinkClick(project.id, 'demo', project.links.demo!);
-                          }}
-                          className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm"
-                        >
-                          <IconVideo className="w-4 h-4" />
-                          <span>Demo</span>
-                        </a>
-                      )}
-                    </div>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </Link>
               </motion.div>
             ))}
-          </motion.div>
-        </AnimatePresence>
-
-        {/* No Results */}
-        {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-20"
-          >
-            <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-bold text-gray-400 mb-2">No projects found</h3>
-            <p className="text-gray-500">Try adjusting your filters or search query</p>
-          </motion.div>
-        )}
-      </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

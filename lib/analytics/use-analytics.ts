@@ -1,6 +1,7 @@
 // React Hook for Analytics Integration
 // Provides easy-to-use analytics functions throughout the app
 
+import React from 'react';
 import { useEffect, useCallback, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import * as analytics from './google-analytics';
@@ -86,12 +87,12 @@ export const useAnalytics = () => {
 };
 
 // Higher-order component for analytics
-export const withAnalytics = <T extends object>(Component: React.ComponentType<T>) => {
-  const WrappedComponent = (props: T) => {
+export function withAnalytics<T extends Record<string, any>>(Component: React.ComponentType<T>) {
+  function WrappedComponent(props: T) {
     const analytics = useAnalytics();
-    return <Component {...props} analytics={analytics} />;
-  };
+    return React.createElement(Component, { ...props, analytics });
+  }
   
   WrappedComponent.displayName = `withAnalytics(${Component.displayName || Component.name})`;
   return WrappedComponent;
-};
+}
