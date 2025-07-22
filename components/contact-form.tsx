@@ -43,18 +43,67 @@ export const ContactForm = () => {
     setIsSubmitting(true);
     
     try {
-      // Send form data to our API route which handles both email and ntfy notifications
-      const response = await fetch('/api/contact', {
+      // Send directly to Web3Forms (static site compatible)
+      const web3FormsData = {
+        access_key: "5da1f869-afb6-423a-ae75-027d89c9a675", // Your Web3Forms access key
+        subject: `🚀 New Project Proposal from ${formData.name}`,
+        from_name: 'Neo Todak Portfolio',
+        message: `🚀 NEW PROJECT PROPOSAL!
+
+👤 Name: ${formData.name}
+📞 Contact: ${formData.contact} (${formData.contactType})
+🎯 Project: ${formData.projectType}
+💰 Budget: ${formData.budget || 'Not specified'}
+⏰ Timeline: ${formData.timeline || 'Not specified'}
+
+📝 Description:
+${formData.description}
+
+---
+Sent from: neotodak.com/contact`,
+        replyto: formData.contactType === 'email' ? formData.contact : 'neo@todak.com'
+      };
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(web3FormsData)
       });
 
       const result = await response.json();
       
       if (result.success) {
+        // Send ntfy notification (parallel to email)
+        const notificationMessage = `NEW PROJECT PROPOSAL!
+
+Name: ${formData.name}
+Contact: ${formData.contact} (${formData.contactType})
+Project: ${formData.projectType}
+Budget: ${formData.budget || 'Not specified'}
+Timeline: ${formData.timeline || 'Not specified'}
+
+Description: ${formData.description}
+
+---
+From: neotodak.com/contact`;
+
+        // Send ntfy notification (don't wait for it)
+        fetch('https://ntfy.sh/neo_notifications', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain',
+            'Title': 'New Project Proposal - Neo Todak',
+            'Priority': 'high',
+            'Tags': 'rocket,briefcase,money_with_wings',
+            'Actions': 'view, Open Portfolio, https://neotodak.com'
+          },
+          body: notificationMessage
+        }).catch(error => {
+          console.log('Ntfy notification failed (not critical):', error);
+        });
+
         setIsSubmitting(false);
         setSubmitted(true);
         
