@@ -45,7 +45,7 @@ export const ContactForm = () => {
     try {
       // Send directly to Web3Forms (static site compatible)
       const web3FormsData = {
-        access_key: "5da1f869-afb6-423a-ae75-027d89c9a675", // Your Web3Forms access key
+        access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY, // Public environment variable
         subject: `🚀 New Project Proposal from ${formData.name}`,
         from_name: 'Neo Todak Portfolio',
         message: `🚀 NEW PROJECT PROPOSAL!
@@ -61,7 +61,7 @@ ${formData.description}
 
 ---
 Sent from: neotodak.com/contact`,
-        replyto: formData.contactType === 'email' ? formData.contact : 'neo@todak.com'
+        replyto: formData.contactType === 'email' ? formData.contact : process.env.NEXT_PUBLIC_CONTACT_EMAIL
       };
 
       const response = await fetch('https://api.web3forms.com/submit', {
