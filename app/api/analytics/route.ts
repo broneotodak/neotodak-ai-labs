@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Configure this route as dynamic (not static)
+export const dynamic = 'force-dynamic';
+
 // Google Analytics Data API v1 (GA4)
 // This fetches real data from your Google Analytics property
 
