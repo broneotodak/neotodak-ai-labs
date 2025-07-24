@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
+  // Removed 'output: export' to enable server-side features and API routes
   trailingSlash: true,
   images: {
-    unoptimized: true,
+    unoptimized: true, // Keep for Netlify compatibility
   },
-  distDir: 'out',
+  // Removed 'distDir: out' - will use default .next directory
   transpilePackages: ['three'],
   webpack: (config) => {
     config.externals = [...(config.externals || []), { canvas: 'canvas' }];
