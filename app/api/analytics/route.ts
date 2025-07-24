@@ -254,7 +254,4 @@ export async function GET(request: NextRequest) {
       { status: 500 }
     );
   }
-}
-
-// Export named function for Next.js 13+ App Router
-export { GET as default }; 
+} 
