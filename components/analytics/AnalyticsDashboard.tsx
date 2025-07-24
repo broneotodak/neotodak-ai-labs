@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { IconEye, IconMouse, IconUsers, IconChartBar, IconClick, IconBrain, IconExternalLink } from '@tabler/icons-react';
+import { IconEye, IconMouse, IconUsers, IconChartBar, IconClick, IconBrain, IconExternalLink, IconAlertCircle } from '@tabler/icons-react';
 
 interface AnalyticsData {
   pageViews: number;
@@ -19,41 +19,77 @@ const AnalyticsDashboard: React.FC = () => {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [timeRange, setTimeRange] = useState<'7d' | '30d' | '90d'>('7d');
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [isUsingMockData, setIsUsingMockData] = useState(false);
 
-  // Simulated data - you can replace this with actual GA4 API calls
+  // Fetch real Google Analytics data
+  const fetchRealAnalytics = async (days: number): Promise<AnalyticsData | null> => {
+    try {
+      const response = await fetch(`/api/analytics?days=${days}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`Analytics API error: ${response.status}`);
+      }
+
+      const realData = await response.json();
+      return realData;
+    } catch (error) {
+      console.error('Failed to fetch real analytics:', error);
+      return null;
+    }
+  };
+
+  // Fallback mock data (only used if real API fails)
+  const getMockData = (): AnalyticsData => ({
+    pageViews: Math.floor(Math.random() * 1000) + 500,
+    uniqueVisitors: Math.floor(Math.random() * 300) + 150,
+    projectClicks: Math.floor(Math.random() * 100) + 50,
+    contactAttempts: Math.floor(Math.random() * 20) + 5,
+    avgTimeOnSite: Math.floor(Math.random() * 120) + 45,
+    topProjects: [
+      { name: 'THR Intelligence', clicks: Math.floor(Math.random() * 50) + 20 },
+      { name: 'FlowState AI', clicks: Math.floor(Math.random() * 40) + 15 },
+      { name: 'Firasah AI', clicks: Math.floor(Math.random() * 30) + 10 },
+      { name: 'AutoRecruit', clicks: Math.floor(Math.random() * 25) + 8 },
+      { name: 'TODAK Bot', clicks: Math.floor(Math.random() * 20) + 5 }
+    ],
+    dailyViews: Array.from({ length: 7 }, (_, i) => ({
+      date: new Date(Date.now() - (6 - i) * 24 * 60 * 60 * 1000).toLocaleDateString(),
+      views: Math.floor(Math.random() * 100) + 20
+    })),
+    deviceTypes: {
+      mobile: Math.floor(Math.random() * 60) + 30,
+      desktop: Math.floor(Math.random() * 50) + 40,
+      tablet: Math.floor(Math.random() * 20) + 10
+    }
+  });
+
   useEffect(() => {
     const fetchAnalytics = async () => {
       setLoading(true);
+      setError(null);
       
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const daysMap = { '7d': 7, '30d': 30, '90d': 90 };
+      const days = daysMap[timeRange];
       
-      // Mock data - replace with actual Google Analytics data
-      const mockData: AnalyticsData = {
-        pageViews: Math.floor(Math.random() * 1000) + 500,
-        uniqueVisitors: Math.floor(Math.random() * 300) + 150,
-        projectClicks: Math.floor(Math.random() * 100) + 50,
-        contactAttempts: Math.floor(Math.random() * 20) + 5,
-        avgTimeOnSite: Math.floor(Math.random() * 120) + 45,
-        topProjects: [
-          { name: 'THR Intelligence', clicks: Math.floor(Math.random() * 50) + 20 },
-          { name: 'FlowState AI', clicks: Math.floor(Math.random() * 40) + 15 },
-          { name: 'Firasah AI', clicks: Math.floor(Math.random() * 30) + 10 },
-          { name: 'AutoRecruit', clicks: Math.floor(Math.random() * 25) + 8 },
-          { name: 'TODAK Bot', clicks: Math.floor(Math.random() * 20) + 5 }
-        ],
-        dailyViews: Array.from({ length: 7 }, (_, i) => ({
-          date: new Date(Date.now() - (6 - i) * 24 * 60 * 60 * 1000).toLocaleDateString(),
-          views: Math.floor(Math.random() * 100) + 20
-        })),
-        deviceTypes: {
-          mobile: Math.floor(Math.random() * 60) + 30,
-          desktop: Math.floor(Math.random() * 50) + 40,
-          tablet: Math.floor(Math.random() * 20) + 10
-        }
-      };
+      // Try to fetch real data first
+      const realData = await fetchRealAnalytics(days);
       
-      setData(mockData);
+      if (realData) {
+        setData(realData);
+        setIsUsingMockData(false);
+      } else {
+        // Fallback to mock data with warning
+        setData(getMockData());
+        setIsUsingMockData(true);
+        setError('Unable to connect to Google Analytics. Showing sample data.');
+      }
+      
       setLoading(false);
     };
 
@@ -92,7 +128,7 @@ const AnalyticsDashboard: React.FC = () => {
       <div className="min-h-screen bg-black flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-cyan-400 mx-auto mb-4"></div>
-          <p className="text-cyan-400">Loading Analytics Data...</p>
+          <p className="text-cyan-400">Loading Real Analytics Data...</p>
         </div>
       </div>
     );
@@ -107,6 +143,23 @@ const AnalyticsDashboard: React.FC = () => {
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-cyan-400 mb-2">📊 NEOTODAK Analytics</h1>
           <p className="text-gray-400">Real-time insights into your AI projects portfolio</p>
+          
+          {/* Data Source Warning */}
+          {isUsingMockData && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-yellow-900/20 border border-yellow-500/50 rounded-lg p-4 mt-4 flex items-center gap-3"
+            >
+              <IconAlertCircle className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+              <div>
+                <p className="text-yellow-400 font-medium">Mock Data Warning</p>
+                <p className="text-yellow-300/80 text-sm">
+                  {error || "Currently showing sample data. Real Google Analytics integration needed."}
+                </p>
+              </div>
+            </motion.div>
+          )}
           
           {/* Time Range Selector */}
           <div className="flex gap-2 mt-4">
@@ -217,7 +270,12 @@ const AnalyticsDashboard: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mt-8 bg-gray-900/50 backdrop-blur-sm border border-gray-800 rounded-lg p-6"
         >
-          <h2 className="text-xl font-bold text-white mb-4">Quick Actions</h2>
+          <h2 className="text-xl font-bold text-white mb-4">
+            Quick Actions
+            {!isUsingMockData && (
+              <span className="ml-2 text-sm text-green-400">(Live Data)</span>
+            )}
+          </h2>
           <div className="flex flex-wrap gap-4">
             <a
               href="https://analytics.google.com"
