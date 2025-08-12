@@ -90,11 +90,11 @@ export const DynamicOptimizedComponents = {
   },
 
   // Heavy UI Components
-  ContactForm: dynamic(() => import('@/components/contact-form'), {
+  ContactForm: dynamic(() => import('@/components/contact-form').then(mod => ({ default: mod.default || mod })) as any, {
     loading: () => null
   }),
 
-  TechStack3D: dynamic(() => import('@/components/tech-stack-3d-simple'), {
+  TechStack3D: dynamic(() => import('@/components/tech-stack-3d-simple').then(mod => ({ default: mod.default || mod })) as any, {
     ssr: false,
     loading: () => null
   }),
