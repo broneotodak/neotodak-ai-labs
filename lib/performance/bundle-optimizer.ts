@@ -1,27 +1,27 @@
 // Bundle Optimization for NEOTODAK AI Labs
 // Dynamic imports, tree shaking, and chunk splitting strategies
 
-// Optimized Three.js imports with tree shaking
+// Three.js imports - use standard imports to avoid build issues
 export const OptimizedThreeImports = {
-  // Core Three.js - only import what we need
-  Vector3: () => import('three/src/math/Vector3.js'),
-  BufferGeometry: () => import('three/src/core/BufferGeometry.js'),
-  BufferAttribute: () => import('three/src/core/BufferAttribute.js'),
-  Points: () => import('three/src/objects/Points.js'),
-  PointsMaterial: () => import('three/src/materials/PointsMaterial.js'),
-  Line: () => import('three/src/objects/Line.js'),
-  LineBasicMaterial: () => import('three/src/materials/LineBasicMaterial.js'),
-  SphereGeometry: () => import('three/src/geometries/SphereGeometry.js'),
-  MeshBasicMaterial: () => import('three/src/materials/MeshBasicMaterial.js'),
+  // Use standard Three.js imports
+  Vector3: () => import('three').then(mod => ({ Vector3: mod.Vector3 })),
+  BufferGeometry: () => import('three').then(mod => ({ BufferGeometry: mod.BufferGeometry })),
+  BufferAttribute: () => import('three').then(mod => ({ BufferAttribute: mod.BufferAttribute })),
+  Points: () => import('three').then(mod => ({ Points: mod.Points })),
+  PointsMaterial: () => import('three').then(mod => ({ PointsMaterial: mod.PointsMaterial })),
+  Line: () => import('three').then(mod => ({ Line: mod.Line })),
+  LineBasicMaterial: () => import('three').then(mod => ({ LineBasicMaterial: mod.LineBasicMaterial })),
+  SphereGeometry: () => import('three').then(mod => ({ SphereGeometry: mod.SphereGeometry })),
+  MeshBasicMaterial: () => import('three').then(mod => ({ MeshBasicMaterial: mod.MeshBasicMaterial })),
   
   // Optimized geometry imports
-  Float32BufferAttribute: () => import('three/src/core/BufferAttribute.js').then(mod => ({ Float32BufferAttribute: mod.BufferAttribute })),
+  Float32BufferAttribute: () => import('three').then(mod => ({ Float32BufferAttribute: mod.Float32BufferAttribute })),
   
   // Math utilities
-  MathUtils: () => import('three/src/math/MathUtils.js'),
+  MathUtils: () => import('three').then(mod => ({ MathUtils: mod.MathUtils })),
   
   // Constants
-  AdditiveBlending: () => import('three/src/constants.js').then(mod => ({ AdditiveBlending: mod.AdditiveBlending })),
+  AdditiveBlending: () => import('three').then(mod => ({ AdditiveBlending: mod.AdditiveBlending })),
 };
 
 // Component optimization paths - components can use these for dynamic imports
@@ -146,7 +146,7 @@ export class ChunkOptimizer {
   }
 }
 
-// Tree shaking helper for Three.js
+// Helper for Three.js imports
 export function createOptimizedThreeModule() {
   return {
     // Only expose the minimal Three.js API we actually use
@@ -159,36 +159,18 @@ export function createOptimizedThreeModule() {
     LineBasicMaterial: null as any,
     AdditiveBlending: null as any,
 
-    // Lazy initialization
+    // Lazy initialization with standard Three.js imports
     async init() {
-      const [
-        { Vector3 },
-        { BufferGeometry },
-        { BufferAttribute },
-        { Points },
-        { PointsMaterial },
-        { Line },
-        { LineBasicMaterial },
-        { AdditiveBlending }
-      ] = await Promise.all([
-        import('three/src/math/Vector3.js'),
-        import('three/src/core/BufferGeometry.js'),
-        import('three/src/core/BufferAttribute.js'),
-        import('three/src/objects/Points.js'),
-        import('three/src/materials/PointsMaterial.js'),
-        import('three/src/objects/Line.js'),
-        import('three/src/materials/LineBasicMaterial.js'),
-        import('three/src/constants.js')
-      ]);
+      const THREE = await import('three');
 
-      this.Vector3 = Vector3;
-      this.BufferGeometry = BufferGeometry;
-      this.BufferAttribute = BufferAttribute;
-      this.Points = Points;
-      this.PointsMaterial = PointsMaterial;
-      this.Line = Line;
-      this.LineBasicMaterial = LineBasicMaterial;
-      this.AdditiveBlending = AdditiveBlending;
+      this.Vector3 = THREE.Vector3;
+      this.BufferGeometry = THREE.BufferGeometry;
+      this.BufferAttribute = THREE.BufferAttribute;
+      this.Points = THREE.Points;
+      this.PointsMaterial = THREE.PointsMaterial;
+      this.Line = THREE.Line;
+      this.LineBasicMaterial = THREE.LineBasicMaterial;
+      this.AdditiveBlending = THREE.AdditiveBlending;
 
       return this;
     }

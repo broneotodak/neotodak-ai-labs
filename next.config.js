@@ -120,11 +120,12 @@ const nextConfig = {
         config.plugins.push(new BundleAnalyzerPlugin());
       }
       
-      // Tree shaking for Three.js
+      // Remove Three.js tree shaking - it's causing Matrix4 constructor errors
+      // Keep the standard Three.js imports
       config.resolve.alias = {
         ...config.resolve.alias,
         'three/examples/jsm': 'three/examples/jsm',
-        'three': 'three/src/Three.js', // Use source for better tree shaking
+        // Don't override the main three import
       };
       
       // Optimize imports

@@ -10,14 +10,39 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { IconHome, IconMessage, IconBriefcase, IconCode, IconTerminal2, IconBrain, IconCloud } from '@tabler/icons-react';
 import FlowStateWidget from '@/components/integrations/FlowStateWidget';
 
-// 3D Components
-import AnimatedDNAHelix from '@/components/three/AnimatedDNAHelix';
-import ConnectionLines from '@/components/three/ConnectionLines';
-import PulsingOrbs from '@/components/three/PulsingOrbs';
-import TypewriterGlow from '@/components/three/TypewriterGlow';
-import AnimatedGradientBg from '@/components/three/AnimatedGradientBg';
-import InteractiveParticleField from '@/components/three/InteractiveParticleField';
+// 3D Components - Dynamic imports to prevent SSR issues
+import dynamic from 'next/dynamic';
 import { PerformanceDebugger, getDeviceQuality, getResponsiveSettings } from '@/components/three/PerformanceOptimizer';
+
+const AnimatedDNAHelix = dynamic(() => import('@/components/three/AnimatedDNAHelix'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />
+});
+
+const ConnectionLines = dynamic(() => import('@/components/three/ConnectionLines'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />
+});
+
+const PulsingOrbs = dynamic(() => import('@/components/three/PulsingOrbs'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />
+});
+
+const TypewriterGlow = dynamic(() => import('@/components/three/TypewriterGlow'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />
+});
+
+const AnimatedGradientBg = dynamic(() => import('@/components/three/AnimatedGradientBg'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />
+});
+
+const InteractiveParticleField = dynamic(() => import('@/components/three/InteractiveParticleField'), {
+  ssr: false,
+  loading: () => <div className="w-full h-full" />
+});
 
 const navItems = [
   {
