@@ -248,12 +248,21 @@ export default function AnimatedDNAHelix({
   scrollProgress?: number;
   className?: string;
 }) {
+  const [mounted, setMounted] = React.useState(false);
   const mouseRef = useRef(new THREE.Vector2(0, 0));
+  
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   
   const handleMouseMove = (event: React.MouseEvent) => {
     mouseRef.current.x = (event.clientX / window.innerWidth) * 2 - 1;
     mouseRef.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
   };
+  
+  if (!mounted) {
+    return <div className={`${className} bg-black`} />;
+  }
   
   return (
     <div 

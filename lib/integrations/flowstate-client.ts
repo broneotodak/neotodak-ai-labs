@@ -45,6 +45,15 @@ export class FlowStateClient {
   }
 
   async getRecentActivities(limit: number = 5, retries: number = 3): Promise<FlowStateApiResponse> {
+    // Return empty response if baseUrl or anonKey is not configured
+    if (!this.baseUrl || !this.anonKey) {
+      return {
+        activities: [],
+        count: 0,
+        error: 'FlowState not configured - missing environment variables'
+      };
+    }
+    
     const cacheKey = this.getCacheKey({ limit });
     const cached = this.cache.get(cacheKey);
     
