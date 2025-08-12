@@ -160,7 +160,7 @@ export function getTimeAgo(timestamp: string): string {
 
 // Create a singleton client instance
 // FlowState public configuration (anon key is safe for client-side use)
-const FLOWSTATE_URL = process.env.NEXT_PUBLIC_FLOWSTATE_URL || 'https://uzamamymfzhelvkwpvgt.supabase.co';
+const FLOWSTATE_URL = process.env.NEXT_PUBLIC_FLOWSTATE_URL || '';
 const FLOWSTATE_ANON_KEY = process.env.NEXT_PUBLIC_FLOWSTATE_ANON_KEY || '';
 
 export const flowStateClient = new FlowStateClient(
