@@ -12,13 +12,13 @@
     "export": "next build && next export"
   },
   "dependencies": {
-    "@google-analytics/data": "^4.7.0",
+    "@google-analytics/data": "^4.12.1",
     "@react-three/drei": "^9.122.0",
     "@react-three/fiber": "^8.18.0",
     "@tabler/icons-react": "^2.40.0",
     "clsx": "^2.0.0",
     "framer-motion": "^10.16.0",
-    "google-auth-library": "^9.15.0",
+    "google-auth-library": "^9.15.1",
     "lucide-react": "^0.294.0",
     "next": "^15.3.4",
     "react": "^18.2.0",

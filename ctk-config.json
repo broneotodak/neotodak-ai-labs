@@ -1,0 +1,357 @@
+{
+  "project": {
+    "name": "NEOTODAK AI Labs",
+    "description": "Professional AI portfolio website showcasing innovative projects and solutions",
+    "version": "1.0.0",
+    "repository": "https://github.com/broneotodak/neotodak-ai-labs.git",
+    "production_url": "https://neotodak.com",
+    "staging_url": "https://neotodak-ai-labs.netlify.app",
+    "type": "next-portfolio",
+    "stack": {
+      "framework": "Next.js 15.3.4",
+      "ui": ["React 18", "TypeScript", "Tailwind CSS"],
+      "animations": ["Framer Motion", "Three.js", "React Three Fiber"],
+      "components": ["Aceternity UI", "Custom 3D Components"],
+      "analytics": "Google Analytics 4",
+      "deployment": "Netlify",
+      "styling": "Tailwind CSS with custom animations"
+    }
+  },
+  
+  "agents": {
+    "frontend_ui": {
+      "name": "Neotodak Frontend UI Agent",
+      "responsibility": "UI/UX improvements and component development",
+      "capabilities": [
+        "Create and enhance Aceternity components",
+        "Implement 3D animations with Three.js",
+        "Design responsive layouts",
+        "Optimize performance and animations",
+        "Manage Framer Motion transitions"
+      ],
+      "files": [
+        "app/page.tsx",
+        "app/layout.tsx",
+        "components/aceternity/*",
+        "app/globals.css",
+        "tailwind.config.js"
+      ],
+      "focus_areas": {
+        "animations": ["3D grid background", "Floating orbs", "Text effects"],
+        "components": ["Hero sections", "Project cards", "Navigation"],
+        "performance": ["Bundle optimization", "Lazy loading", "Animation smoothness"]
+      }
+    },
+    
+    "projects_manager": {
+      "name": "Projects Data Agent",
+      "responsibility": "Managing project showcase and portfolio data",
+      "capabilities": [
+        "Update project information and metrics",
+        "Generate project pages dynamically",
+        "Manage project filtering and categorization",
+        "Sync with external project repositories",
+        "Track project statistics and deployment status"
+      ],
+      "files": [
+        "lib/projects-data.ts",
+        "app/projects/page.tsx",
+        "app/projects/[slug]/page.tsx",
+        "components/project-placeholder.tsx"
+      ],
+      "project_categories": [
+        "Active Projects",
+        "In Development",
+        "Coming Soon",
+        "Archived"
+      ],
+      "metrics": {
+        "tracked": ["users", "deployments", "commits", "stars"],
+        "calculated": ["completion_percentage", "activity_score", "impact_rating"]
+      }
+    },
+    
+    "analytics": {
+      "name": "Analytics & Insights Agent",
+      "responsibility": "Analytics integration and data visualization",
+      "capabilities": [
+        "Configure Google Analytics 4 tracking",
+        "Create custom analytics events",
+        "Build real-time dashboards",
+        "Generate analytics reports",
+        "Track user behavior and conversions"
+      ],
+      "files": [
+        "app/analytics/page.tsx",
+        "components/analytics/AnalyticsDashboard.tsx",
+        "components/analytics/GoogleAnalytics.tsx",
+        "app/api/analytics/route.ts",
+        "lib/analytics/*"
+      ],
+      "tracking": {
+        "events": ["page_view", "project_click", "contact_submit", "tech_stack_view"],
+        "metrics": ["bounce_rate", "session_duration", "conversion_rate"],
+        "dimensions": ["device", "location", "referrer", "user_type"]
+      }
+    },
+    
+    "content": {
+      "name": "Content & Copy Agent",
+      "responsibility": "Website content, copy, and documentation",
+      "capabilities": [
+        "Write compelling project descriptions",
+        "Create engaging hero copy",
+        "Update About and Contact sections",
+        "Maintain documentation",
+        "SEO optimization for content"
+      ],
+      "files": [
+        "README.md",
+        "app/projects/*/content.mdx",
+        "public/content/*",
+        "app/privacy/page.tsx"
+      ],
+      "content_types": {
+        "hero": "Impactful headlines and taglines",
+        "projects": "Technical descriptions with benefits",
+        "about": "Professional background and mission",
+        "contact": "Clear call-to-actions"
+      }
+    },
+    
+    "integration": {
+      "name": "Integration & API Agent",
+      "responsibility": "External service integrations and API management",
+      "capabilities": [
+        "Connect with project repositories",
+        "Integrate with analytics services",
+        "Manage contact form submissions",
+        "Sync with FlowState for real-time updates",
+        "Handle deployment webhooks"
+      ],
+      "files": [
+        "app/api/*/route.ts",
+        "lib/integrations/*",
+        "components/live-activity-feed.tsx"
+      ],
+      "integrations": {
+        "github": "Project repository sync",
+        "flowstate": "Real-time activity tracking",
+        "analytics": "Google Analytics Data API",
+        "contact": "Form submission handling",
+        "deployment": "Netlify build hooks"
+      }
+    },
+    
+    "performance": {
+      "name": "Performance Optimization Agent",
+      "responsibility": "Site performance and optimization",
+      "capabilities": [
+        "Optimize bundle sizes",
+        "Implement code splitting",
+        "Configure caching strategies",
+        "Optimize images and assets",
+        "Monitor Core Web Vitals"
+      ],
+      "files": [
+        "next.config.js",
+        "netlify.toml",
+        "scripts/optimize.js"
+      ],
+      "metrics": {
+        "target_lcp": "< 2.5s",
+        "target_fid": "< 100ms",
+        "target_cls": "< 0.1",
+        "bundle_size": "< 200KB initial"
+      }
+    },
+    
+    "testing": {
+      "name": "Testing & QA Agent",
+      "responsibility": "Testing and quality assurance",
+      "capabilities": [
+        "Write component tests",
+        "Perform cross-browser testing",
+        "Test responsive layouts",
+        "Validate analytics tracking",
+        "Check deployment builds"
+      ],
+      "test_areas": [
+        "Component rendering",
+        "Animation performance",
+        "Form submissions",
+        "Analytics events",
+        "SEO compliance"
+      ]
+    }
+  },
+  
+  "workflows": {
+    "add_new_project": {
+      "description": "Adding a new AI project to the portfolio",
+      "agents": ["projects_manager", "frontend_ui", "content"],
+      "steps": [
+        "1. Projects Manager: Add project data to lib/projects-data.ts",
+        "2. Content Agent: Write project description and benefits",
+        "3. Frontend UI: Create project card with animations",
+        "4. Projects Manager: Generate dynamic project page",
+        "5. Analytics Agent: Add tracking for new project",
+        "6. Testing Agent: Verify project displays correctly"
+      ]
+    },
+    
+    "ui_enhancement": {
+      "description": "Enhancing UI with new animations or components",
+      "agents": ["frontend_ui", "performance", "testing"],
+      "steps": [
+        "1. Frontend UI: Design and implement new component",
+        "2. Frontend UI: Add Framer Motion animations",
+        "3. Performance Agent: Check animation performance",
+        "4. Testing Agent: Test across devices",
+        "5. Performance Agent: Optimize if needed"
+      ]
+    },
+    
+    "analytics_implementation": {
+      "description": "Implementing new analytics features",
+      "agents": ["analytics", "integration", "frontend_ui"],
+      "steps": [
+        "1. Analytics Agent: Define tracking requirements",
+        "2. Integration Agent: Set up GA4 events",
+        "3. Frontend UI: Add event triggers to components",
+        "4. Analytics Agent: Create dashboard visualizations",
+        "5. Testing Agent: Verify event tracking"
+      ]
+    },
+    
+    "content_update": {
+      "description": "Updating website content and copy",
+      "agents": ["content", "frontend_ui"],
+      "steps": [
+        "1. Content Agent: Write new copy",
+        "2. Frontend UI: Implement text animations",
+        "3. Content Agent: SEO optimization",
+        "4. Testing Agent: Proofread and verify"
+      ]
+    }
+  },
+  
+  "commands": {
+    "development": {
+      "start": "npm run dev",
+      "build": "npm run build",
+      "preview": "npm run start",
+      "lint": "npm run lint",
+      "export": "npm run export"
+    },
+    "deployment": {
+      "preview": "netlify deploy",
+      "production": "netlify deploy --prod",
+      "status": "netlify status"
+    },
+    "testing": {
+      "components": "npm test",
+      "e2e": "npm run test:e2e",
+      "lighthouse": "npx lighthouse https://neotodak.com"
+    }
+  },
+  
+  "environment": {
+    "required_vars": {
+      "NEXT_PUBLIC_GA_MEASUREMENT_ID": "Google Analytics Measurement ID",
+      "GA_PROPERTY_ID": "Google Analytics Property ID",
+      "GOOGLE_APPLICATION_CREDENTIALS": "Path to GA service account JSON"
+    },
+    "optional_vars": {
+      "NEXT_PUBLIC_SITE_URL": "Production URL",
+      "CONTACT_EMAIL": "Contact form recipient"
+    }
+  },
+  
+  "deployment": {
+    "platform": "Netlify",
+    "build_command": "npm run build",
+    "publish_directory": ".next",
+    "node_version": "18",
+    "features": {
+      "auto_deploy": true,
+      "branch": "main",
+      "preview_deploys": true,
+      "functions": "Netlify Functions for API routes"
+    },
+    "plugins": ["@netlify/plugin-nextjs"],
+    "security": {
+      "headers": "Security headers configured",
+      "secrets_scanning": "Enabled with path exclusions"
+    }
+  },
+  
+  "integrations": {
+    "flowstate": {
+      "purpose": "Show real-time development activity",
+      "endpoint": "https://flowstate.neotodak.com/api",
+      "features": ["Live activity feed", "Project metrics sync"]
+    },
+    "github": {
+      "purpose": "Sync project statistics",
+      "repos": [
+        "neotodak-ai-labs",
+        "flowstate-ai",
+        "THR",
+        "claude-tools-kit"
+      ]
+    },
+    "google_analytics": {
+      "purpose": "User behavior tracking",
+      "version": "GA4",
+      "features": ["Real-time analytics", "Custom events", "Conversion tracking"]
+    }
+  },
+  
+  "ui_components": {
+    "aceternity": {
+      "components": [
+        "BackgroundBeams",
+        "CardHoverEffect",
+        "FloatingNavbar",
+        "HeroParallax",
+        "TextGenerateEffect",
+        "TypewriterEffect",
+        "Spotlight",
+        "ParallaxCard"
+      ],
+      "customization": "Tailwind CSS with custom animations"
+    },
+    "custom": {
+      "3d_components": ["Tech Stack 3D", "Neural Network Background"],
+      "animations": ["Floating Orbs", "Grid Background", "Particle Effects"]
+    }
+  },
+  
+  "performance_targets": {
+    "lighthouse_score": "> 90",
+    "first_contentful_paint": "< 1.5s",
+    "time_to_interactive": "< 3.5s",
+    "bundle_size": {
+      "initial": "< 200KB",
+      "total": "< 500KB"
+    }
+  },
+  
+  "notes": {
+    "important": [
+      "Site is live at neotodak.com",
+      "Automatic deployment on push to main",
+      "Analytics require Google service account",
+      "Projects auto-generated from memory system",
+      "Aceternity components for premium UI"
+    ],
+    "future_enhancements": [
+      "Add blog section for AI insights",
+      "Implement dark/light theme toggle",
+      "Add interactive AI demos",
+      "Create individual case studies",
+      "Integrate with more AI projects"
+    ]
+  }
+}
