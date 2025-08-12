@@ -34,7 +34,7 @@ export function track3DInteraction(
   };
 
   // Track with Google Analytics
-  trackEvent('3d_interaction', eventData);
+  trackEvent(animationType, '3D_Interaction', action, undefined, eventData);
 
   // Track performance impact of interactions
   if (animationType !== 'viewport' && animationType !== 'scroll') {
@@ -78,7 +78,7 @@ export function trackProjectView(
     ...data
   };
 
-  trackEvent('project_view', eventData);
+  trackEvent('view', 'Project_Engagement', projectName, undefined, eventData);
 
   // Track project popularity for recommendations
   incrementProjectPopularity(projectName, source);
@@ -114,7 +114,7 @@ export function trackFlowStateEngagement(
     ...data
   };
 
-  trackEvent('flowstate_engagement', eventData);
+  trackEvent(action, 'FlowState_Widget', 'engagement', undefined, eventData);
 
   // Track widget usage patterns
   trackWidgetUsagePattern(action, data);
@@ -152,7 +152,7 @@ export function trackPerformanceMetric(
     ...data
   };
 
-  trackEvent('performance_metric', eventData);
+  trackEvent(metric, 'Performance', String(value), value, eventData);
 
   // Alert on performance issues
   if (shouldAlertOnPerformance(metric, value)) {
@@ -193,7 +193,7 @@ function incrementProjectPopularity(projectName: string, source: string) {
   
   // Send popularity data periodically
   if (current.views % 10 === 0) {
-    trackEvent('project_popularity', {
+    trackEvent('popularity', 'Project_Analytics', 'tracking', undefined, {
       event_category: 'Project_Analytics',
       project_name: projectName,
       total_views: current.views,
@@ -229,7 +229,7 @@ function trackWidgetUsagePattern(action: string, data?: FlowStateEngagementData)
   
   // Send usage pattern every 20 interactions
   if (widgetUsageStats.totalInteractions % 20 === 0) {
-    trackEvent('widget_usage_pattern', {
+    trackEvent('usage_pattern', 'Widget_Analytics', 'flowstate', undefined, {
       event_category: 'Widget_Analytics',
       total_interactions: widgetUsageStats.totalInteractions,
       expand_rate: widgetUsageStats.expandCount / widgetUsageStats.totalInteractions,
@@ -253,7 +253,7 @@ function shouldAlertOnPerformance(metric: string, value: number): boolean {
 }
 
 function trackPerformanceAlert(metric: string, value: number, data?: PerformanceMetricData) {
-  trackEvent('performance_alert', {
+  trackEvent('alert', 'Performance', 'threshold_exceeded', undefined, {
     event_category: 'Performance_Alert',
     alert_metric: metric,
     alert_value: value,
@@ -319,7 +319,7 @@ class EventBatcher {
     this.events = [];
     
     // Send batched events
-    trackEvent('batch_events', {
+    trackEvent('batch', 'Events', 'processed', eventsToSend.length, {
       event_category: 'Analytics_Batch',
       events: eventsToSend,
       batch_size: eventsToSend.length,
@@ -355,7 +355,7 @@ export function setCustomDimensions(dimensions: Record<string, any>) {
 
 // A/B Test tracking
 export function trackABTest(testName: string, variant: string, metric?: string, value?: number) {
-  trackEvent('ab_test', {
+  trackEvent('ab_test', 'AB_Test', testName, value, {
     event_category: 'AB_Testing',
     test_name: testName,
     variant: variant,
@@ -382,7 +382,7 @@ export function addToUserJourney(page: string, action?: string) {
   
   // Track complete user journey every 10 steps
   if (userJourney.length % 10 === 0) {
-    trackEvent('user_journey', {
+    trackEvent('journey', 'User_Flow', 'tracking', undefined, {
       event_category: 'User_Journey',
       journey_steps: userJourney.length,
       current_page: page,

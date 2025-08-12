@@ -90,7 +90,13 @@ export default function AnalyticsTracker({ children }: AnalyticsTrackerProps) {
       if (projectCard) {
         const projectName = projectCard.getAttribute('data-project-name') || 'Unknown';
         const projectCategory = projectCard.getAttribute('data-project-category') || 'Unknown';
-        const source = projectCard.getAttribute('data-source') || pathname;
+        const sourceAttr = projectCard.getAttribute('data-source') || 'project_card';
+        
+        // Type guard to ensure source is valid
+        const validSources = ['project_card', 'project_link', 'navigation', 'search', 'hero', 'featured'] as const;
+        const source = validSources.includes(sourceAttr as any) 
+          ? sourceAttr as typeof validSources[number]
+          : 'project_card';
         
         trackProjectView(projectName, source, {
           category: projectCategory,
@@ -132,8 +138,14 @@ export default function AnalyticsTracker({ children }: AnalyticsTrackerProps) {
       const target = event.target as HTMLElement;
       const widget = target.closest('[data-flowstate-widget]');
       if (widget) {
-        const action = target.getAttribute('data-action') || 'general_click';
+        const actionAttr = target.getAttribute('data-action') || 'general_click';
         const isExpanded = widget.getAttribute('data-expanded') === 'true';
+        
+        // Type guard to ensure action is valid
+        const validActions = ['expand', 'collapse', 'refresh', 'activity_click', 'general_click'] as const;
+        const action = validActions.includes(actionAttr as any)
+          ? actionAttr as typeof validActions[number]
+          : 'general_click';
         
         trackFlowStateEngagement(action, {
           isExpanded,
@@ -145,7 +157,14 @@ export default function AnalyticsTracker({ children }: AnalyticsTrackerProps) {
 
     // Track widget expand/collapse
     const trackWidgetState = (event: CustomEvent) => {
-      const { action, expanded } = event.detail;
+      const { action: actionRaw, expanded } = event.detail;
+      
+      // Type guard to ensure action is valid
+      const validActions = ['expand', 'collapse', 'refresh', 'activity_click', 'general_click'] as const;
+      const action = validActions.includes(actionRaw as any)
+        ? actionRaw as typeof validActions[number]
+        : 'general_click';
+      
       trackFlowStateEngagement(action, {
         expanded,
         timestamp: Date.now(),

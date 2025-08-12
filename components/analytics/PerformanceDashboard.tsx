@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, AreaChart, Area, BarChart, Bar } from 'recharts';
-import { IconChartLine, IconCpu, IconMemory, IconClock, IconTrendingUp, IconTrendingDown, IconEye, IconX } from '@tabler/icons-react';
+import { IconChartLine, IconCpu, IconDatabase, IconClock, IconTrendingUp, IconTrendingDown, IconEye, IconX } from '@tabler/icons-react';
 import { usePerformanceMonitor, getDeviceQuality, getQualitySettings } from '@/components/three/PerformanceOptimizer';
 
 interface PerformanceMetric {
@@ -106,18 +106,18 @@ export default function PerformanceDashboard({
       fps: {
         value: stats.fps,
         average: avgFps,
-        status: stats.fps >= 55 ? 'excellent' : stats.fps >= 30 ? 'good' : 'poor',
-        trend: avgFps > 55 ? 'up' : avgFps < 30 ? 'down' : 'stable'
+        status: (stats.fps >= 55 ? 'excellent' : stats.fps >= 30 ? 'good' : 'poor') as 'excellent' | 'good' | 'poor',
+        trend: (avgFps > 55 ? 'up' : avgFps < 30 ? 'down' : 'stable') as 'up' | 'down' | 'stable'
       },
       memory: {
         value: stats.memoryUsage,
-        status: stats.memoryUsage < 100 ? 'excellent' : stats.memoryUsage < 300 ? 'good' : 'poor',
-        trend: 'stable' as const
+        status: (stats.memoryUsage < 100 ? 'excellent' : stats.memoryUsage < 300 ? 'good' : 'poor') as 'excellent' | 'good' | 'poor',
+        trend: 'stable' as 'up' | 'down' | 'stable'
       },
       frameTime: {
         value: stats.frameTime,
-        status: stats.frameTime < 20 ? 'excellent' : stats.frameTime < 33 ? 'good' : 'poor',
-        trend: 'stable' as const
+        status: (stats.frameTime < 20 ? 'excellent' : stats.frameTime < 33 ? 'good' : 'poor') as 'excellent' | 'good' | 'poor',
+        trend: 'stable' as 'up' | 'down' | 'stable'
       }
     };
   }, [stats, performanceHistory]);
@@ -218,7 +218,7 @@ export default function PerformanceDashboard({
                         unit="MB"
                         status={performanceStatus.memory.status}
                         trend={performanceStatus.memory.trend}
-                        icon={IconMemory}
+                        icon={IconDatabase}
                       />
                       <MetricCard
                         title="Frame Time"
@@ -404,7 +404,7 @@ export default function PerformanceDashboard({
                   <span className="text-sm font-mono">{stats.fps} FPS</span>
                 </div>
                 <div className="text-purple-400 flex items-center space-x-2">
-                  <IconMemory className="w-4 h-4" />
+                  <IconDatabase className="w-4 h-4" />
                   <span className="text-sm font-mono">{stats.memoryUsage} MB</span>
                 </div>
               </div>

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { IconCpu, IconMemory, IconClock, IconActivity, IconSettings, IconX, IconEye, IconEyeOff } from '@tabler/icons-react';
+import { IconCpu, IconDatabase, IconClock, IconActivity, IconSettings, IconX, IconEye, IconEyeOff } from '@tabler/icons-react';
 import { usePerformanceMonitor } from '@/components/three/PerformanceOptimizer';
 import { trackPerformanceMetric } from '@/lib/analytics/events';
 import { adaptiveQualityManager } from '@/lib/performance/optimizer';
@@ -99,7 +99,9 @@ export default function PerformanceMonitor({
         
         // Track performance alerts
         newAlerts.forEach(alert => {
-          trackPerformanceMetric(alert.type, alert.type === 'fps' ? stats.fps : 
+          const metricType = alert.type === 'memory' ? 'memory_usage' : 
+                            alert.type === 'frame_time' ? 'frame_time' : 'fps';
+          trackPerformanceMetric(metricType, alert.type === 'fps' ? stats.fps : 
                                             alert.type === 'memory' ? stats.memoryUsage : 
                                             stats.frameTime, {
             alert_severity: alert.severity,
@@ -296,7 +298,7 @@ export default function PerformanceMonitor({
                     />
                     {stats.memoryUsage > 0 && (
                       <MetricRow
-                        icon={IconMemory}
+                        icon={IconDatabase}
                         label="Memory"
                         value={stats.memoryUsage}
                         unit="MB"

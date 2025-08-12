@@ -35,11 +35,7 @@ export const DynamicOptimizedComponents = {
     })), 
     {
       ssr: false,
-      loading: () => (
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full" />
-        </div>
-      )
+      loading: () => null // Loader handled by component
     }
   ),
 
@@ -47,11 +43,7 @@ export const DynamicOptimizedComponents = {
     () => import('@/components/three/PulsingOrbs'),
     {
       ssr: false,
-      loading: () => (
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="animate-pulse text-purple-400 text-sm">Loading Orbs...</div>
-        </div>
-      )
+      loading: () => null
     }
   ),
 
@@ -59,11 +51,7 @@ export const DynamicOptimizedComponents = {
     () => import('@/components/three/InteractiveParticleField'),
     {
       ssr: false,
-      loading: () => (
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="animate-pulse text-blue-400 text-sm">Loading Particles...</div>
-        </div>
-      )
+      loading: () => null
     }
   ),
 
@@ -72,14 +60,7 @@ export const DynamicOptimizedComponents = {
     () => import('@/components/analytics/PerformanceDashboard'),
     {
       ssr: false,
-      loading: () => (
-        <div className="fixed inset-4 flex items-center justify-center bg-black/80 rounded-xl backdrop-blur">
-          <div className="flex flex-col items-center space-y-4">
-            <div className="animate-spin w-8 h-8 border-2 border-cyan-400 border-t-transparent rounded-full" />
-            <div className="text-cyan-400 text-sm">Loading Performance Dashboard...</div>
-          </div>
-        </div>
-      )
+      loading: () => null
     }
   ),
 
@@ -87,9 +68,7 @@ export const DynamicOptimizedComponents = {
     () => import('@/components/performance/Monitor'),
     {
       ssr: false,
-      loading: () => (
-        <div className="fixed bottom-4 left-4 w-48 h-12 bg-black/80 rounded-lg animate-pulse border border-white/20" />
-      )
+      loading: () => null
     }
   ),
 
@@ -98,9 +77,7 @@ export const DynamicOptimizedComponents = {
     () => import('@/components/integrations/FlowStateWidget'),
     {
       ssr: false,
-      loading: () => (
-        <div className="fixed bottom-8 right-8 w-64 h-16 bg-black/80 rounded-lg animate-pulse border border-cyan-400/20" />
-      )
+      loading: () => null
     }
   ),
 
@@ -113,28 +90,14 @@ export const DynamicOptimizedComponents = {
   },
 
   // Heavy UI Components
-  ContactForm: dynamic(
-    () => import('@/components/contact-form'),
-    {
-      loading: () => (
-        <div className="w-full h-64 bg-gray-900/50 rounded-lg animate-pulse flex items-center justify-center">
-          <div className="text-gray-400">Loading Contact Form...</div>
-        </div>
-      )
-    }
-  ),
+  ContactForm: dynamic(() => import('@/components/contact-form'), {
+    loading: () => null
+  }),
 
-  TechStack3D: dynamic(
-    () => import('@/components/tech-stack-3d-simple'),
-    {
-      ssr: false,
-      loading: () => (
-        <div className="w-full h-96 bg-gray-900/50 rounded-lg flex items-center justify-center">
-          <div className="animate-pulse text-cyan-400">Loading Tech Stack...</div>
-        </div>
-      )
-    }
-  ),
+  TechStack3D: dynamic(() => import('@/components/tech-stack-3d-simple'), {
+    ssr: false,
+    loading: () => null
+  }),
 
   // Aceternity UI Components - Load on demand
   Aceternity: {
