@@ -6,6 +6,23 @@ export const revalidate = 30;
 
 export async function GET(request: NextRequest) {
   try {
+    // Check if FlowState is configured
+    if (!process.env.NEXT_PUBLIC_FLOWSTATE_URL || !process.env.NEXT_PUBLIC_FLOWSTATE_ANON_KEY) {
+      return NextResponse.json(
+        { 
+          activities: [],
+          count: 0,
+          error: 'FlowState not configured'
+        },
+        { 
+          status: 200, // Return 200 to prevent client errors
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate'
+          }
+        }
+      );
+    }
+    
     const searchParams = request.nextUrl.searchParams;
     const limit = parseInt(searchParams.get('limit') || '5', 10);
     
