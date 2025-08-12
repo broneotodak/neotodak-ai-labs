@@ -72,7 +72,7 @@ export default function ProjectsPage() {
       
       {/* Back Button */}
       <div className="fixed top-8 left-8 z-50">
-        <Link href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300">
+        <Link prefetch={false} href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300">
           <IconArrowLeft className="w-4 h-4" />
           <span>Back to Home</span>
         </Link>
@@ -141,7 +141,7 @@ export default function ProjectsPage() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <Link 
+                <Link prefetch={false} 
                   href={`/projects/${project.id}`}
                   className="block"
                   onClick={() => analytics.trackProjectClick(project.id, project.title, project.category)}

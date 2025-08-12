@@ -38,12 +38,14 @@ export default function SimplePage() {
           <div className="flex gap-4 mt-12">
             <Link 
               href="/projects"
+              prefetch={false}
               className="px-8 py-3 bg-cyan-500/20 border border-cyan-500/50 rounded-lg hover:bg-cyan-500/30 transition-colors"
             >
               View Projects
             </Link>
             <Link 
               href="/contact"
+              prefetch={false}
               className="px-8 py-3 bg-purple-500/20 border border-purple-500/50 rounded-lg hover:bg-purple-500/30 transition-colors"
             >
               Contact Me
