@@ -1,8 +1,6 @@
 // Bundle Optimization for NEOTODAK AI Labs
 // Dynamic imports, tree shaking, and chunk splitting strategies
 
-import dynamic from 'next/dynamic';
-
 // Optimized Three.js imports with tree shaking
 export const OptimizedThreeImports = {
   // Core Three.js - only import what we need
@@ -26,88 +24,33 @@ export const OptimizedThreeImports = {
   AdditiveBlending: () => import('three/src/constants.js').then(mod => ({ AdditiveBlending: mod.AdditiveBlending })),
 };
 
-// Dynamic components with optimized loading
-export const DynamicOptimizedComponents = {
-  // 3D Components - Lazy loaded with suspense
-  AnimatedDNAHelix: dynamic(
-    () => import('@/components/three/AnimatedDNAHelix').then(mod => ({
-      default: mod.default
-    })), 
-    {
-      ssr: false,
-      loading: () => null // Loader handled by component
-    }
-  ),
-
-  PulsingOrbs: dynamic(
-    () => import('@/components/three/PulsingOrbs'),
-    {
-      ssr: false,
-      loading: () => null
-    }
-  ),
-
-  InteractiveParticleField: dynamic(
-    () => import('@/components/three/InteractiveParticleField'),
-    {
-      ssr: false,
-      loading: () => null
-    }
-  ),
-
+// Component optimization paths - components can use these for dynamic imports
+export const ComponentPaths = {
+  // 3D Components
+  AnimatedDNAHelix: '@/components/three/AnimatedDNAHelix',
+  PulsingOrbs: '@/components/three/PulsingOrbs',
+  InteractiveParticleField: '@/components/three/InteractiveParticleField',
+  
   // Analytics Components
-  PerformanceDashboard: dynamic(
-    () => import('@/components/analytics/PerformanceDashboard'),
-    {
-      ssr: false,
-      loading: () => null
-    }
-  ),
-
-  PerformanceMonitor: dynamic(
-    () => import('@/components/performance/Monitor'),
-    {
-      ssr: false,
-      loading: () => null
-    }
-  ),
-
+  PerformanceDashboard: '@/components/analytics/PerformanceDashboard',
+  PerformanceMonitor: '@/components/performance/Monitor',
+  
   // FlowState Widget
-  FlowStateWidget: dynamic(
-    () => import('@/components/integrations/FlowStateWidget'),
-    {
-      ssr: false,
-      loading: () => null
-    }
-  ),
-
-  // Charts - Load on demand
-  Charts: {
-    LineChart: dynamic(() => import('recharts').then(mod => ({ default: mod.LineChart })), { ssr: false }),
-    AreaChart: dynamic(() => import('recharts').then(mod => ({ default: mod.AreaChart })), { ssr: false }),
-    BarChart: dynamic(() => import('recharts').then(mod => ({ default: mod.BarChart })), { ssr: false }),
-    ResponsiveContainer: dynamic(() => import('recharts').then(mod => ({ default: mod.ResponsiveContainer })), { ssr: false }),
-  },
-
+  FlowStateWidget: '@/components/integrations/FlowStateWidget',
+  
   // Heavy UI Components
-  ContactForm: dynamic(() => import('@/components/contact-form').then(mod => ({ default: mod.ContactForm })) as any, {
-    loading: () => null
-  }),
-
-  TechStack3D: dynamic(() => import('@/components/tech-stack-3d-simple'), {
-    ssr: false,
-    loading: () => null
-  }),
-
-  // Aceternity UI Components - Load on demand
+  ContactForm: '@/components/contact-form',
+  TechStack3D: '@/components/tech-stack-3d-simple',
+  
+  // Aceternity UI Components
   Aceternity: {
-    BackgroundBeams: dynamic(() => import('@/components/aceternity/background-beams'), { ssr: false }),
-    CardHoverEffect: dynamic(() => import('@/components/aceternity/card-hover-effect'), { ssr: false }),
-    FloatingNavbar: dynamic(() => import('@/components/aceternity/floating-navbar'), { ssr: false }),
-    HeroParallax: dynamic(() => import('@/components/aceternity/hero-parallax'), { ssr: false }),
-    Spotlight: dynamic(() => import('@/components/aceternity/spotlight'), { ssr: false }),
-    TextGenerateEffect: dynamic(() => import('@/components/aceternity/text-generate-effect'), { ssr: false }),
-    TypewriterEffect: dynamic(() => import('@/components/aceternity/typewriter-effect'), { ssr: false })
+    BackgroundBeams: '@/components/aceternity/background-beams',
+    CardHoverEffect: '@/components/aceternity/card-hover-effect',
+    FloatingNavbar: '@/components/aceternity/floating-navbar',
+    HeroParallax: '@/components/aceternity/hero-parallax',
+    Spotlight: '@/components/aceternity/spotlight',
+    TextGenerateEffect: '@/components/aceternity/text-generate-effect',
+    TypewriterEffect: '@/components/aceternity/typewriter-effect'
   }
 };
 
