@@ -21,6 +21,9 @@ const nextConfig = {
     
     // Memory usage optimization
     webVitalsAttribution: ['CLS', 'LCP'],
+    
+    // Disable prefetching to avoid RSC errors
+    clientRouterFilter: false,
   },
   
   // Turbopack configuration (moved from experimental)

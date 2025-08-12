@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FloatingNav } from '@/components/aceternity/floating-navbar';
 import { BackgroundBeams } from '@/components/aceternity/background-beams';
@@ -15,6 +15,11 @@ const navItems = [
 ];
 
 export default function SimplePage() {
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   return (
     <div className="min-h-screen bg-black text-white">
       <FloatingNav navItems={navItems} />
@@ -47,7 +52,7 @@ export default function SimplePage() {
         </div>
       </main>
       
-      <BackgroundBeams />
+      {isClient && <BackgroundBeams />}
     </div>
   );
 }
