@@ -913,65 +913,6 @@ export const projectsData: Project[] = [
     },
     "startDate": "2024-01-01",
     "relatedProjects": ["kaia-ai", "todak-ai-hq"]
-  },
-  {
-    "id": "mlbb-ai-analytics",
-    "title": "MLBB AI Analytics",
-    "description": "Advanced esports analytics platform for Mobile Legends performance optimization and strategic insights",
-    "category": "ai",
-    "status": "live",
-    "complexity": 5,
-    "techStack": [
-      "Python",
-      "Machine Learning",
-      "Computer Vision",
-      "Game Analytics",
-      "Real-time Processing",
-      "Statistical Modeling",
-      "Esports Data"
-    ],
-    "links": {
-      "live": "https://mlbb-analytics.neotodak.com",
-      "demo": "https://mlbb-analytics.neotodak.com/match-analysis",
-      "github": "https://github.com/neotodak/mlbb-ai-analytics"
-    },
-    "metrics": {
-      "users": 3200,
-      "apiCalls": 180000,
-      "uptime": 99.3,
-      "lastUpdated": "2025-08-12"
-    },
-    "icon": "⚔️",
-    "highlights": [
-      "Real-time match analysis with AI-powered performance prediction",
-      "Advanced player performance metrics and skill progression tracking",
-      "Team composition optimization using machine learning algorithms",
-      "Strategic meta analysis and trend identification across competitive tiers",
-      "Automated highlight generation and key moment detection"
-    ],
-    "challenges": [
-      "Processing high-frequency game data in real-time for accurate analytics",
-      "Building unbiased performance models across diverse player skill levels",
-      "Creating meaningful insights from complex multi-player competitive dynamics"
-    ],
-    "outcomes": [
-      "Improved player performance by 35% through data-driven coaching insights",
-      "Analyzed 500K+ matches with 94% accuracy in outcome prediction",
-      "Helped 150+ esports teams optimize strategies and compositions",
-      "Generated 50,000+ personalized improvement recommendations for players"
-    ],
-    "featured": true,
-    "longDescription": "MLBB AI Analytics revolutionizes esports performance analysis through sophisticated machine learning algorithms and real-time game data processing. This comprehensive platform analyzes Mobile Legends gameplay patterns, player mechanics, and strategic decisions to provide actionable insights for competitive improvement. The system employs advanced computer vision and statistical modeling to track performance metrics, predict match outcomes, and identify optimization opportunities that help players and teams achieve peak competitive performance in the rapidly evolving esports landscape.",
-    "images": {
-      "thumbnail": "/projects/mlbb-ai-analytics-thumbnail.png",
-      "screenshots": [
-        "/projects/mlbb-match-analysis.png",
-        "/projects/mlbb-player-metrics.png",
-        "/projects/mlbb-team-composition.png"
-      ]
-    },
-    "startDate": "2024-03-01",
-    "relatedProjects": ["mastra-game", "kaia-ai"]
   }
 ];
 
