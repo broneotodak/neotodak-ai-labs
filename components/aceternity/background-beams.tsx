@@ -7,7 +7,7 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        "absolute inset-0 h-full w-full bg-black [mask-image:radial-gradient(circle_at_center,white,transparent)]",
+        "absolute inset-0 h-full w-full bg-black [mask-image:radial-gradient(circle_at_center,white,transparent)] pointer-events-none",
         className
       )}
     >

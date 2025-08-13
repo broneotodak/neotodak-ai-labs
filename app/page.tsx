@@ -21,10 +21,10 @@ export default function SimplePage() {
     setIsClient(true);
   }, []);
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-black text-white relative">
       <FloatingNav navItems={navItems} />
       
-      <main className="container mx-auto px-4 py-20">
+      <main className="container mx-auto px-4 py-20 relative z-10">
         <div className="flex flex-col items-center justify-center min-h-[80vh]">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-purple-600 text-transparent bg-clip-text">
             NEOTODAK AI Labs
