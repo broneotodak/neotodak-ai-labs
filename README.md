@@ -1,86 +1,127 @@
 # NEOTODAK A.I Labs 🧠
 
-> Pioneering Artificial Intelligence Solutions
+> **Building systems where AI isn't just a tool — it's a teammate**
 
-A cutting-edge AI laboratory portal showcasing innovative AI projects and solutions that transform industries and enhance human capabilities.
+A cutting-edge AI laboratory portal showcasing Neo Todak's innovative AI projects and solutions that transform industries and enhance human capabilities.
 
-## 🌟 Features
+## 🌟 Live Site
 
-- **Neural Network Background Animation** - Interactive canvas-based neural network visualization
-- **Modern AI-Themed Design** - Dark theme with cyan (#00d4ff) primary color and purple accents
-- **Particle Effects** - Dynamic floating particles for immersive experience
-- **Responsive Layout** - Fully responsive design for all devices
-- **Smooth Animations** - CSS animations and transitions for engaging UX
+**[neotodak.com](https://neotodak.com)** - Deployed via Netlify
 
-## 🚀 Projects Showcased
+## 🚀 Tech Stack
 
-### Active Projects
-- **FlowState AI** 🌊 - Real-time AI activity monitoring with predictive analytics
-- **KENAL Admin** 📊 - AI-enhanced admin dashboard with predictive user analytics
+- **Framework**: Next.js 15 with App Router
+- **Styling**: Tailwind CSS + Framer Motion
+- **3D Graphics**: React Three Fiber + Drei
+- **Database**: Supabase with pgVector
+- **Deployment**: Netlify with automatic deploys
+- **Analytics**: Google Analytics 4
 
-### In Development
-- **Firasah AI** 🔮 - Advanced AI-powered facial analysis with computer vision
-- **THR Intelligence** 💼 - AI-driven HR management with predictive analytics
+## 📊 Portfolio Stats (December 2025)
 
-### Coming Soon
-- **ARS Intelligence** 🤖 - Revolutionary AI recruitment system
-- **TODAK AI Bot** 💬 - Intelligent conversational AI for WhatsApp
-- **ATLAS AI** 📦 - AI-powered asset tracking with predictive maintenance
-- **Mastra AI** 🎮 - Next-gen gaming AI with adaptive NPCs
-- **MLBB AI Analytics** 📱 - AI-powered esports analytics
+| Metric | Value |
+|--------|-------|
+| Total Projects | 17 |
+| Live Projects | 14 |
+| Total Users | 9,000+ |
+| Total API Calls | 1M+ |
 
-## 🛠️ Technologies Used
+## 🎯 Featured Projects
 
-- HTML5
-- CSS3 (with CSS Variables)
-- Vanilla JavaScript
-- Canvas API for neural network animation
-- Google Fonts (Inter, JetBrains Mono)
+### AI & Automation
+- **THR Intelligence** 💼 - AI-powered HRMS with Sofia AI Assistant
+- **FlowState AI** 🌊 - Real-time activity monitoring & cross-tool memory sync
+- **Claude Tools Kit** 🛠️ - Multi-agent AI development framework
+- **TODAK AI Bot** 🏢 - WhatsApp automation with Sofia AI
+- **ARS Intelligence** 🤖 - AI recruitment with voice interviews
 
-## 🚀 Quick Start
+### Enterprise Solutions
+- **ATLAS AI** 📦 - Asset management with predictive maintenance
+- **KENAL Admin** 📊 - User management and RBAC
+- **Venture Canvas** 📈 - AI-powered business planning
+- **TAD Event System** 🎉 - Event management with QR check-in
 
-1. Clone the repository:
+### Research & Development
+- **Firasah AI** 🔮 - Facial analysis with Islamic Firasah tradition
+- **TODAK LLM Dataset** 🧬 - Custom training data for Sofia AI
+- **Mastra Universe** 🎮 - AI-powered gaming with SEA mythology
+
+## 🛠️ Local Development
+
 ```bash
+# Clone the repository
 git clone https://github.com/broneotodak/neotodak-ai-labs.git
+cd neotodak-ai-labs
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
 ```
 
-2. Open `neotodak-ai-labs.html` in your browser
+## 📁 Project Structure
 
-## 📱 Responsive Design
+```
+neotodak-ai-labs/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Homepage
+│   ├── projects/          # Projects listing
+│   ├── tech-stack/        # Tech stack showcase
+│   └── contact/           # Contact form
+├── components/            # React components
+│   ├── aceternity/        # UI components
+│   ├── analytics/         # Analytics components
+│   └── three/             # 3D components
+├── lib/                   # Utilities and data
+│   ├── projects-data.ts   # Project definitions
+│   └── utils.ts           # Helper functions
+└── public/                # Static assets
+```
 
-The portal is fully responsive and optimized for:
-- Desktop (1920px+)
-- Laptop (1366px - 1919px)
-- Tablet (768px - 1365px)
-- Mobile (320px - 767px)
+## 🔧 Environment Variables
+
+```env
+# Optional - for analytics
+GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
+```
+
+## 🌐 Deployment
+
+The site automatically deploys to Netlify when pushing to the `main` branch.
+
+```bash
+# Manual deploy
+npm run build
+netlify deploy --prod
+```
 
 ## 🎨 Design System
 
-### Colors
-- Primary: `#00d4ff` (Cyan)
-- Accent Purple: `#8b5cf6`
-- Accent Pink: `#ff006e`
-- Background Dark: `#0a0a0a`
-- Text Primary: `#ffffff`
-- Text Secondary: `#a0a0a0`
+| Element | Value |
+|---------|-------|
+| Primary Color | `#00d4ff` (Cyan) |
+| Accent Purple | `#8b5cf6` |
+| Background | `#0a0a0a` |
+| Font (Headers) | Inter |
+| Font (Code) | JetBrains Mono |
 
-### Typography
-- Headers: Inter (weights: 700, 800)
-- Body: Inter (weights: 300, 400, 500, 600)
-- Code: JetBrains Mono
+## 🔮 Recent Updates (December 2025)
 
-## 🔮 Future Enhancements
+- ✅ Added 5 new projects (TAD, Ledger, WaifuWay, TODAK LLM Dataset, Mastra)
+- ✅ Updated all project metrics to December 2025
+- ✅ Enhanced FlowState AI with multi-tool memory sync details
+- ✅ Added gaming category for Mastra and WaifuWay
+- ✅ Improved project descriptions with latest features
 
-- [ ] Add individual project pages
-- [ ] Implement contact form functionality
-- [ ] Add blog section for AI insights
-- [ ] Integrate with backend APIs
-- [ ] Add more interactive AI demos
-- [ ] Implement dark/light theme toggle
+## 👨‍💻 About Neo Todak
 
-## 👨‍💻 Developer
+Neo Todak is an AI systems builder who treats AI as a teammate, not just a tool. Working daily with Claude Desktop, Cursor, Antigravity (Gemini), and custom MCP integrations to build enterprise-grade AI solutions.
 
-Created by **Neo Todak** - Pushing the boundaries of artificial intelligence.
+**Contact**: [neotodak.com/contact](https://neotodak.com/contact)
 
 ## 📄 License
 
