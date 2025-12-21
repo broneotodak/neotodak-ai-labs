@@ -1,82 +1,314 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap');
+/* =============================================================
+   NEOTODAK Portfolio - Global Styles
+   Using NEOTODAK Design System v1.0 (Corporate Minimalism)
+   ============================================================= */
+
+/* Import Design System */
+@import './neotodak-design-system.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* =============================================================
+   CSS VARIABLES - Light Theme (Default)
+   ============================================================= */
 @layer base {
   :root {
-    --background: 0 0% 4%;
+    /* Core Colors */
+    --background: 0 0% 100%;
+    --foreground: 220 9% 12%;
+    
+    /* Card/Surface */
+    --card: 0 0% 100%;
+    --card-foreground: 220 9% 12%;
+    
+    /* Popover */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 9% 12%;
+    
+    /* Primary - Black */
+    --primary: 220 9% 12%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary - Light Gray */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 12%;
+    
+    /* Muted */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    
+    /* Accent - Blue */
+    --accent: 211 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    
+    /* Borders & Inputs */
+    --border: 220 13% 87%;
+    --input: 220 13% 87%;
+    --ring: 211 100% 50%;
+    
+    /* Radius */
+    --radius: 0.625rem;
+  }
+  
+  /* Dark Mode Override */
+  .dark {
+    --background: 220 9% 7%;
     --foreground: 0 0% 98%;
-    --card: 0 0% 7%;
+    --card: 220 9% 10%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 4%;
+    --popover: 220 9% 7%;
     --popover-foreground: 0 0% 98%;
-    --primary: 195 100% 50%;
-    --primary-foreground: 0 0% 4%;
-    --secondary: 0 0% 10%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 220 9% 12%;
+    --secondary: 220 9% 15%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 10%;
-    --muted-foreground: 0 0% 63%;
-    --accent: 0 0% 10%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62% 30%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 195 100% 50%;
-    --radius: 0.75rem;
+    --muted: 220 9% 15%;
+    --muted-foreground: 220 9% 63%;
+    --accent: 211 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --border: 220 9% 20%;
+    --input: 220 9% 20%;
+    --ring: 211 100% 50%;
   }
 }
 
+/* =============================================================
+   BASE STYLES
+   ============================================================= */
 @layer base {
   * {
-    @apply border-gray-800;
+    @apply border-border;
   }
+  
   body {
-    @apply bg-black text-white;
+    @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-foreground;
   }
 }
 
+/* =============================================================
+   CUSTOM UTILITIES
+   ============================================================= */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+  
+  /* Glass effect for cards */
+  .glass {
+    @apply backdrop-blur-md bg-white/80 dark:bg-black/50;
+  }
+  
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-400;
+  }
+  
+  /* Subtle hover lift */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lg;
+  }
+  
+  /* Border gradient */
+  .border-gradient {
+    @apply relative before:absolute before:inset-0 before:rounded-lg before:p-[2px] before:bg-gradient-to-r before:from-gray-300 before:to-transparent;
+  }
 }
 
-/* Custom scrollbar */
+/* =============================================================
+   SCROLLBAR STYLES
+   ============================================================= */
 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  @apply bg-gray-100 dark:bg-gray-900;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 3px;
+  @apply bg-gray-300 dark:bg-gray-700 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #00d4ff;
+  @apply bg-gray-400 dark:bg-gray-600;
 }
 
-/* Aceternity UI specific styles */
-.aceternity-gradient {
-  background: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 100%);
+/* =============================================================
+   COMPONENT OVERRIDES - Corporate Minimalism Style
+   ============================================================= */
+
+/* Cards with top border animation */
+.neo-project-card {
+  @apply relative bg-white dark:bg-gray-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl p-6;
+  @apply transition-all duration-300 overflow-hidden;
 }
 
-.aceternity-glow {
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+.neo-project-card::before {
+  content: '';
+  @apply absolute top-0 left-0 w-full h-1 bg-black dark:bg-white;
+  transform: translateX(-100%);
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.aceternity-border {
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.neo-project-card:hover {
+  @apply -translate-y-1;
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
 }
 
-.aceternity-backdrop {
-  backdrop-filter: blur(20px);
-  background: rgba(10, 10, 10, 0.8);
-} 
+.neo-project-card:hover::before {
+  transform: translateX(0);
+}
+
+/* Section headers with extending line */
+.neo-section-header {
+  @apply flex items-center gap-4 mb-12;
+}
+
+.neo-section-header::after {
+  content: '';
+  @apply flex-1 h-0.5 bg-gradient-to-r from-gray-900 dark:from-white to-transparent;
+}
+
+/* Hero text styling */
+.neo-hero-title {
+  @apply text-5xl md:text-7xl font-black tracking-tighter text-gray-900 dark:text-white;
+  letter-spacing: -0.03em;
+}
+
+.neo-hero-subtitle {
+  @apply text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-light;
+}
+
+/* Tagline with decorative lines */
+.neo-tagline-decorated {
+  @apply relative inline-block px-12 text-sm font-bold uppercase tracking-widest text-gray-900 dark:text-white;
+}
+
+.neo-tagline-decorated::before,
+.neo-tagline-decorated::after {
+  content: '';
+  @apply absolute top-1/2 w-8 h-0.5 bg-gray-900 dark:bg-white;
+}
+
+.neo-tagline-decorated::before {
+  right: 100%;
+}
+
+.neo-tagline-decorated::after {
+  left: 100%;
+}
+
+/* Button styles */
+.neo-btn-primary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3;
+  @apply text-sm font-semibold text-white bg-gray-900 dark:bg-white dark:text-gray-900;
+  @apply rounded-lg border-2 border-gray-900 dark:border-white;
+  @apply transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg;
+}
+
+.neo-btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3;
+  @apply text-sm font-semibold text-gray-900 dark:text-white;
+  @apply rounded-lg border-2 border-gray-300 dark:border-gray-700;
+  @apply transition-all duration-200 hover:border-gray-900 dark:hover:border-white hover:bg-gray-50 dark:hover:bg-gray-800;
+}
+
+/* Badge styles */
+.neo-badge {
+  @apply inline-flex items-center px-3 py-1 text-xs font-semibold rounded-full;
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300;
+}
+
+.neo-badge-primary {
+  @apply bg-gray-900 dark:bg-white text-white dark:text-gray-900;
+}
+
+.neo-badge-accent {
+  @apply bg-blue-500 text-white;
+}
+
+/* Navigation link with underline animation */
+.neo-nav-link {
+  @apply relative text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors hover:text-gray-900 dark:hover:text-white;
+}
+
+.neo-nav-link::after {
+  content: '';
+  @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white transition-all duration-300;
+}
+
+.neo-nav-link:hover::after,
+.neo-nav-link.active::after {
+  @apply w-full;
+}
+
+/* List with arrow markers */
+.neo-list li {
+  @apply relative pl-6 mb-3 text-gray-600 dark:text-gray-400;
+}
+
+.neo-list li::before {
+  content: '▸';
+  @apply absolute left-0 text-gray-900 dark:text-white font-bold;
+}
+
+/* =============================================================
+   ANIMATION CLASSES
+   ============================================================= */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* =============================================================
+   DARK MODE TRANSITIONS
+   ============================================================= */
+html {
+  @apply transition-colors duration-300;
+}
+
+/* Smooth theme transition for all elements */
+*, *::before, *::after {
+  @apply transition-colors duration-300;
+}
