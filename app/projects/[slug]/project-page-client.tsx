@@ -2,11 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { type Project } from '@/lib/projects-data';
-import { BackgroundBeams } from '@/components/aceternity/background-beams';
-import { Spotlight } from '@/components/aceternity/spotlight';
-import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
+import { FloatingNav } from '@/components/aceternity/floating-navbar';
 import { 
   IconExternalLink, 
   IconBrandGithub, 
@@ -21,335 +18,319 @@ import {
   IconBulb,
   IconTarget,
   IconRocket,
-  IconLink
+  IconLink,
+  IconHome,
+  IconMessage,
+  IconBriefcase
 } from '@tabler/icons-react';
+
+const navItems = [
+  { name: "Home", link: "/", icon: <IconHome className="h-4 w-4" /> },
+  { name: "Projects", link: "/projects", icon: <IconBriefcase className="h-4 w-4" /> },
+  { name: "Tech Stack", link: "/tech-stack", icon: <IconCode className="h-4 w-4" /> },
+  { name: "Contact", link: "/contact", icon: <IconMessage className="h-4 w-4" /> },
+];
 
 interface ProjectPageClientProps {
   project: Project;
   relatedProjects: Project[];
 }
 
-export default function ProjectPageClient({ project, relatedProjects }: ProjectPageClientProps) {
-  // Status color mapping
-  const getStatusColor = (status: Project['status']) => {
-    switch(status) {
-      case 'live': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'beta': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'development': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case 'archived': return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
-    }
-  };
+// Status colors for light theme
+const getStatusStyles = (status: Project['status']) => {
+  switch(status) {
+    case 'live': return 'bg-green-100 text-green-700 border-green-200';
+    case 'beta': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+    case 'development': return 'bg-blue-100 text-blue-700 border-blue-200';
+    case 'archived': return 'bg-gray-100 text-gray-600 border-gray-200';
+  }
+};
 
-  // Complexity indicator
-  const ComplexityIndicator = ({ level }: { level: number }) => (
-    <div className="flex items-center gap-2">
-      <span className="text-gray-400">Complexity:</span>
-      <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map(i => (
-          <div
-            key={i}
-            className={`w-3 h-3 rounded-full ${
-              i <= level ? 'bg-purple-400' : 'bg-gray-600'
-            }`}
-          />
-        ))}
-      </div>
+// Complexity dots
+const ComplexityDots = ({ level }: { level: number }) => (
+  <div className="flex items-center gap-2">
+    <span className="text-gray-500 text-sm">Complexity:</span>
+    <div className="flex gap-1">
+      {[1, 2, 3, 4, 5].map(i => (
+        <div
+          key={i}
+          className={`w-2 h-2 rounded-full ${
+            i <= level ? 'bg-gray-900' : 'bg-gray-300'
+          }`}
+        />
+      ))}
     </div>
-  );
+  </div>
+);
 
+export default function ProjectPageClient({ project, relatedProjects }: ProjectPageClientProps) {
   return (
-    <div className="min-h-screen relative bg-black">
-      <BackgroundBeams />
-      <Spotlight className="absolute top-0 left-0 w-full h-full" fill="cyan" />
+    <div className="min-h-screen bg-white">
+      <FloatingNav navItems={navItems} />
       
-      {/* Back Button */}
-      <div className="relative z-20 pt-24 px-4">
-        <div className="max-w-7xl mx-auto">
+      {/* Header */}
+      <header className="pt-32 pb-12 px-6">
+        <div className="max-w-5xl mx-auto">
+          {/* Back link */}
           <Link 
-            href="/projects"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-cyan-400 transition-colors duration-300 mb-8"
+            href="/projects" 
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-8"
           >
-            <IconArrowLeft className="w-5 h-5" />
-            <span>Back to Projects</span>
+            <IconArrowLeft className="h-4 w-4" />
+            Back to Projects
           </Link>
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <div className="relative z-20 px-4 pb-12">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* Title and Status */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-              <TextGenerateEffect 
-                words={project.title}
-                className="text-4xl md:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500"
-              />
-              <div className="flex items-center gap-4">
-                <span className={`px-4 py-2 rounded-full text-sm border font-semibold ${getStatusColor(project.status)}`}>
-                  {project.status.toUpperCase()}
-                </span>
-                <ComplexityIndicator level={project.complexity} />
-              </div>
+          
+          {/* Title Row */}
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6">
+            <div className="flex items-center gap-4">
+              <span className="text-5xl">{project.icon || '🚀'}</span>
+              <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+                {project.title}
+              </h1>
             </div>
-
-            {/* Description */}
-            <p className="text-xl text-gray-300 mb-8 max-w-4xl">
-              {project.longDescription || project.description}
-            </p>
-
-            {/* Quick Links */}
-            <div className="flex flex-wrap gap-4 mb-12">
-              {project.links.live && (
-                <a
-                  href={project.links.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-cyan-500 text-black font-semibold rounded-xl hover:bg-cyan-400 transition-all duration-300 hover:scale-105"
-                >
-                  <IconExternalLink className="w-5 h-5" />
-                  Visit Live Site
-                </a>
-              )}
-              {project.links.github && (
-                <a
-                  href={project.links.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gray-800 text-white font-semibold rounded-xl hover:bg-gray-700 transition-all duration-300 hover:scale-105"
-                >
-                  <IconBrandGithub className="w-5 h-5" />
-                  View Code
-                </a>
-              )}
-              {project.links.docs && (
-                <a
-                  href={project.links.docs}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-gray-700 text-gray-300 font-semibold rounded-xl hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300"
-                >
-                  <IconBook className="w-5 h-5" />
-                  Documentation
-                </a>
-              )}
-              {project.links.video && (
-                <a
-                  href={project.links.video}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 border border-gray-700 text-gray-300 font-semibold rounded-xl hover:border-purple-500 hover:text-purple-400 transition-all duration-300"
-                >
-                  <IconVideo className="w-5 h-5" />
-                  Watch Demo
-                </a>
-              )}
+            <div className="flex items-center gap-4">
+              <span className={`px-3 py-1 text-sm font-medium rounded-full border ${getStatusStyles(project.status)}`}>
+                {project.status.toUpperCase()}
+              </span>
+              <ComplexityDots level={project.complexity} />
             </div>
-
-            {/* Metrics Dashboard */}
-            {project.metrics && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12"
+          </div>
+          
+          {/* Description */}
+          <p className="text-xl text-gray-600 max-w-3xl mb-8">
+            {project.longDescription || project.description}
+          </p>
+          
+          {/* Action Buttons */}
+          <div className="flex flex-wrap gap-4">
+            {project.links.live && (
+              <a
+                href={project.links.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neo-btn-primary"
               >
-                {project.metrics.users && (
-                  <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <IconUsers className="w-6 h-6 text-cyan-400" />
-                      <span className="text-gray-400">Active Users</span>
-                    </div>
-                    <div className="text-3xl font-bold text-white">
-                      {project.metrics.users.toLocaleString()}
-                    </div>
-                  </div>
-                )}
-                {project.metrics.uptime && (
-                  <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-green-500/50 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <IconChartBar className="w-6 h-6 text-green-400" />
-                      <span className="text-gray-400">Uptime</span>
-                    </div>
-                    <div className="text-3xl font-bold text-white">
-                      {project.metrics.uptime}%
-                    </div>
-                  </div>
-                )}
-                {project.metrics.apiCalls && (
-                  <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <IconApi className="w-6 h-6 text-purple-400" />
-                      <span className="text-gray-400">API Calls</span>
-                    </div>
-                    <div className="text-3xl font-bold text-white">
-                      {(project.metrics.apiCalls / 1000).toFixed(0)}K
-                    </div>
-                  </div>
-                )}
-                {project.metrics.lastUpdated && (
-                  <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-orange-500/50 transition-all duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <IconClock className="w-6 h-6 text-orange-400" />
-                      <span className="text-gray-400">Last Updated</span>
-                    </div>
-                    <div className="text-xl font-bold text-white">
-                      {new Date(project.metrics.lastUpdated).toLocaleDateString()}
-                    </div>
-                  </div>
-                )}
-              </motion.div>
+                <IconExternalLink className="h-4 w-4" />
+                Visit Live Site
+              </a>
             )}
-
-            {/* Tech Stack */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mb-12"
-            >
-              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                <IconCode className="w-6 h-6 text-cyan-400" />
-                Tech Stack
-              </h2>
-              <div className="flex flex-wrap gap-3">
-                {project.techStack.map(tech => (
-                  <span
-                    key={tech}
-                    className="px-4 py-2 bg-gray-900/50 border border-gray-800 rounded-xl text-gray-300 hover:border-cyan-500/50 hover:text-cyan-400 transition-all duration-300"
-                  >
-                    {tech}
-                  </span>
+            {project.links.github && (
+              <a
+                href={project.links.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neo-btn-secondary"
+              >
+                <IconBrandGithub className="h-4 w-4" />
+                View Code
+              </a>
+            )}
+            {project.links.docs && (
+              <a
+                href={project.links.docs}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neo-btn-secondary"
+              >
+                <IconBook className="h-4 w-4" />
+                Documentation
+              </a>
+            )}
+            {project.links.video && (
+              <a
+                href={project.links.video}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="neo-btn-secondary"
+              >
+                <IconVideo className="h-4 w-4" />
+                Watch Demo
+              </a>
+            )}
+          </div>
+        </div>
+      </header>
+      
+      {/* Metrics */}
+      {project.metrics && (
+        <section className="px-6 pb-12">
+          <div className="max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {project.metrics.users && (
+                <div className="neo-project-card text-center">
+                  <IconUsers className="h-6 w-6 text-blue-600 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-gray-900">
+                    {project.metrics.users.toLocaleString()}
+                  </div>
+                  <div className="text-sm text-gray-500">Active Users</div>
+                </div>
+              )}
+              {project.metrics.uptime && (
+                <div className="neo-project-card text-center">
+                  <IconChartBar className="h-6 w-6 text-green-600 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-gray-900">
+                    {project.metrics.uptime}%
+                  </div>
+                  <div className="text-sm text-gray-500">Uptime</div>
+                </div>
+              )}
+              {project.metrics.apiCalls && (
+                <div className="neo-project-card text-center">
+                  <IconApi className="h-6 w-6 text-purple-600 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-gray-900">
+                    {(project.metrics.apiCalls / 1000).toFixed(0)}K
+                  </div>
+                  <div className="text-sm text-gray-500">API Calls</div>
+                </div>
+              )}
+              {project.metrics.lastUpdated && (
+                <div className="neo-project-card text-center">
+                  <IconClock className="h-6 w-6 text-orange-600 mx-auto mb-2" />
+                  <div className="text-lg font-bold text-gray-900">
+                    {new Date(project.metrics.lastUpdated).toLocaleDateString()}
+                  </div>
+                  <div className="text-sm text-gray-500">Last Updated</div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+      
+      {/* Tech Stack */}
+      <section className="px-6 pb-12">
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+            <IconCode className="h-5 w-5 text-gray-600" />
+            Tech Stack
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {project.techStack.map(tech => (
+              <span
+                key={tech}
+                className="px-3 py-1.5 bg-gray-100 border border-gray-200 rounded-lg text-gray-700 text-sm hover:border-gray-400 transition-colors"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Features, Challenges, Outcomes */}
+      <section className="px-6 pb-12 bg-gray-50">
+        <div className="max-w-5xl mx-auto py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Highlights */}
+            <div className="neo-project-card">
+              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <IconBulb className="h-5 w-5 text-yellow-600" />
+                Key Features
+              </h3>
+              <ul className="neo-list">
+                {project.highlights.map((highlight, index) => (
+                  <li key={index}>{highlight}</li>
                 ))}
-              </div>
-            </motion.div>
-
-            {/* Key Features, Challenges, and Outcomes */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {/* Highlights */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
-              >
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                  <IconBulb className="w-6 h-6 text-yellow-400" />
-                  Key Features
-                </h3>
-                <ul className="space-y-2">
-                  {project.highlights.map((highlight, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-cyan-400 mt-1">•</span>
-                      <span className="text-gray-300">{highlight}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Challenges */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5 }}
-                className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
-              >
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                  <IconTarget className="w-6 h-6 text-orange-400" />
-                  Challenges Solved
-                </h3>
-                <ul className="space-y-2">
-                  {project.challenges.map((challenge, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-orange-400 mt-1">•</span>
-                      <span className="text-gray-300">{challenge}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Outcomes */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-                className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
-              >
-                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-3">
-                  <IconRocket className="w-6 h-6 text-green-400" />
-                  Outcomes
-                </h3>
-                <ul className="space-y-2">
-                  {project.outcomes.map((outcome, index) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-green-400 mt-1">•</span>
-                      <span className="text-gray-300">{outcome}</span>
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
+              </ul>
             </div>
-
-            {/* Related Projects */}
-            {relatedProjects.length > 0 && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-                className="mb-12"
-              >
-                <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
-                  <IconLink className="w-6 h-6 text-purple-400" />
-                  Related Projects
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {relatedProjects.map(relatedProject => (
-                    <Link
-                      key={relatedProject.id}
-                      href={`/projects/${relatedProject.id}`}
-                      className="group"
-                    >
-                      <div className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-purple-500/50 transition-all duration-300">
-                        <h4 className="text-lg font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
-                          {relatedProject.title}
-                        </h4>
-                        <p className="text-gray-400 text-sm line-clamp-2">
-                          {relatedProject.description}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-
-            {/* Timeline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6"
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-gray-400 mb-1">Project Timeline</div>
-                  <div className="text-white">
-                    Started: {new Date(project.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                    {project.endDate && ` - Ended: ${new Date(project.endDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`}
+            
+            {/* Challenges */}
+            <div className="neo-project-card">
+              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <IconTarget className="h-5 w-5 text-orange-600" />
+                Challenges Solved
+              </h3>
+              <ul className="neo-list">
+                {project.challenges.map((challenge, index) => (
+                  <li key={index}>{challenge}</li>
+                ))}
+              </ul>
+            </div>
+            
+            {/* Outcomes */}
+            <div className="neo-project-card">
+              <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                <IconRocket className="h-5 w-5 text-green-600" />
+                Outcomes
+              </h3>
+              <ul className="neo-list">
+                {project.outcomes.map((outcome, index) => (
+                  <li key={index}>{outcome}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* Related Projects */}
+      {relatedProjects.length > 0 && (
+        <section className="px-6 pb-12">
+          <div className="max-w-5xl mx-auto py-12">
+            <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <IconLink className="h-5 w-5 text-gray-600" />
+              Related Projects
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedProjects.map(relatedProject => (
+                <Link
+                  key={relatedProject.id}
+                  href={`/projects/${relatedProject.id}`}
+                  className="group"
+                >
+                  <div className="neo-project-card h-full">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="text-2xl">{relatedProject.icon || '🚀'}</span>
+                      <h4 className="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                        {relatedProject.title}
+                      </h4>
+                    </div>
+                    <p className="text-gray-600 text-sm line-clamp-2">
+                      {relatedProject.description}
+                    </p>
                   </div>
-                </div>
-                <div className="text-gray-400">
-                  Category: <span className="text-white capitalize">{project.category}</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      
+      {/* Timeline */}
+      <section className="px-6 pb-16">
+        <div className="max-w-5xl mx-auto">
+          <div className="neo-project-card">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <div className="text-sm text-gray-500 mb-1">Project Timeline</div>
+                <div className="text-gray-900 font-medium">
+                  Started: {new Date(project.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                  {project.endDate && ` — Ended: ${new Date(project.endDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}`}
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+              <div className="text-sm">
+                <span className="text-gray-500">Category: </span>
+                <span className="text-gray-900 capitalize font-medium">{project.category}</span>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+      
+      {/* Footer */}
+      <footer className="border-t border-gray-200 py-8 px-6">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <span className="text-gray-500 text-sm">© 2025 NEOTODAK AI Labs</span>
+          <div className="flex items-center gap-6">
+            <Link href="/projects" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+              All Projects
+            </Link>
+            <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+              Home
+            </Link>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

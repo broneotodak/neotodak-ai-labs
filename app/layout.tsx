@@ -9,28 +9,28 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  title: 'Neo Todak - Creative Technologist & AI Systems Builder',
-  description: 'Founder of Todak Studios. Creative technologist and builder of systems where AI isn\'t just a tool — it\'s a teammate. Pioneering the edge between creativity and computation.',
-  keywords: 'Neo Todak, Creative Technologist, AI Systems Builder, Todak Studios, Firasah AI, AutoRecruit, Claude Tools Kit, FlowState, LangChain, Machine Learning',
+  title: 'NEOTODAK AI Labs - AI Systems Builder',
+  description: 'Building systems where AI isn\'t just a tool — it\'s a teammate. Creative technologist and founder of Todak Studios.',
+  keywords: 'Neo Todak, AI Systems, Todak Studios, THR Intelligence, FlowState AI, Claude Tools Kit, Machine Learning, Automation',
   authors: [{ name: 'Neo Todak' }],
   openGraph: {
-    title: 'Neo Todak - Creative Technologist & AI Systems Builder',
-    description: 'Building things fast, smart, and with soul. Where AI meets creativity.',
+    title: 'NEOTODAK AI Labs',
+    description: 'Building systems where AI isn\'t just a tool — it\'s a teammate.',
     url: 'https://neotodak.com',
     siteName: 'NEOTODAK AI Labs',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Neo Todak - AI Systems Builder',
-    description: 'Founder of Todak Studios. Building systems where AI isn\'t just a tool — it\'s a teammate.',
+    title: 'NEOTODAK AI Labs',
+    description: 'Building systems where AI isn\'t just a tool — it\'s a teammate.',
   },
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#00d4ff',
+  themeColor: '#1a1a1a',
 }
 
 export default function RootLayout({
@@ -39,8 +39,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white text-gray-900`} suppressHydrationWarning>
         <GoogleAnalytics />
         <Providers>
           {children}
@@ -48,4 +48,4 @@ export default function RootLayout({
       </body>
     </html>
   )
-} 
+}

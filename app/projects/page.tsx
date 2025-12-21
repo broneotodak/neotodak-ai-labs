@@ -1,222 +1,354 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { projectsData, getProjectStats, type Project } from '@/lib/projects-data';
 import { useAnalytics } from '@/lib/analytics/use-analytics';
-import { BackgroundBeams } from '@/components/aceternity/background-beams';
-import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
-import { IconExternalLink, IconBrandGithub, IconBook, IconVideo, IconChartBar, IconClock, IconUsers, IconApi, IconFilter, IconX, IconArrowLeft } from '@tabler/icons-react';
+import { FloatingNav } from '@/components/aceternity/floating-navbar';
+import { 
+  IconExternalLink, 
+  IconBrandGithub, 
+  IconArrowLeft,
+  IconHome,
+  IconMessage,
+  IconBriefcase,
+  IconCode,
+  IconSearch,
+  IconFilter,
+  IconX
+} from '@tabler/icons-react';
+
+const navItems = [
+  { name: "Home", link: "/", icon: <IconHome className="h-4 w-4" /> },
+  { name: "Projects", link: "/projects", icon: <IconBriefcase className="h-4 w-4" /> },
+  { name: "Tech Stack", link: "/tech-stack", icon: <IconCode className="h-4 w-4" /> },
+  { name: "Contact", link: "/contact", icon: <IconMessage className="h-4 w-4" /> },
+];
 
 // Filter categories
-const categories = ['all', 'ai', 'automation', 'saas', 'tool', 'integration', 'research'] as const;
-const statuses = ['all', 'live', 'beta', 'development', 'archived'] as const;
-const complexities = ['all', '1', '2', '3', '4', '5'] as const;
+const categories = ['all', 'ai', 'automation', 'saas', 'tool', 'integration', 'research', 'education'] as const;
+const statuses = ['all', 'live', 'beta', 'development'] as const;
+
+// Status colors for light theme
+const getStatusStyles = (status: Project['status']) => {
+  switch(status) {
+    case 'live': return 'bg-green-100 text-green-700 border-green-200';
+    case 'beta': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
+    case 'development': return 'bg-blue-100 text-blue-700 border-blue-200';
+    case 'archived': return 'bg-gray-100 text-gray-600 border-gray-200';
+  }
+};
+
+// Complexity dots
+const ComplexityDots = ({ level }: { level: number }) => (
+  <div className="flex gap-1">
+    {[1, 2, 3, 4, 5].map(i => (
+      <div
+        key={i}
+        className={`w-1.5 h-1.5 rounded-full ${
+          i <= level ? 'bg-gray-900' : 'bg-gray-300'
+        }`}
+      />
+    ))}
+  </div>
+);
+
+// Project Card Component
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const analytics = useAnalytics();
+  
+  return (
+    <div 
+      className="neo-project-card group opacity-0 animate-fade-in-up h-full flex flex-col"
+      style={{ animationDelay: `${0.05 + index * 0.05}s` }}
+    >
+      {/* Header */}
+      <div className="flex items-start justify-between mb-4">
+        <span className="text-3xl">{project.icon || '🚀'}</span>
+        <div className="flex items-center gap-2">
+          <ComplexityDots level={project.complexity} />
+          <span className={`px-2 py-0.5 text-xs font-medium rounded-full border ${getStatusStyles(project.status)}`}>
+            {project.status}
+          </span>
+        </div>
+      </div>
+      
+      {/* Title */}
+      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+        {project.title}
+      </h3>
+      
+      {/* Description */}
+      <p className="text-gray-600 text-sm mb-4 line-clamp-2 flex-grow">
+        {project.description}
+      </p>
+      
+      {/* Tech Stack */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {project.techStack.slice(0, 4).map(tech => (
+          <span key={tech} className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded text-xs">
+            {tech}
+          </span>
+        ))}
+        {project.techStack.length > 4 && (
+          <span className="px-2 py-0.5 text-gray-400 text-xs">
+            +{project.techStack.length - 4}
+          </span>
+        )}
+      </div>
+      
+      {/* Metrics */}
+      {project.metrics && (
+        <div className="flex gap-4 text-xs text-gray-500 mb-4">
+          {project.metrics.users && (
+            <span>{project.metrics.users.toLocaleString()} users</span>
+          )}
+          {project.metrics.uptime && (
+            <span>{project.metrics.uptime}% uptime</span>
+          )}
+        </div>
+      )}
+      
+      {/* Links */}
+      <div className="flex items-center gap-4 pt-4 border-t border-gray-200 mt-auto">
+        {project.links.live && (
+          <a
+            href={project.links.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => analytics.trackProjectLinkClick(project.id, 'live', project.links.live!)}
+            className="flex items-center gap-1.5 text-sm font-medium text-gray-900 hover:text-blue-600 transition-colors"
+          >
+            <IconExternalLink className="h-4 w-4" />
+            Live
+          </a>
+        )}
+        {project.links.github && (
+          <a
+            href={project.links.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => analytics.trackProjectLinkClick(project.id, 'github', project.links.github!)}
+            className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+          >
+            <IconBrandGithub className="h-4 w-4" />
+            Code
+          </a>
+        )}
+        <Link
+          href={`/projects/${project.id}`}
+          className="ml-auto text-sm font-medium text-blue-600 hover:text-blue-700 transition-colors"
+        >
+          Details →
+        </Link>
+      </div>
+    </div>
+  );
+}
 
 export default function ProjectsPage() {
-  const analytics = useAnalytics();
   const [selectedCategory, setSelectedCategory] = useState<typeof categories[number]>('all');
   const [selectedStatus, setSelectedStatus] = useState<typeof statuses[number]>('all');
-  const [selectedComplexity, setSelectedComplexity] = useState<typeof complexities[number]>('all');
   const [searchQuery, setSearchQuery] = useState('');
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(false);
 
   const stats = getProjectStats();
 
-  // Filter projects based on selections
+  // Filter projects
   const filteredProjects = useMemo(() => {
     return projectsData.filter(project => {
       const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
       const matchesStatus = selectedStatus === 'all' || project.status === selectedStatus;
-      const matchesComplexity = selectedComplexity === 'all' || project.complexity.toString() === selectedComplexity;
       const matchesSearch = searchQuery === '' || 
         project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
         project.techStack.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
       
-      return matchesCategory && matchesStatus && matchesComplexity && matchesSearch;
+      return matchesCategory && matchesStatus && matchesSearch;
     });
-  }, [selectedCategory, selectedStatus, selectedComplexity, searchQuery]);
+  }, [selectedCategory, selectedStatus, searchQuery]);
 
-  // Status color mapping
-  const getStatusColor = (status: Project['status']) => {
-    switch(status) {
-      case 'live': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'beta': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'development': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case 'archived': return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
-    }
+  const clearFilters = () => {
+    setSelectedCategory('all');
+    setSelectedStatus('all');
+    setSearchQuery('');
   };
 
-  // Complexity indicator
-  const ComplexityIndicator = ({ level }: { level: number }) => {
-    return (
-      <div className="flex gap-1">
-        {[1, 2, 3, 4, 5].map(i => (
-          <div
-            key={i}
-            className={`w-2 h-2 rounded-full ${
-              i <= level ? 'bg-purple-400' : 'bg-gray-600'
-            }`}
-          />
-        ))}
-      </div>
-    );
-  };
+  const hasActiveFilters = selectedCategory !== 'all' || selectedStatus !== 'all' || searchQuery !== '';
 
   return (
-    <div className="min-h-screen relative bg-black">
-      <BackgroundBeams />
-      
-      {/* Back Button */}
-      <div className="fixed top-8 left-8 z-50">
-        <Link prefetch={false} href="/" className="inline-flex items-center gap-2 px-4 py-2 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg hover:border-cyan-500 hover:text-cyan-400 transition-all duration-300">
-          <IconArrowLeft className="w-4 h-4" />
-          <span>Back to Home</span>
-        </Link>
-      </div>
+    <div className="min-h-screen bg-white">
+      <FloatingNav navItems={navItems} />
       
       {/* Header */}
-      <div className="relative z-20 pt-32 pb-20">
-        <div className="max-w-7xl mx-auto px-4">
-          <TextGenerateEffect 
-            words="AI Projects Portfolio"
-            className="text-5xl md:text-7xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-500 mb-6"
-          />
+      <header className="pt-32 pb-12 px-6">
+        <div className="max-w-6xl mx-auto">
+          {/* Back link */}
+          <Link 
+            href="/" 
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-8"
+          >
+            <IconArrowLeft className="h-4 w-4" />
+            Back to Home
+          </Link>
           
-          {/* Stats Bar */}
-          <div className="flex flex-wrap justify-center gap-8 mb-12">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-center"
-            >
-              <div className="text-4xl font-bold text-cyan-400">{stats.totalProjects}</div>
-              <div className="text-gray-400">Total Projects</div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-center"
-            >
-              <div className="text-4xl font-bold text-green-400">{stats.liveProjects}</div>
-              <div className="text-gray-400">Live Projects</div>
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-center"
-            >
-              <div className="text-4xl font-bold text-purple-400">{filteredProjects.length}</div>
-              <div className="text-gray-400">Filtered Results</div>
-            </motion.div>
+          {/* Title */}
+          <div className="neo-section-header mb-8">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+              Projects
+            </h1>
           </div>
-
-          {/* Filter Toggle */}
-          <div className="text-center mb-8">
+          
+          <p className="text-xl text-gray-600 max-w-2xl mb-12">
+            A collection of AI-powered systems, automation tools, and SaaS products built to make teams smarter and more efficient.
+          </p>
+          
+          {/* Stats */}
+          <div className="flex flex-wrap gap-8 pb-8 border-b border-gray-200">
+            <div>
+              <div className="text-3xl font-bold text-gray-900">{stats.totalProjects}</div>
+              <div className="text-sm text-gray-500">Total Projects</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-green-600">{stats.liveProjects}</div>
+              <div className="text-sm text-gray-500">Live</div>
+            </div>
+            <div>
+              <div className="text-3xl font-bold text-gray-900">{filteredProjects.length}</div>
+              <div className="text-sm text-gray-500">Showing</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      
+      {/* Search & Filters */}
+      <section className="px-6 pb-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
+            {/* Search */}
+            <div className="relative flex-1 max-w-md">
+              <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+              />
+            </div>
+            
+            {/* Filter toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="px-6 py-2 bg-gray-900/50 border border-gray-800 rounded-full text-gray-300 hover:border-cyan-500 transition-all duration-300"
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border transition-colors ${
+                showFilters || hasActiveFilters
+                  ? 'bg-gray-900 text-white border-gray-900'
+                  : 'bg-white text-gray-700 border-gray-300 hover:border-gray-400'
+              }`}
             >
-              {showFilters ? 'Hide Filters' : 'Show Filters'} <IconFilter className="inline w-4 h-4 ml-2" />
+              <IconFilter className="h-4 w-4" />
+              Filters
+              {hasActiveFilters && (
+                <span className="ml-1 px-1.5 py-0.5 bg-blue-500 text-white text-xs rounded-full">
+                  {(selectedCategory !== 'all' ? 1 : 0) + (selectedStatus !== 'all' ? 1 : 0)}
+                </span>
+              )}
             </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Simple Project Grid - No filters for now */}
-      <section className="relative z-20 pb-32">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group"
+            
+            {hasActiveFilters && (
+              <button
+                onClick={clearFilters}
+                className="flex items-center gap-1 text-sm text-gray-600 hover:text-gray-900"
               >
-                <Link prefetch={false} 
-                  href={`/projects/${project.id}`}
-                  className="block"
-                  onClick={() => analytics.trackProjectClick(project.id, project.title, project.category)}
-                >
-                  <div className="relative bg-gray-900/30 backdrop-blur-sm border border-gray-800 rounded-2xl p-6 hover:border-cyan-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/10 h-full">
-                    {/* Status Badge */}
-                    <div className="flex justify-between items-start mb-4">
-                      <span className={`px-3 py-1 rounded-full text-xs border ${getStatusColor(project.status)}`}>
-                        {project.status}
-                      </span>
-                      <ComplexityIndicator level={project.complexity} />
-                    </div>
-
-                    {/* Title & Description */}
-                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="text-gray-400 mb-4 line-clamp-2">
-                      {project.description}
-                    </p>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.techStack.slice(0, 4).map(tech => (
-                        <span key={tech} className="px-2 py-1 bg-gray-800/50 text-gray-300 rounded text-xs">
-                          {tech}
-                        </span>
-                      ))}
-                      {project.techStack.length > 4 && (
-                        <span className="px-2 py-1 bg-gray-800/50 text-gray-400 rounded text-xs">
-                          +{project.techStack.length - 4} more
-                        </span>
-                      )}
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-3">
-                      {project.links.live && (
-                        <a
-                          href={project.links.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            analytics.trackProjectLinkClick(project.id, 'live', project.links.live!);
-                          }}
-                          className="flex items-center gap-1 text-cyan-400 hover:text-cyan-300 transition-colors text-sm"
-                        >
-                          <IconExternalLink className="w-4 h-4" />
-                          <span>Live</span>
-                        </a>
-                      )}
-                      {project.links.github && (
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            analytics.trackProjectLinkClick(project.id, 'github', project.links.github!);
-                          }}
-                          className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-sm"
-                        >
-                          <IconBrandGithub className="w-4 h-4" />
-                          <span>Code</span>
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            ))}
+                <IconX className="h-4 w-4" />
+                Clear
+              </button>
+            )}
           </div>
+          
+          {/* Filter options */}
+          {showFilters && (
+            <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200 animate-fade-in-up">
+              <div className="flex flex-wrap gap-6">
+                {/* Category */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Category</label>
+                  <div className="flex flex-wrap gap-2">
+                    {categories.map(cat => (
+                      <button
+                        key={cat}
+                        onClick={() => setSelectedCategory(cat)}
+                        className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                          selectedCategory === cat
+                            ? 'bg-gray-900 text-white border-gray-900'
+                            : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'
+                        }`}
+                      >
+                        {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                
+                {/* Status */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                  <div className="flex flex-wrap gap-2">
+                    {statuses.map(status => (
+                      <button
+                        key={status}
+                        onClick={() => setSelectedStatus(status)}
+                        className={`px-3 py-1.5 text-sm rounded-lg border transition-colors ${
+                          selectedStatus === status
+                            ? 'bg-gray-900 text-white border-gray-900'
+                            : 'bg-white text-gray-600 border-gray-300 hover:border-gray-400'
+                        }`}
+                      >
+                        {status.charAt(0).toUpperCase() + status.slice(1)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
+      
+      {/* Projects Grid */}
+      <section className="px-6 pb-24">
+        <div className="max-w-6xl mx-auto">
+          {filteredProjects.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <div className="text-4xl mb-4">🔍</div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-2">No projects found</h3>
+              <p className="text-gray-600 mb-4">Try adjusting your search or filters</p>
+              <button
+                onClick={clearFilters}
+                className="neo-btn-secondary"
+              >
+                Clear Filters
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+      
+      {/* Footer */}
+      <footer className="border-t border-gray-200 py-8 px-6">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <span className="text-gray-500 text-sm">© 2025 NEOTODAK AI Labs</span>
+          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+            Back to Home
+          </Link>
+        </div>
+      </footer>
     </div>
   );
 }
