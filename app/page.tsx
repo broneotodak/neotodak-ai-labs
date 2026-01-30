@@ -85,14 +85,13 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
 // Stats component
 function StatsSection() {
   const stats = getProjectStats();
-  
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 py-12 border-y border-gray-200 dark:border-gray-800">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 py-12 border-y border-gray-200 dark:border-gray-800">
       {[
         { label: 'Live Projects', value: stats.liveProjects },
         { label: 'Total Projects', value: stats.totalProjects },
-        { label: 'Active Users', value: `${(stats.totalUsers / 1000).toFixed(1)}K+` },
-        { label: 'API Calls/Month', value: `${(stats.totalApiCalls / 1000).toFixed(0)}K+` },
+        { label: 'Categories', value: stats.categories },
       ].map((stat, i) => (
         <div key={stat.label} className="text-center opacity-0 animate-fade-in-up" style={{ animationDelay: `${0.3 + i * 0.1}s` }}>
           <div className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white">

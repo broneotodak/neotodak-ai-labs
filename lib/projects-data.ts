@@ -1,5 +1,5 @@
 // NEOTODAK Portfolio Projects Data
-// Last updated: 2025-12-22T22:00:00.000Z
+// Last updated: 2026-01-30
 // URLs verified from pgVector memory + curl checks
 // GitHub repos include private repositories
 
@@ -19,12 +19,6 @@ export interface Project {
     docs?: string;
     demo?: string;
     video?: string;
-  };
-  metrics?: {
-    users?: number;
-    uptime?: number;
-    apiCalls?: number;
-    lastUpdated?: string;
   };
   images: {
     thumbnail: string;
@@ -55,12 +49,6 @@ export const projectsData: Project[] = [
       live: "https://thr.todak.io",
       github: "https://github.com/broneotodak/THR"
     },
-    metrics: {
-      users: 892,
-      apiCalls: 67500,
-      uptime: 99.8,
-      lastUpdated: "2025-12-22"
-    },
     icon: "💼",
     highlights: [
       "Comprehensive employee lifecycle management with AI-powered insights",
@@ -76,9 +64,9 @@ export const projectsData: Project[] = [
       "Ensuring data privacy compliance with multi-tenant RLS policies"
     ],
     outcomes: [
-      "Reduced HR processing time by 70% for 50+ companies",
-      "Achieved 99.9% payroll accuracy with automated compliance checks",
-      "Improved employee satisfaction scores by 40% through better self-service"
+      "Full HRMS suite with payroll, attendance, and memo modules",
+      "WhatsApp integration for employee self-service",
+      "Multi-organization support with role-based access"
     ],
     featured: true,
     longDescription: "THR Intelligence revolutionizes human resource management for Malaysian enterprises through advanced AI integration. Features Sofia AI assistant for WhatsApp-based HR queries, comprehensive payroll with local tax compliance, and multi-tenant security.",
@@ -101,12 +89,6 @@ export const projectsData: Project[] = [
       live: "https://flowstate.neotodak.com",
       github: "https://github.com/broneotodak/flowstate-ai"
     },
-    metrics: {
-      users: 245,
-      apiCalls: 18500,
-      uptime: 99.9,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🌊",
     highlights: [
       "Real-time activity tracking across Claude Desktop, Cursor, and Antigravity",
@@ -122,8 +104,8 @@ export const projectsData: Project[] = [
     ],
     outcomes: [
       "Unified memory ecosystem across 4+ AI tools",
-      "Tracked 50,000+ activities with semantic search capability",
-      "Reduced context loss between sessions by 90%"
+      "Semantic search capability for past activities",
+      "Reduced context loss between sessions"
     ],
     featured: true,
     longDescription: "FlowState AI provides a unified memory layer for Neo Todak's AI workflow, tracking activities across Claude Desktop, Cursor, Antigravity, and Claude Code with pgVector semantic embeddings for intelligent retrieval.",
@@ -144,12 +126,6 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/broneotodak/claude-tools-kit"
     },
-    metrics: {
-      users: 1450,
-      apiCalls: 58000,
-      uptime: 99.9,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🛠️",
     highlights: [
       "Advanced pgVector memory management for AI conversations",
@@ -164,9 +140,9 @@ export const projectsData: Project[] = [
       "Creating universal compatibility across project structures"
     ],
     outcomes: [
-      "Deployed across 20+ AI projects with 99.9% reliability",
+      "Deployed across 20+ AI projects",
       "Zero data loss incidents since implementation",
-      "50% reduction in development setup time"
+      "Simplified development setup workflow"
     ],
     featured: true,
     longDescription: "Claude Tools Kit (CTK) is the backbone of Neo Todak's AI development workflow, providing memory persistence, safe SQL migrations, and multi-project coordination.",
@@ -185,22 +161,16 @@ export const projectsData: Project[] = [
       "HTML5", "JavaScript", "Supabase", "n8n Workflows", "OpenAI GPT-4", "WhatsApp API"
     ],
     links: {
-      live: "https://todak.ai",
+      live: "https://todakai.neotodak.com",
       github: "https://github.com/broneotodak/todak-ai",
-      demo: "https://wa.me/601137569010"
-    },
-    metrics: {
-      users: 380,
-      apiCalls: 38500,
-      uptime: 99.5,
-      lastUpdated: "2025-12-22"
+      demo: "https://wa.me/628112109610"
     },
     icon: "💬",
     highlights: [
       "Sofia AI - Intelligent WhatsApp assistant with natural conversation",
       "Integration with THR for HR queries via WhatsApp",
       "Media storage for voice notes and images",
-      "Multi-language support (English, Malay, Chinese)"
+      "Multi-language support (English, Malay, Indonesian)"
     ],
     challenges: [
       "Building reliable WhatsApp API integration",
@@ -208,9 +178,9 @@ export const projectsData: Project[] = [
       "Handling voice notes and media at scale"
     ],
     outcomes: [
-      "Handled 40,000+ customer inquiries automatically",
-      "Achieved 4.8/5 customer satisfaction rating",
-      "Reduced response time from hours to seconds"
+      "Automated customer inquiries via WhatsApp",
+      "HR self-service through natural conversation",
+      "Multi-modal support (text, voice, image)"
     ],
     featured: true,
     longDescription: "TODAK AI Bot powers Sofia, the AI assistant that handles customer inquiries, HR queries, and internal communications through WhatsApp integration.",
@@ -232,12 +202,6 @@ export const projectsData: Project[] = [
       live: "https://ars.neotodak.com",
       github: "https://github.com/broneotodak/ARS"
     },
-    metrics: {
-      users: 680,
-      apiCalls: 45000,
-      uptime: 99.7,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🤖",
     highlights: [
       "Automated AI voice interviews with ElevenLabs",
@@ -251,9 +215,9 @@ export const projectsData: Project[] = [
       "Reliable voice processing for various accents"
     ],
     outcomes: [
-      "Reduced screening time by 80%",
-      "Conducted 8,000+ automated interviews",
-      "92% candidate satisfaction rate"
+      "Automated initial screening process",
+      "Consistent interview experience for all candidates",
+      "Detailed scoring and transcript reports"
     ],
     featured: true,
     longDescription: "ARS Intelligence automates the recruitment screening process with AI-powered voice interviews using ElevenLabs for natural speech synthesis.",
@@ -275,12 +239,6 @@ export const projectsData: Project[] = [
       live: "https://atlas-ai.netlify.app",
       github: "https://github.com/broneotodak/ATLAS"
     },
-    metrics: {
-      users: 520,
-      apiCalls: 24500,
-      uptime: 99.6,
-      lastUpdated: "2025-12-22"
-    },
     icon: "📦",
     highlights: [
       "Comprehensive asset lifecycle tracking",
@@ -294,9 +252,9 @@ export const projectsData: Project[] = [
       "Scaling for enterprise inventories"
     ],
     outcomes: [
-      "Reduced asset downtime by 45%",
-      "Improved utilization rates by 60%",
-      "99% asset tracking accuracy"
+      "Complete asset visibility across organization",
+      "Maintenance scheduling automation",
+      "Compliance report generation"
     ],
     featured: true,
     longDescription: "ATLAS AI provides comprehensive asset management with predictive maintenance capabilities for enterprise organizations.",
@@ -319,12 +277,6 @@ export const projectsData: Project[] = [
       live: "https://events.todak.io",
       github: "https://github.com/broneotodak/TAD"
     },
-    metrics: {
-      users: 2500,
-      apiCalls: 35000,
-      uptime: 99.8,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🎉",
     highlights: [
       "AI-powered participant upload from PDF/Excel",
@@ -339,9 +291,9 @@ export const projectsData: Project[] = [
       "AI extraction from unstructured documents"
     ],
     outcomes: [
-      "Managed 50+ corporate events",
-      "10,000+ check-ins with zero failures",
-      "95% participant engagement in trivia"
+      "Streamlined corporate event management",
+      "Real-time participant engagement",
+      "Automated winner selection and verification"
     ],
     featured: true,
     longDescription: "TAD Event System is a complete event management platform for corporate annual dinners featuring AI-powered participant import, QR check-in, interactive trivia, and dramatic lucky draw animations.",
@@ -363,12 +315,6 @@ export const projectsData: Project[] = [
       live: "https://firasah.neotodak.com",
       github: "https://github.com/broneotodak/firasah"
     },
-    metrics: {
-      users: 450,
-      apiCalls: 28000,
-      uptime: 99.4,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🔮",
     highlights: [
       "Integration of classical Islamic Firasah texts (Kitab Firasat)",
@@ -383,8 +329,8 @@ export const projectsData: Project[] = [
     ],
     outcomes: [
       "First AI system integrating classical Firasah",
-      "Processed 60,000+ facial analyses",
-      "90% accuracy in feature detection"
+      "Cultural heritage preservation through technology",
+      "Privacy-first facial analysis approach"
     ],
     featured: true,
     longDescription: "Firasah AI uniquely combines computer vision with the classical Islamic tradition of Firasah (physiognomy), drawing insights from digitized texts like Kitab Firasat.",
@@ -406,12 +352,6 @@ export const projectsData: Project[] = [
       live: "https://kenal-admin.netlify.app",
       github: "https://github.com/broneotodak/kenal-admin"
     },
-    metrics: {
-      users: 240,
-      apiCalls: 12500,
-      uptime: 99.3,
-      lastUpdated: "2025-12-22"
-    },
     icon: "📊",
     highlights: [
       "Comprehensive user management",
@@ -425,9 +365,9 @@ export const projectsData: Project[] = [
       "Intuitive permission interfaces"
     ],
     outcomes: [
-      "Manages 15,000+ user accounts",
-      "75% reduction in onboarding time",
-      "Zero security breach incidents"
+      "Centralized user management dashboard",
+      "Simplified permission configuration",
+      "Audit trail for all access changes"
     ],
     featured: false,
     longDescription: "KENAL Admin provides enterprise-grade user management with sophisticated role-based access control and MCP integration for Supabase operations.",
@@ -450,12 +390,6 @@ export const projectsData: Project[] = [
       live: "https://vc.neotodak.com",
       github: "https://github.com/broneotodak/VentureCanvas"
     },
-    metrics: {
-      users: 1050,
-      apiCalls: 32000,
-      uptime: 99.5,
-      lastUpdated: "2025-12-22"
-    },
     icon: "📋",
     highlights: [
       "Interactive 9-block Business Canvas builder",
@@ -470,9 +404,9 @@ export const projectsData: Project[] = [
       "Real-time collaboration features"
     ],
     outcomes: [
-      "Helped 500+ startups create business plans",
-      "Generated 2,000+ pitch decks",
-      "Connected startups with 50+ investors"
+      "Simplified business planning process",
+      "AI-assisted pitch deck creation",
+      "Structured startup evaluation framework"
     ],
     featured: true,
     longDescription: "VentureCanvas transforms business planning with AI-powered canvas building, automatic pitch deck generation, and intelligent investor matching.",
@@ -494,12 +428,6 @@ export const projectsData: Project[] = [
       live: "https://clauden.neotodak.com",
       github: "https://github.com/broneotodak/clauden"
     },
-    metrics: {
-      users: 180,
-      apiCalls: 22000,
-      uptime: 99.5,
-      lastUpdated: "2025-12-22"
-    },
     icon: "💜",
     highlights: [
       "Real-time memory statistics and monitoring",
@@ -515,9 +443,9 @@ export const projectsData: Project[] = [
       "Visual response type detection"
     ],
     outcomes: [
-      "Monitors 3,800+ memories in real-time",
-      "99.9% uptime for memory operations",
-      "55% improvement in AI workflow efficiency"
+      "Visual interface for AI memory ecosystem",
+      "Real-time monitoring capabilities",
+      "Simplified memory management workflow"
     ],
     featured: false,
     longDescription: "ClaudeN Dashboard provides a visual interface for monitoring and managing Neo Todak's AI memory ecosystem, featuring real-time statistics and tool status tracking.",
@@ -540,12 +468,6 @@ export const projectsData: Project[] = [
       live: "https://classroom.neotodak.com",
       github: "https://github.com/broneotodak/classroomneo"
     },
-    metrics: {
-      users: 350,
-      apiCalls: 15000,
-      uptime: 99.7,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🎓",
     highlights: [
       "AI-powered assignment grading with GPT-4o",
@@ -562,9 +484,8 @@ export const projectsData: Project[] = [
     ],
     outcomes: [
       "Deployed for Todak Studios training programs",
-      "92.6% average course completion rate",
-      "281K lines of vanilla JS code",
-      "77 commits of continuous improvement"
+      "AI-assisted assignment feedback",
+      "Comprehensive progress tracking"
     ],
     featured: false,
     longDescription: "ClassroomNeo is a full-stack Learning Management System built with vanilla JavaScript, featuring AI-powered grading via GPT-4o, GitHub OAuth authentication, and comprehensive progress tracking.",
@@ -584,12 +505,6 @@ export const projectsData: Project[] = [
     ],
     links: {
       live: "https://presentation.neotodak.com"
-    },
-    metrics: {
-      users: 150,
-      apiCalls: 8000,
-      uptime: 99.5,
-      lastUpdated: "2025-12-22"
     },
     icon: "📽️",
     highlights: [
@@ -627,12 +542,6 @@ export const projectsData: Project[] = [
     links: {
       live: "https://n8n.todak.io"
     },
-    metrics: {
-      users: 125,
-      apiCalls: 650000,
-      uptime: 99.9,
-      lastUpdated: "2025-12-22"
-    },
     icon: "⚡",
     highlights: [
       "Powers TODAK AI, ARS, and THR backends",
@@ -646,9 +555,9 @@ export const projectsData: Project[] = [
       "Scaling concurrent executions"
     ],
     outcomes: [
-      "Automated 15,000+ business processes",
-      "99.9% workflow reliability",
-      "3M+ workflow executions processed"
+      "Central automation hub for all projects",
+      "Reliable workflow execution",
+      "Comprehensive error monitoring"
     ],
     featured: false,
     longDescription: "n8n Integration Hub serves as the automation backbone for all NEOTODAK projects, powering TODAK AI, ARS Intelligence, and THR system workflows.",
@@ -667,12 +576,6 @@ export const projectsData: Project[] = [
       "JSONL", "Python", "Hugging Face", "NLP", "Data Processing"
     ],
     links: {},
-    metrics: {
-      users: 85,
-      apiCalls: 5000,
-      uptime: 100,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🧬",
     highlights: [
       "25+ specialized JSONL datasets",
@@ -686,9 +589,9 @@ export const projectsData: Project[] = [
       "Balancing personality with accuracy"
     ],
     outcomes: [
-      "50,000+ training examples created",
-      "40% improvement in Sofia responses",
-      "Published on Hugging Face"
+      "Comprehensive training dataset for Sofia",
+      "Bilingual conversation coverage",
+      "Domain-specific knowledge base"
     ],
     featured: false,
     longDescription: "TODAK LLM Dataset provides custom training data for Sofia AI, including company knowledge, HR policies, bilingual conversations, and real interaction logs.",
@@ -709,12 +612,6 @@ export const projectsData: Project[] = [
     links: {
       github: "https://github.com/broneotodak/neo-progress-bridge"
     },
-    metrics: {
-      users: 50,
-      apiCalls: 8000,
-      uptime: 99.0,
-      lastUpdated: "2025-12-22"
-    },
     icon: "🌉",
     highlights: [
       "Unified progress tracking across dev tools",
@@ -728,9 +625,9 @@ export const projectsData: Project[] = [
       "Real-time updates without delays"
     ],
     outcomes: [
-      "Connected 5+ output platforms",
+      "Connected multiple output platforms",
       "Automated progress updates",
-      "Reduced manual reporting by 80%"
+      "Reduced manual reporting"
     ],
     featured: false,
     longDescription: "Neo Progress Bridge connects development tools with multiple output channels, automatically syncing progress from CTK memory to FlowState AI, websites, and social media.",
@@ -762,7 +659,7 @@ export function getProjectsByCategory(category: Project['category']): Project[] 
 export function getRelatedProjects(projectId: string): Project[] {
   const project = getProjectById(projectId);
   if (!project || !project.relatedProjects) return [];
-  
+
   return project.relatedProjects
     .map(id => getProjectById(id))
     .filter(Boolean) as Project[];
@@ -771,14 +668,10 @@ export function getRelatedProjects(projectId: string): Project[] {
 export function getProjectStats() {
   const total = projectsData.length;
   const live = projectsData.filter(p => p.status === 'live').length;
-  const totalUsers = projectsData.reduce((acc, p) => acc + (p.metrics?.users || 0), 0);
-  const totalApiCalls = projectsData.reduce((acc, p) => acc + (p.metrics?.apiCalls || 0), 0);
-  
+
   return {
     totalProjects: total,
     liveProjects: live,
-    totalUsers,
-    totalApiCalls,
     categories: [...new Set(projectsData.map(p => p.category))].length
   };
 }

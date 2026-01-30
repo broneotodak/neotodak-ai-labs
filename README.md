@@ -17,14 +17,12 @@ A cutting-edge AI laboratory portal showcasing Neo Todak's innovative AI project
 - **Deployment**: Netlify with automatic deploys
 - **Analytics**: Google Analytics 4
 
-## 📊 Portfolio Stats (December 2025)
+## 📊 Portfolio Stats (January 2026)
 
 | Metric | Value |
 |--------|-------|
-| Total Projects | 17 |
-| Live Projects | 14 |
-| Total Users | 9,000+ |
-| Total API Calls | 1M+ |
+| Total Projects | 16 |
+| Live Projects | 15 |
 
 ## 🎯 Featured Projects
 
@@ -109,12 +107,11 @@ netlify deploy --prod
 | Font (Headers) | Inter |
 | Font (Code) | JetBrains Mono |
 
-## 🔮 Recent Updates (December 2025)
+## 🔮 Recent Updates (January 2026)
 
-- ✅ Added 5 new projects (TAD, Ledger, WaifuWay, TODAK LLM Dataset, Mastra)
-- ✅ Updated all project metrics to December 2025
-- ✅ Enhanced FlowState AI with multi-tool memory sync details
-- ✅ Added gaming category for Mastra and WaifuWay
+- ✅ Cleaned up project data - removed fake metrics
+- ✅ Updated all project descriptions and outcomes
+- ✅ Simplified portfolio stats display
 - ✅ Improved project descriptions with latest features
 
 ## 👨‍💻 About Neo Todak
