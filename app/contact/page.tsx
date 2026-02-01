@@ -4,11 +4,11 @@ import React from "react";
 import Link from "next/link";
 import { FloatingNav } from "@/components/aceternity/floating-navbar";
 import { ContactForm } from "@/components/contact-form";
-import { 
-  IconHome, 
-  IconMessage, 
-  IconBriefcase, 
-  IconCode, 
+import {
+  IconHome,
+  IconMessage,
+  IconBriefcase,
+  IconCode,
   IconArrowLeft,
   IconMail,
   IconBrandGithub,
@@ -24,93 +24,93 @@ const navItems = [
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-950 transition-colors">
       <FloatingNav navItems={navItems} />
-      
+
       {/* Header */}
       <header className="pt-32 pb-12 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Back link */}
-          <Link 
-            href="/" 
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 transition-colors mb-8"
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors mb-8"
           >
             <IconArrowLeft className="h-4 w-4" />
             Back to Home
           </Link>
-          
+
           {/* Title */}
           <div className="neo-section-header mb-8">
-            <h1 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               Get in Touch
             </h1>
           </div>
-          
-          <p className="text-xl text-gray-600 max-w-2xl">
-            Have an idea for an AI system, automation project, or creative tech solution? 
+
+          <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl">
+            Have an idea for an AI system, automation project, or creative tech solution?
             I'm always excited to collaborate on innovative projects.
           </p>
         </div>
       </header>
-      
+
       {/* Main Content */}
       <section className="px-6 pb-24">
         <div className="max-w-4xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             {/* Contact Form */}
             <div className="lg:col-span-2">
-              <div className="neo-project-card">
-                <h2 className="text-xl font-bold text-gray-900 mb-6">Send a Message</h2>
+              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-6">Send a Message</h2>
                 <ContactForm />
               </div>
             </div>
-            
+
             {/* Contact Info */}
             <div className="space-y-6">
               {/* Quick Info Cards */}
-              <div className="neo-project-card">
+              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
                 <div className="text-2xl mb-3">⚡</div>
-                <h3 className="font-bold text-gray-900 mb-1">Fast Response</h3>
-                <p className="text-sm text-gray-600">Usually respond within 24 hours</p>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-1">Fast Response</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Usually respond within 24 hours</p>
               </div>
-              
-              <div className="neo-project-card">
+
+              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
                 <div className="text-2xl mb-3">🤝</div>
-                <h3 className="font-bold text-gray-900 mb-1">Collaboration Ready</h3>
-                <p className="text-sm text-gray-600">From concept to deployment</p>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-1">Collaboration Ready</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">From concept to deployment</p>
               </div>
-              
-              <div className="neo-project-card">
+
+              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-6">
                 <div className="text-2xl mb-3">🚀</div>
-                <h3 className="font-bold text-gray-900 mb-1">Innovation Focus</h3>
-                <p className="text-sm text-gray-600">Cutting-edge AI solutions</p>
+                <h3 className="font-bold text-gray-900 dark:text-white mb-1">Innovation Focus</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">Cutting-edge AI solutions</p>
               </div>
-              
+
               {/* Social Links */}
-              <div className="pt-6 border-t border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-4">Connect Directly</h3>
+              <div className="pt-6 border-t border-gray-200 dark:border-gray-800">
+                <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Connect Directly</h3>
                 <div className="space-y-3">
-                  <a 
+                  <a
                     href="mailto:broneotodak@todak.com"
-                    className="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition-colors"
+                    className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                   >
                     <IconMail className="h-5 w-5" />
                     <span>broneotodak@todak.com</span>
                   </a>
-                  <a 
+                  <a
                     href="https://github.com/broneotodak"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition-colors"
+                    className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                   >
                     <IconBrandGithub className="h-5 w-5" />
                     <span>github.com/broneotodak</span>
                   </a>
-                  <a 
+                  <a
                     href="https://www.linkedin.com/in/broneotodak"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 text-gray-600 hover:text-gray-900 transition-colors"
+                    className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                   >
                     <IconBrandLinkedin className="h-5 w-5" />
                     <span>LinkedIn Profile</span>
@@ -121,12 +121,12 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      
+
       {/* Footer */}
-      <footer className="border-t border-gray-200 py-8 px-6">
+      <footer className="border-t border-gray-200 dark:border-gray-800 py-8 px-6">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
           <span className="text-gray-500 text-sm">© 2025 NEOTODAK AI Labs</span>
-          <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 transition-colors">
+          <Link href="/" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
             Back to Home
           </Link>
         </div>

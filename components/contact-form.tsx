@@ -40,21 +40,21 @@ export const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const web3FormsData = {
         access_key: process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY || "5da1f869-afb6-423a-ae75-027d89c9a675",
-        subject: `🚀 New Project Proposal from ${formData.name}`,
+        subject: `New Project Proposal from ${formData.name}`,
         from_name: 'Neo Todak Portfolio',
-        message: `🚀 NEW PROJECT PROPOSAL!
+        message: `NEW PROJECT PROPOSAL!
 
-👤 Name: ${formData.name}
-📞 Contact: ${formData.contact} (${formData.contactType})
-🎯 Project: ${formData.projectType}
-💰 Budget: ${formData.budget || 'Not specified'}
-⏰ Timeline: ${formData.timeline || 'Not specified'}
+Name: ${formData.name}
+Contact: ${formData.contact} (${formData.contactType})
+Project: ${formData.projectType}
+Budget: ${formData.budget || 'Not specified'}
+Timeline: ${formData.timeline || 'Not specified'}
 
-📝 Description:
+Description:
 ${formData.description}
 
 ---
@@ -69,7 +69,7 @@ Sent from: neotodak.com/contact`,
       });
 
       const result = await response.json();
-      
+
       if (result.success) {
         fetch('https://ntfy.sh/neo_notifications', {
           method: 'POST',
@@ -85,7 +85,7 @@ Sent from: neotodak.com/contact`,
 
         setIsSubmitting(false);
         setSubmitted(true);
-        
+
         setTimeout(() => {
           setSubmitted(false);
           setFormData({
@@ -117,18 +117,18 @@ Sent from: neotodak.com/contact`,
 
   if (submitted) {
     return (
-      <div className="text-center p-12 rounded-2xl bg-green-50 border border-green-200">
+      <div className="text-center p-12 rounded-2xl bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800">
         <div className="text-5xl mb-4">🚀</div>
-        <h3 className="text-2xl font-bold text-green-700 mb-3">Message Sent!</h3>
-        <p className="text-green-600">
+        <h3 className="text-2xl font-bold text-green-700 dark:text-green-400 mb-3">Message Sent!</h3>
+        <p className="text-green-600 dark:text-green-300">
           Thanks for your interest! I'll get back to you within 24 hours.
         </p>
       </div>
     );
   }
 
-  const inputClass = "w-full px-4 py-3 bg-white border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
-  const labelClass = "block text-gray-700 font-medium mb-2";
+  const inputClass = "w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all";
+  const labelClass = "block text-gray-700 dark:text-gray-300 font-medium mb-2";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
@@ -150,28 +150,28 @@ Sent from: neotodak.com/contact`,
         {/* Contact Method Toggle */}
         <div>
           <label className={labelClass}>Contact Method</label>
-          <div className="flex bg-gray-100 rounded-lg p-1">
+          <div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
             <button
               type="button"
               onClick={() => setFormData(prev => ({ ...prev, contactType: 'email' }))}
               className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
                 formData.contactType === 'email'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
-              📧 Email
+              Email
             </button>
             <button
               type="button"
               onClick={() => setFormData(prev => ({ ...prev, contactType: 'whatsapp' }))}
               className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
                 formData.contactType === 'whatsapp'
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-600 hover:text-gray-900'
+                  ? 'bg-white dark:bg-gray-700 text-gray-900 dark:text-white shadow-sm'
+                  : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
-              📱 WhatsApp
+              WhatsApp
             </button>
           </div>
         </div>
@@ -269,8 +269,8 @@ Sent from: neotodak.com/contact`,
         disabled={isSubmitting}
         className={`w-full py-4 px-8 rounded-lg font-semibold text-lg transition-all ${
           isSubmitting
-            ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-            : 'neo-btn-primary justify-center'
+            ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed'
+            : 'bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-200'
         }`}
       >
         {isSubmitting ? (
