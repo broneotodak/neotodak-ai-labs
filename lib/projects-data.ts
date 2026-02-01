@@ -634,6 +634,43 @@ export const projectsData: Project[] = [
     images: { thumbnail: "/projects/neo-progress-bridge-thumbnail.png", screenshots: [] },
     startDate: "2024-07-01",
     relatedProjects: ["flowstate-ai", "claude-tools-kit"]
+  },
+  {
+    id: "flipper-ai",
+    title: "Flipper Zero AI",
+    description: "AI-assisted security research platform with Flipper Zero integration",
+    category: "research",
+    status: "development",
+    complexity: 4,
+    techStack: [
+      "Python", "Flipper Zero", "Serial Communication", "IR/NFC/RFID", "Unleashed Firmware"
+    ],
+    links: {
+      github: "https://github.com/broneotodak/Flipper"
+    },
+    icon: "🐬",
+    highlights: [
+      "AI-assisted signal analysis and identification",
+      "Mac-Flipper communication bridge via serial",
+      "IR remote code testing and diagnostics",
+      "NFC card analysis and comparison tools",
+      "Unleashed firmware with extended capabilities"
+    ],
+    challenges: [
+      "Building reliable serial communication with Flipper",
+      "Integrating LLM for intelligent signal analysis",
+      "Hardware constraints (256KB RAM) for on-device AI"
+    ],
+    outcomes: [
+      "Working Python bridge for Flipper control",
+      "IR diagnostic tools for device testing",
+      "NFC card dump and comparison utilities"
+    ],
+    featured: false,
+    longDescription: "Flipper Zero AI transforms the Flipper Zero from a standalone hacking tool into an AI-assisted security research platform, integrating LLM capabilities for intelligent analysis and automated reconnaissance.",
+    images: { thumbnail: "/projects/flipper-ai-thumbnail.png", screenshots: [] },
+    startDate: "2025-01-01",
+    relatedProjects: ["claude-tools-kit"]
   }
 ];
 

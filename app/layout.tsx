@@ -40,7 +40,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white text-gray-900`} suppressHydrationWarning>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors`} suppressHydrationWarning>
         <GoogleAnalytics />
         <Providers>
           {children}

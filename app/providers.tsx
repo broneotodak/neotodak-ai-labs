@@ -1,8 +1,12 @@
 'use client';
 
 import React from 'react';
+import { ThemeProvider } from 'next-themes';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  // Remove the mounting check - it's breaking interactivity
-  return <>{children}</>;
+  return (
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      {children}
+    </ThemeProvider>
+  );
 }

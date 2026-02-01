@@ -151,52 +151,6 @@ export default function ProjectPageClient({ project, relatedProjects }: ProjectP
         </div>
       </header>
       
-      {/* Metrics */}
-      {project.metrics && (
-        <section className="px-6 pb-12">
-          <div className="max-w-5xl mx-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {project.metrics.users && (
-                <div className="neo-project-card text-center">
-                  <IconUsers className="h-6 w-6 text-blue-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">
-                    {project.metrics.users.toLocaleString()}
-                  </div>
-                  <div className="text-sm text-gray-500">Active Users</div>
-                </div>
-              )}
-              {project.metrics.uptime && (
-                <div className="neo-project-card text-center">
-                  <IconChartBar className="h-6 w-6 text-green-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">
-                    {project.metrics.uptime}%
-                  </div>
-                  <div className="text-sm text-gray-500">Uptime</div>
-                </div>
-              )}
-              {project.metrics.apiCalls && (
-                <div className="neo-project-card text-center">
-                  <IconApi className="h-6 w-6 text-purple-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-gray-900">
-                    {(project.metrics.apiCalls / 1000).toFixed(0)}K
-                  </div>
-                  <div className="text-sm text-gray-500">API Calls</div>
-                </div>
-              )}
-              {project.metrics.lastUpdated && (
-                <div className="neo-project-card text-center">
-                  <IconClock className="h-6 w-6 text-orange-600 mx-auto mb-2" />
-                  <div className="text-lg font-bold text-gray-900">
-                    {new Date(project.metrics.lastUpdated).toLocaleDateString()}
-                  </div>
-                  <div className="text-sm text-gray-500">Last Updated</div>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-      )}
-      
       {/* Tech Stack */}
       <section className="px-6 pb-12">
         <div className="max-w-5xl mx-auto">

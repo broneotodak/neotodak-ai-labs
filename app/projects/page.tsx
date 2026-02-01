@@ -97,18 +97,6 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
       </div>
       
-      {/* Metrics */}
-      {project.metrics && (
-        <div className="flex gap-4 text-xs text-gray-500 mb-4">
-          {project.metrics.users && (
-            <span>{project.metrics.users.toLocaleString()} users</span>
-          )}
-          {project.metrics.uptime && (
-            <span>{project.metrics.uptime}% uptime</span>
-          )}
-        </div>
-      )}
-      
       {/* Links */}
       <div className="flex items-center gap-4 pt-4 border-t border-gray-200 mt-auto">
         {project.links.live && (
