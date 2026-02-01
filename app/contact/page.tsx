@@ -91,11 +91,11 @@ export default function ContactPage() {
                 <h3 className="font-semibold text-gray-900 dark:text-white mb-4">Connect Directly</h3>
                 <div className="space-y-3">
                   <a
-                    href="mailto:broneotodak@todak.com"
+                    href="mailto:neo@todak.com"
                     className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
                   >
                     <IconMail className="h-5 w-5" />
-                    <span>broneotodak@todak.com</span>
+                    <span>neo@todak.com</span>
                   </a>
                   <a
                     href="https://github.com/broneotodak"
