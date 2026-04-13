@@ -1,5 +1,5 @@
 // NEOTODAK Portfolio Projects Data
-// Last updated: 2026-01-30
+// Last updated: 2026-04-13
 // URLs verified from pgVector memory + curl checks
 // GitHub repos include private repositories
 
@@ -34,6 +34,158 @@ export interface Project {
 }
 
 export const projectsData: Project[] = [
+  {
+    id: "digital-twin",
+    title: "Neo Digital Twin",
+    description: "AI clone built from 4,000+ memories with Gemini semantic search",
+    category: "ai",
+    status: "live",
+    complexity: 5,
+    techStack: [
+      "React", "TypeScript", "Supabase", "pgVector", "Gemini Embeddings",
+      "GPT-4o-mini", "Tailwind CSS", "Vite"
+    ],
+    links: {
+      live: "https://broneotodak.com",
+      github: "https://github.com/broneotodak/neo-grid-nexus"
+    },
+    icon: "🧬",
+    highlights: [
+      "4,000+ memories with Gemini embedding-001 (768 dims) for semantic search",
+      "Privacy-gated: public twin only sees memories with visibility='public'",
+      "Personality traits, knowledge graph, and facts drive responses",
+      "Auto-reply to WhatsApp messages via OpenClaw integration",
+      "Social media comment drafting with approval workflow"
+    ],
+    challenges: [
+      "Building authentic personality from scattered memory data",
+      "Privacy pipeline — public vs internal vs private memory separation",
+      "Semantic search quality across thousands of diverse memories"
+    ],
+    outcomes: [
+      "Public-facing AI that authentically represents Neo 24/7",
+      "Auto-replies to WhatsApp with personality-matched responses",
+      "Social media engagement automation"
+    ],
+    featured: true,
+    longDescription: "Neo Digital Twin is an AI clone built from thousands of real memories, personality traits, and knowledge graph data. It powers broneotodak.com for public chat, auto-replies to WhatsApp, and drafts social media comments.",
+    images: { thumbnail: "/projects/digital-twin-thumbnail.png", screenshots: [] },
+    startDate: "2025-03-01",
+    relatedProjects: ["clauden-dashboard", "openclaw"]
+  },
+  {
+    id: "openclaw",
+    title: "OpenClaw",
+    description: "Autonomous AI agent fleet — WhatsApp, scraping, reminders, voice ingestion",
+    category: "automation",
+    status: "live",
+    complexity: 5,
+    techStack: [
+      "Node.js", "Baileys (WhatsApp)", "Puppeteer", "Tailscale", "n8n",
+      "Supabase", "GPT-4o", "Express"
+    ],
+    links: {},
+    icon: "🦀",
+    highlights: [
+      "Gateway service — WhatsApp message routing and auto-reply",
+      "Router service — dispatches to specialized agents",
+      "Reminder agent — scheduled notifications via WhatsApp",
+      "Plaud voice ingestion — meeting notes to pgVector pipeline",
+      "Social media scraper — TikTok/Instagram comment collection",
+      "Forex signal pipeline — friend WhatsApp → auto-execute paper trades"
+    ],
+    challenges: [
+      "Running multiple always-on services on a single machine",
+      "WhatsApp API reliability without official Business API",
+      "Multi-service orchestration with health monitoring"
+    ],
+    outcomes: [
+      "Fully autonomous WhatsApp agent fleet running 24/7",
+      "Voice meeting notes automatically transcribed and embedded",
+      "Forex signals auto-executed from WhatsApp messages"
+    ],
+    featured: true,
+    longDescription: "OpenClaw is an autonomous agent fleet running on a dedicated CLAW machine via Tailscale. It handles WhatsApp routing, social media scraping, voice ingestion, reminders, and forex signal execution.",
+    images: { thumbnail: "/projects/openclaw-thumbnail.png", screenshots: [] },
+    startDate: "2025-02-01",
+    relatedProjects: ["digital-twin", "todak-ai-hq"]
+  },
+  {
+    id: "crypto-dashboard",
+    title: "Crypto Auto-Trader",
+    description: "AI paper trading with V2 engine, LLM tiebreaker, and live charts",
+    category: "ai",
+    status: "live",
+    complexity: 5,
+    techStack: [
+      "JavaScript", "Lightweight Charts", "Supabase", "Luno API",
+      "GPT-4o-mini", "Netlify Functions", "KNN"
+    ],
+    links: {
+      live: "https://presentation.neotodak.com/crypto-dashboard.html"
+    },
+    icon: "📈",
+    highlights: [
+      "V2 scoring engine: news sentiment, KNN patterns, multi-timeframe, Kelly criterion",
+      "LLM tiebreaker — GPT-4o-mini for borderline trading decisions",
+      "TradingView Lightweight Charts with Bollinger Bands + news markers",
+      "WhatsApp alerts on sells, portfolio milestones, and close commands",
+      "Paper trading with real Luno prices — tracking win rate toward 51%"
+    ],
+    challenges: [
+      "Preventing FGI extreme-fear signals from triggering buys into bear markets",
+      "Multi-device sync — DB-authoritative architecture to prevent stale clobbering",
+      "Balancing formula speed with LLM accuracy for borderline signals"
+    ],
+    outcomes: [
+      "152 paper trades executed, tracking toward 51% win rate target",
+      "Three-layer protection: pair blacklist + FGI trend-clamp + LLM tiebreaker",
+      "Real-time dashboard with auto-pilot logging"
+    ],
+    featured: true,
+    longDescription: "A comprehensive crypto paper trading system with a multi-indicator V2 scoring engine, GPT-4o-mini LLM tiebreaker for borderline decisions, and live TradingView charts with AI news markers.",
+    images: { thumbnail: "/projects/crypto-dashboard-thumbnail.png", screenshots: [] },
+    startDate: "2025-04-01",
+    relatedProjects: ["presentai"]
+  },
+  {
+    id: "todak-academy-v2",
+    title: "Todak Academy V2",
+    description: "Laravel → React+Supabase rewrite of student portal (3,141 students)",
+    category: "education",
+    status: "live",
+    complexity: 5,
+    techStack: [
+      "React 18", "TypeScript", "Vite", "MUI v7", "Supabase", "Netlify"
+    ],
+    links: {
+      live: "https://academy.neotodak.com",
+      github: "https://github.com/broneotodak/todak-academy-v2"
+    },
+    icon: "🎓",
+    highlights: [
+      "Full migration from Laravel 10 + MySQL to React + Supabase",
+      "58 tables migrated with data integrity verification",
+      "Student directory, course list, per-course finance grouping",
+      "RLS security with role-based helpers",
+      "Phase 1 ~40% complete — read-only pages built"
+    ],
+    challenges: [
+      "Migrating complex MySQL schema to Supabase without FK constraints",
+      "Invoice totals computed from SUM(invoice_details) — no total column",
+      "GoTrue crashes on NULL string columns"
+    ],
+    outcomes: [
+      "3,141 students and 59 courses successfully migrated",
+      "New portal live at academy.neotodak.com",
+      "Monthly cost reduced from ~RM 400 to ~RM 25"
+    ],
+    featured: true,
+    longDescription: "Complete rewrite of Todak Academy student portal from Laravel to React+Supabase, migrating 3,141 students across 59 courses with full data integrity verification.",
+    images: { thumbnail: "/projects/todak-academy-v2-thumbnail.png", screenshots: [] },
+    startDate: "2026-04-01",
+    relatedProjects: ["classroom-neo", "presentai"]
+  },
   {
     id: "thr-intelligence",
     title: "THR Intelligence",

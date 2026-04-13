@@ -4,8 +4,19 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { FloatingNav } from '@/components/aceternity/floating-navbar';
 import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
-import { IconHome, IconMessage, IconBriefcase, IconCode, IconArrowRight, IconBrandGithub, IconExternalLink } from '@tabler/icons-react';
+import { IconHome, IconMessage, IconBriefcase, IconCode, IconArrowRight, IconBrandGithub, IconExternalLink, IconBrandYoutube, IconBrandInstagram, IconBrandTiktok, IconBrandLinkedin, IconBrandX, IconBrandFacebook, IconBrandWhatsapp, IconLink, IconMail } from '@tabler/icons-react';
 import { projectsData, getFeaturedProjects, getProjectStats } from '@/lib/projects-data';
+
+const SOCIAL_LINKS = [
+  { icon: IconBrandYoutube, href: "https://www.youtube.com/@broneotodak", label: "YouTube" },
+  { icon: IconBrandInstagram, href: "https://www.instagram.com/broneotodak/", label: "Instagram" },
+  { icon: IconBrandTiktok, href: "https://www.tiktok.com/@broneotodak", label: "TikTok" },
+  { icon: IconBrandLinkedin, href: "https://www.linkedin.com/in/broneotodak/", label: "LinkedIn" },
+  { icon: IconBrandX, href: "https://x.com/broneotodak", label: "X" },
+  { icon: IconBrandFacebook, href: "https://www.facebook.com/broneotodak", label: "Facebook" },
+  { icon: IconBrandGithub, href: "https://github.com/neolie", label: "GitHub" },
+  { icon: IconLink, href: "https://link.todak.io/@broneotodak", label: "All Links" },
+];
 
 const navItems = [
   { name: "Home", link: "/", icon: <IconHome className="h-4 w-4" /> },
@@ -120,43 +131,89 @@ export default function HomePage() {
       
       {/* Hero Section */}
       <section className="neo-hero min-h-[85vh] flex flex-col items-center justify-center text-center px-6">
-        {/* Tagline */}
+        {/* Avatar */}
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <span className="neo-tagline-decorated text-gray-600 dark:text-gray-400">
-            AI-First Development
+          <div className="w-28 h-28 rounded-full bg-gradient-to-br from-violet-500 via-purple-500 to-cyan-500 p-[3px] mx-auto">
+            <div className="w-full h-full rounded-full bg-white dark:bg-gray-950 flex items-center justify-center">
+              <span className="text-4xl font-black bg-gradient-to-br from-violet-500 to-cyan-500 bg-clip-text text-transparent">
+                NT
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Name */}
+        <div className="opacity-0 animate-fade-in-up mt-6" style={{ animationDelay: '0.15s' }}>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Ahmad Fadli Bin Ahmad Dahlan</p>
+        </div>
+
+        {/* Main Title */}
+        <h1 className="neo-hero-title mt-2 mb-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          Neo Todak
+        </h1>
+
+        {/* Role badges */}
+        <div className="flex flex-wrap justify-center gap-2 mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
+          <span className="px-3 py-1 rounded-full bg-violet-100 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 text-violet-700 dark:text-violet-400 text-xs font-semibold">
+            CEO Todak Studios
+          </span>
+          <span className="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20 text-cyan-700 dark:text-cyan-400 text-xs font-semibold">
+            VP Todak Gaming
+          </span>
+          <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
+            AI Systems Builder
           </span>
         </div>
-        
-        {/* Main Title */}
-        <h1 className="neo-hero-title mt-8 mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          NEOTODAK AI Labs
-        </h1>
-        
+
         {/* Subtitle */}
         <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
           {isClient ? (
-            <TextGenerateEffect 
-              words="Building systems where AI isn't just a tool — it's a teammate"
+            <TextGenerateEffect
+              words="Building AI agents that work for you — managing money, answering messages, and making decisions while you sleep."
               className="neo-hero-subtitle max-w-2xl"
             />
           ) : (
             <p className="neo-hero-subtitle max-w-2xl">
-              Building systems where AI isn&apos;t just a tool — it&apos;s a teammate
+              Building AI agents that work for you — managing money, answering messages, and making decisions while you sleep.
             </p>
           )}
         </div>
-        
+
+        {/* Social links */}
+        <div className="flex flex-wrap justify-center gap-2 mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
+          {SOCIAL_LINKS.map((link) => {
+            const Icon = link.icon;
+            return (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                title={link.label}
+                className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-gray-400 dark:hover:border-gray-500 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-200 hover:scale-110"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            );
+          })}
+        </div>
+
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 mt-12 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+        <div className="flex flex-col sm:flex-row gap-4 mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
           <Link href="/projects" className="neo-btn-primary">
             View Projects
             <IconArrowRight className="h-4 w-4" />
           </Link>
-          <Link href="/contact" className="neo-btn-secondary">
-            Get in Touch
-          </Link>
+          <a href="https://wa.me/60177519610" target="_blank" rel="noopener noreferrer" className="neo-btn-secondary inline-flex items-center gap-2">
+            <IconBrandWhatsapp className="h-4 w-4" />
+            WhatsApp
+          </a>
+          <a href="https://broneotodak.com" target="_blank" rel="noopener noreferrer" className="neo-btn-secondary inline-flex items-center gap-2">
+            <IconMessage className="h-4 w-4" />
+            Talk to my AI Twin
+          </a>
         </div>
-        
+
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in" style={{ animationDelay: '1s' }}>
           <div className="w-6 h-10 border-2 border-gray-300 dark:border-gray-700 rounded-full flex justify-center pt-2">
@@ -199,16 +256,17 @@ export default function HomePage() {
             Philosophy
           </h2>
           <blockquote className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-light italic leading-relaxed">
-            &ldquo;The best AI systems don&apos;t replace human thinking — they amplify it. 
-            Every project I build is designed to make teams smarter, faster, and more creative.&rdquo;
+            &ldquo;AI shouldn&apos;t just answer questions — it should take action.
+            I build autonomous agents that manage finances, respond to messages, and make decisions 24/7.
+            The goal isn&apos;t to replace humans, but to give everyone a tireless digital workforce.&rdquo;
           </blockquote>
           <div className="mt-8 flex items-center justify-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-gray-200 dark:bg-gray-800 flex items-center justify-center text-2xl">
-              🧠
+            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center">
+              <span className="text-white font-bold text-lg">NT</span>
             </div>
             <div className="text-left">
               <div className="font-bold text-gray-900 dark:text-white">Neo Todak</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">AI Systems Architect</div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">CEO Todak Studios &middot; AI Systems Builder</div>
             </div>
           </div>
         </div>
@@ -233,7 +291,7 @@ export default function HomePage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="text-gray-600 dark:text-gray-400">
-              © 2025 NEOTODAK AI Labs. All rights reserved.
+              © 2026 Neo Todak. All rights reserved.
             </div>
             <div className="flex items-center gap-6">
               <a 
