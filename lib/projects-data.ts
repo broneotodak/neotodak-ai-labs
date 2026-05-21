@@ -46,8 +46,8 @@ export const projectsData: Project[] = [
       "GPT-4o-mini", "Tailwind CSS", "Vite"
     ],
     links: {
-      live: "https://broneotodak.com",
-      github: "https://github.com/broneotodak/neo-grid-nexus"
+      live: "https://neotodak.com/twin",
+      github: "https://github.com/broneotodak/neotodak-ai-labs"
     },
     icon: "🧬",
     highlights: [
@@ -68,7 +68,7 @@ export const projectsData: Project[] = [
       "Social media engagement automation"
     ],
     featured: true,
-    longDescription: "Neo Digital Twin is an AI clone built from thousands of real memories, personality traits, and knowledge graph data. It powers broneotodak.com for public chat, auto-replies to WhatsApp, and drafts social media comments.",
+    longDescription: "Neo Digital Twin is an AI clone built from thousands of real memories, personality traits, and knowledge graph data. It powers the public chat at neotodak.com/twin, auto-replies to WhatsApp, and drafts social media comments.",
     images: { thumbnail: "/projects/digital-twin-thumbnail.png", screenshots: [] },
     startDate: "2025-03-01",
     relatedProjects: ["clauden-dashboard", "openclaw"]

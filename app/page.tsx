@@ -208,7 +208,7 @@ export default function HomePage() {
             <IconBrandWhatsapp className="h-4 w-4" />
             WhatsApp
           </a>
-          <a href="https://broneotodak.com" target="_blank" rel="noopener noreferrer" className="neo-btn-secondary inline-flex items-center gap-2">
+          <a href="/twin" className="neo-btn-secondary inline-flex items-center gap-2">
             <IconMessage className="h-4 w-4" />
             Talk to my AI Twin
           </a>
