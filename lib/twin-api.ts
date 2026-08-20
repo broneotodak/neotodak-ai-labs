@@ -3,6 +3,9 @@
 // of broneotodak.com into neotodak.com/twin (option A — one canonical site).
 
 const TWIN_API = "https://clauden.neotodak.com/api";
+// Primary: twin-relay — bridges to the fine-tuned neo-twin brain-gateway on the
+// Forge box (public tier: public memories only), falls back to clauden server-side.
+const RELAY_API = "https://twin-api.neotodak.com";
 
 export interface Message {
   role: "user" | "assistant";
@@ -17,6 +20,24 @@ export interface TwinStats {
 }
 
 export async function sendMessage(messages: Message[]): Promise<string> {
+  // Try the real twin first: relay -> bandung neo-twin (voice fine-tune + public
+  // memory recall). The relay itself falls back to clauden if bandung is offline;
+  // this client-side catch is the second belt for when the relay is down too.
+  try {
+    const res = await fetch(`${RELAY_API}/chat`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: messages.map((m) => ({ role: m.role, content: m.content })),
+      }),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.reply) return data.reply;
+    }
+  } catch {
+    // fall through to clauden
+  }
   // /api/ai on clauden has built-in digital twin fallback against neo-brain
   // (Phase 2 Step 5 of project_rag_upgrade landed this — server-side service-role).
   const res = await fetch(`${TWIN_API}/ai`, {
