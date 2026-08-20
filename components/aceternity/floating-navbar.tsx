@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const FloatingNav = ({
   navItems,
@@ -65,7 +64,6 @@ export const FloatingNav = ({
             <span className="hidden sm:block text-sm font-medium">{navItem.name}</span>
           </Link>
         ))}
-        <ThemeToggle />
         <Link
           href="/contact"
           className="text-sm font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-2 rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"

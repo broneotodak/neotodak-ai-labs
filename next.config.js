@@ -185,10 +185,10 @@ const nextConfig = {
             key: 'X-XSS-Protection',
             value: '1; mode=block',
           },
-          // Performance headers
+          // HTML must revalidate — static assets get long cache via their own rules below
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
+            value: 'public, max-age=0, must-revalidate',
           },
         ],
       },
@@ -229,6 +229,21 @@ const nextConfig = {
         source: '/home',
         destination: '/',
         permanent: true,
+      },
+      {
+        source: '/projects',
+        destination: '/#shipped',
+        permanent: false,
+      },
+      {
+        source: '/projects/:slug*',
+        destination: '/#shipped',
+        permanent: false,
+      },
+      {
+        source: '/tech-stack',
+        destination: '/#lab',
+        permanent: false,
       },
     ];
   },
