@@ -1,50 +1,48 @@
 import React from 'react'
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
-import { Providers } from './providers'
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
-const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
+const grotesk = Space_Grotesk({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-grotesk' })
+const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-mono' })
 
 export const metadata: Metadata = {
-  title: 'NEOTODAK AI Labs - AI Systems Builder',
-  description: 'Building systems where AI isn\'t just a tool — it\'s a teammate. Creative technologist and founder of Todak Studios.',
-  keywords: 'Neo Todak, AI Systems, Todak Studios, THR Intelligence, FlowState AI, Claude Tools Kit, Machine Learning, Automation',
+  title: 'Neo Todak Labs — My AI works while I sleep',
+  description:
+    'Ahmad Fadli "Neo Todak" — CEO of Todak Studios and builder of an autonomous AI workforce: agents that answer, remember, trade, train and ship code around the clock.',
+  keywords: 'Neo Todak, AI agents, autonomous fleet, Todak Studios, digital twin, AI systems, Malaysia',
   authors: [{ name: 'Neo Todak' }],
+  metadataBase: new URL('https://neotodak.com'),
   openGraph: {
-    title: 'NEOTODAK AI Labs',
-    description: 'Building systems where AI isn\'t just a tool — it\'s a teammate.',
+    title: 'Neo Todak Labs',
+    description: 'CEO by day. An autonomous AI workforce around the clock.',
     url: 'https://neotodak.com',
-    siteName: 'NEOTODAK AI Labs',
+    siteName: 'Neo Todak Labs',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'NEOTODAK AI Labs',
-    description: 'Building systems where AI isn\'t just a tool — it\'s a teammate.',
+    title: 'Neo Todak Labs',
+    description: 'CEO by day. An autonomous AI workforce around the clock.',
   },
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#1a1a1a',
+  themeColor: '#fafaf8',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors`} suppressHydrationWarning>
+    <html lang="en">
+      <body className={`${grotesk.variable} ${jetbrainsMono.variable} v3`}>
+        <noscript>
+          <style>{`[data-reveal],[data-reveal]>*{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <GoogleAnalytics />
-        <Providers>
-          {children}
-        </Providers>
+        {children}
       </body>
     </html>
   )

@@ -1,314 +1,229 @@
-'use client';
+import React from 'react'
+import { catalog, catalogStats } from '@/lib/catalog'
+import { CatalogGrid } from '@/components/v3/CatalogGrid'
+import { Reveal } from '@/components/v3/Reveal'
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { FloatingNav } from '@/components/aceternity/floating-navbar';
-import { TextGenerateEffect } from '@/components/aceternity/text-generate-effect';
-import { IconHome, IconMessage, IconBriefcase, IconCode, IconArrowRight, IconBrandGithub, IconExternalLink, IconBrandYoutube, IconBrandInstagram, IconBrandTiktok, IconBrandLinkedin, IconBrandX, IconBrandFacebook, IconBrandWhatsapp, IconLink, IconMail } from '@tabler/icons-react';
-import { projectsData, getFeaturedProjects, getProjectStats } from '@/lib/projects-data';
-
-const SOCIAL_LINKS = [
-  { icon: IconBrandYoutube, href: "https://www.youtube.com/@broneotodak", label: "YouTube" },
-  { icon: IconBrandInstagram, href: "https://www.instagram.com/broneotodak/", label: "Instagram" },
-  { icon: IconBrandTiktok, href: "https://www.tiktok.com/@broneotodak", label: "TikTok" },
-  { icon: IconBrandLinkedin, href: "https://www.linkedin.com/in/broneotodak/", label: "LinkedIn" },
-  { icon: IconBrandX, href: "https://x.com/broneotodak", label: "X" },
-  { icon: IconBrandFacebook, href: "https://www.facebook.com/broneotodak", label: "Facebook" },
-  { icon: IconBrandGithub, href: "https://github.com/neolie", label: "GitHub" },
-  { icon: IconLink, href: "https://link.todak.io/@broneotodak", label: "All Links" },
-];
-
-const navItems = [
-  { name: "Home", link: "/", icon: <IconHome className="h-4 w-4" /> },
-  { name: "Projects", link: "/projects", icon: <IconBriefcase className="h-4 w-4" /> },
-  { name: "Tech Stack", link: "/tech-stack", icon: <IconCode className="h-4 w-4" /> },
-  { name: "Contact", link: "/contact", icon: <IconMessage className="h-4 w-4" /> },
-];
-
-// Featured project card component
-function ProjectCard({ project, index }: { project: any; index: number }) {
-  return (
-    <div 
-      className="neo-project-card group opacity-0 animate-fade-in-up"
-      style={{ animationDelay: `${0.1 + index * 0.1}s` }}
-    >
-      {/* Icon */}
-      <div className="text-4xl mb-4">{project.icon || '🚀'}</div>
-      
-      {/* Title & Status */}
-      <div className="flex items-center gap-3 mb-3">
-        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-accent-500 transition-colors">
-          {project.title}
-        </h3>
-        <span className={`neo-badge ${project.status === 'live' ? 'neo-badge-primary' : ''}`}>
-          {project.status}
-        </span>
-      </div>
-      
-      {/* Description */}
-      <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2">
-        {project.description}
-      </p>
-      
-      {/* Tech Stack Tags */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {project.techStack.slice(0, 4).map((tech: string) => (
-          <span key={tech} className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">
-            {tech}
-          </span>
-        ))}
-        {project.techStack.length > 4 && (
-          <span className="text-xs px-2 py-1 text-gray-500">
-            +{project.techStack.length - 4} more
-          </span>
-        )}
-      </div>
-      
-      {/* Links */}
-      <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-        {project.links.live && (
-          <a 
-            href={project.links.live}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-sm font-medium text-gray-900 dark:text-white hover:text-accent-500 transition-colors"
-          >
-            <IconExternalLink className="h-4 w-4" />
-            Live Site
-          </a>
-        )}
-        {project.links.github && (
-          <a 
-            href={project.links.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-          >
-            <IconBrandGithub className="h-4 w-4" />
-            GitHub
-          </a>
-        )}
-      </div>
-    </div>
-  );
-}
-
-// Stats component
-function StatsSection() {
-  const stats = getProjectStats();
-
-  return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 py-12 border-y border-gray-200 dark:border-gray-800">
-      {[
-        { label: 'Live Projects', value: stats.liveProjects },
-        { label: 'Total Projects', value: stats.totalProjects },
-        { label: 'Categories', value: stats.categories },
-      ].map((stat, i) => (
-        <div key={stat.label} className="text-center opacity-0 animate-fade-in-up" style={{ animationDelay: `${0.3 + i * 0.1}s` }}>
-          <div className="text-3xl md:text-4xl font-black text-gray-900 dark:text-white">
-            {stat.value}
-          </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-            {stat.label}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
+const SOCIALS = [
+  { label: 'GitHub', url: 'https://github.com/broneotodak' },
+  { label: 'LinkedIn', url: 'https://www.linkedin.com/in/broneotodak/' },
+  { label: 'X', url: 'https://x.com/broneotodak' },
+  { label: 'TikTok', url: 'https://www.tiktok.com/@broneotodak' },
+  { label: 'Instagram', url: 'https://www.instagram.com/broneotodak/' },
+  { label: 'YouTube', url: 'https://www.youtube.com/@broneotodak' },
+]
 
 export default function HomePage() {
-  const [isClient, setIsClient] = useState(false);
-  const featuredProjects = getFeaturedProjects().slice(0, 6);
-  
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  const flagships = catalog.filter((p) => p.flagship)
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white relative transition-colors duration-300">
-      <FloatingNav navItems={navItems} />
-      
-      {/* Hero Section */}
-      <section className="neo-hero min-h-[85vh] flex flex-col items-center justify-center text-center px-6">
-        {/* Avatar */}
-        <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-          <div className="w-28 h-28 rounded-full bg-gradient-to-br from-violet-500 via-purple-500 to-cyan-500 p-[3px] mx-auto">
-            <div className="w-full h-full rounded-full bg-white dark:bg-gray-950 flex items-center justify-center">
-              <span className="text-4xl font-black bg-gradient-to-br from-violet-500 to-cyan-500 bg-clip-text text-transparent">
-                NT
-              </span>
+    <>
+      <Reveal />
+      <header className="masthead">
+        <div className="container">
+          <a className="wordmark" href="/">
+            <span className="block" aria-hidden="true" />
+            Neo Todak <span style={{ color: 'var(--accent)' }}>Labs</span>
+          </a>
+          <nav className="nav" aria-label="Sections">
+            <a href="#operator">The Operator</a>
+            <a href="#lab">The Lab</a>
+            <a href="#shipped">Shipped</a>
+            <a href="#contact">Contact</a>
+          </nav>
+          <a className="btn btn-primary btn-sm" href="/twin">
+            Talk to my twin
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section className="hero">
+          <div className="container">
+            <div className="eyebrow">
+              <span className="tick">▮</span> NEO TODAK LABS — CYBERJAYA, MALAYSIA
             </div>
-          </div>
-        </div>
-
-        {/* Name */}
-        <div className="opacity-0 animate-fade-in-up mt-6" style={{ animationDelay: '0.15s' }}>
-          <p className="text-sm text-gray-500 dark:text-gray-400 mb-1">Ahmad Fadli Bin Ahmad Dahlan</p>
-        </div>
-
-        {/* Main Title */}
-        <h1 className="neo-hero-title mt-2 mb-4 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-          Neo Todak
-        </h1>
-
-        {/* Role badges */}
-        <div className="flex flex-wrap justify-center gap-2 mb-6 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.25s' }}>
-          <span className="px-3 py-1 rounded-full bg-violet-100 dark:bg-violet-500/10 border border-violet-200 dark:border-violet-500/20 text-violet-700 dark:text-violet-400 text-xs font-semibold">
-            CEO Todak Studios
-          </span>
-          <span className="px-3 py-1 rounded-full bg-cyan-100 dark:bg-cyan-500/10 border border-cyan-200 dark:border-cyan-500/20 text-cyan-700 dark:text-cyan-400 text-xs font-semibold">
-            VP Todak Gaming
-          </span>
-          <span className="px-3 py-1 rounded-full bg-emerald-100 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
-            AI Systems Builder
-          </span>
-        </div>
-
-        {/* Subtitle */}
-        <div className="opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-          {isClient ? (
-            <TextGenerateEffect
-              words="Building AI agents that work for you — managing money, answering messages, and making decisions while you sleep."
-              className="neo-hero-subtitle max-w-2xl"
-            />
-          ) : (
-            <p className="neo-hero-subtitle max-w-2xl">
-              Building AI agents that work for you — managing money, answering messages, and making decisions while you sleep.
+            <h1>
+              My AI <span className="outline">works</span>
+              <br />
+              while I <span className="accent">sleep.</span>
+            </h1>
+            <p className="hero-sub">
+              I&rsquo;m Ahmad Fadli — <strong>Neo Todak</strong>. CEO of Todak Studios by day. The rest
+              of the time I build an autonomous AI workforce: agents that answer, remember, trade,
+              train and ship code around the clock.
             </p>
-          )}
-        </div>
-
-        {/* Social links */}
-        <div className="flex flex-wrap justify-center gap-2 mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.35s' }}>
-          {SOCIAL_LINKS.map((link) => {
-            const Icon = link.icon;
-            return (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                title={link.label}
-                className="w-10 h-10 rounded-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 hover:border-gray-400 dark:hover:border-gray-500 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-all duration-200 hover:scale-110"
-              >
-                <Icon className="h-4 w-4" />
+            <div className="hero-ctas">
+              <a className="btn btn-primary" href="/twin">
+                Talk to my twin →
               </a>
-            );
-          })}
-        </div>
-
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 mt-8 opacity-0 animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
-          <Link href="/projects" className="neo-btn-primary">
-            View Projects
-            <IconArrowRight className="h-4 w-4" />
-          </Link>
-          <a href="https://wa.me/60177519610" target="_blank" rel="noopener noreferrer" className="neo-btn-secondary inline-flex items-center gap-2">
-            <IconBrandWhatsapp className="h-4 w-4" />
-            WhatsApp
-          </a>
-          <a href="/twin" className="neo-btn-secondary inline-flex items-center gap-2">
-            <IconMessage className="h-4 w-4" />
-            Talk to my AI Twin
-          </a>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in" style={{ animationDelay: '1s' }}>
-          <div className="w-6 h-10 border-2 border-gray-300 dark:border-gray-700 rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-gray-400 dark:bg-gray-600 rounded-full animate-bounce" />
-          </div>
-        </div>
-      </section>
-      
-      {/* Stats Section */}
-      <section className="max-w-6xl mx-auto px-6">
-        <StatsSection />
-      </section>
-      
-      {/* Featured Projects Section */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <div className="neo-section-header mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-            Featured Projects
-          </h2>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
-          ))}
-        </div>
-        
-        <div className="text-center mt-12">
-          <Link href="/projects" className="neo-btn-secondary inline-flex items-center gap-2">
-            View All Projects
-            <IconArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </section>
-      
-      {/* About/Philosophy Section */}
-      <section className="bg-gray-50 dark:bg-gray-900 py-24">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-8">
-            Philosophy
-          </h2>
-          <blockquote className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-light italic leading-relaxed">
-            &ldquo;AI shouldn&apos;t just answer questions — it should take action.
-            I build autonomous agents that manage finances, respond to messages, and make decisions 24/7.
-            The goal isn&apos;t to replace humans, but to give everyone a tireless digital workforce.&rdquo;
-          </blockquote>
-          <div className="mt-8 flex items-center justify-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-gradient-to-br from-violet-500 to-cyan-500 flex items-center justify-center">
-              <span className="text-white font-bold text-lg">NT</span>
+              <a className="btn btn-ghost" href="#lab">
+                See the lab ↓
+              </a>
             </div>
-            <div className="text-left">
-              <div className="font-bold text-gray-900 dark:text-white">Neo Todak</div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">CEO Todak Studios &middot; AI Systems Builder</div>
+            <div className="statgrid">
+              <div className="stat">
+                <div className="num">
+                  36<span className="u">+</span>
+                </div>
+                <div className="lbl">Agents on the fleet</div>
+              </div>
+              <div className="stat">
+                <div className="num">
+                  8,800<span className="u">+</span>
+                </div>
+                <div className="lbl">Shared memories</div>
+              </div>
+              <div className="stat">
+                <div className="num">
+                  80.2<span className="u">%</span>
+                </div>
+                <div className="lbl">Twin voice-likeness</div>
+              </div>
+              <div className="stat">
+                <div className="num">{catalogStats.total}</div>
+                <div className="lbl">Projects, honest statuses</div>
+              </div>
+            </div>
+            <div className="stat-note">FIGURES VERIFIED {catalogStats.verifiedOn} — NOT MARKETING ROUNDING.</div>
+          </div>
+        </section>
+
+        <section className="chapter" id="operator">
+          <div className="container">
+            <div className="ch-head" data-reveal>
+              <span className="ch-no">CH.01</span>
+              <h2>The Operator</h2>
+            </div>
+            <div className="about-grid">
+              <div data-reveal>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img className="portrait" src="/neo.jpg" alt="Neo Todak" />
+                <div className="roles">
+                  <div>CEO — Todak Studios</div>
+                  <div>VP — Todak Gaming</div>
+                  <div>Operator — Neo Todak Labs</div>
+                </div>
+              </div>
+              <div className="about-text" data-reveal>
+                <p>
+                  By day I run <strong>Todak Studios</strong> — the Malaysian game studio behind
+                  Mastra, Police Sentri and ToGather: Island — inside the TODAK ecosystem, from
+                  Cyberjaya.
+                </p>
+                <p>
+                  In 2026, running a company and building software stopped being separate jobs. When
+                  the studio downsized, I didn&rsquo;t hire a bigger team — I built one out of
+                  agents. Today an AI chief-of-staff answers my company&rsquo;s WhatsApp, a shared
+                  memory system remembers every decision, a rig in Bandung re-trains my digital twin
+                  from my own conversations, and coding agents ship production systems daily —
+                  including the site you&rsquo;re reading.
+                </p>
+                <p>
+                  This page is the lab notebook: everything shipped, working, evolved or honestly
+                  archived. No &ldquo;coming soon&rdquo;, no vaporware — statuses are verified
+                  against the systems themselves.
+                </p>
+                <div className="socials">
+                  {SOCIALS.map((s) => (
+                    <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer">
+                      {s.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {/* CTA Section */}
-      <section className="max-w-4xl mx-auto px-6 py-24 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-          Ready to build something amazing?
-        </h2>
-        <p className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
-          Whether you need an AI-powered system, automation workflows, or custom development — let&apos;s talk.
-        </p>
-        <Link href="/contact" className="neo-btn-primary">
-          Start a Conversation
-          <IconArrowRight className="h-4 w-4" />
-        </Link>
-      </section>
-      
-      {/* Footer */}
-      <footer className="border-t border-gray-200 dark:border-gray-800 py-12">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="text-gray-600 dark:text-gray-400">
-              © 2026 Neo Todak. All rights reserved.
+        </section>
+
+        <section className="chapter" id="lab">
+          <div className="container">
+            <div className="ch-head" data-reveal>
+              <span className="ch-no">CH.02</span>
+              <h2>The Lab — five systems that run my life</h2>
             </div>
-            <div className="flex items-center gap-6">
-              <a 
-                href="https://github.com/broneotodak" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                <IconBrandGithub className="h-5 w-5" />
+            <p className="ch-lede" data-reveal>
+              The flagships. They talk to each other, share one memory, and work whether I&rsquo;m
+              awake or not.
+            </p>
+            <div className="fleet" data-reveal="group">
+              {flagships.map((p) => (
+                <article className="flagship" key={p.id}>
+                  <div className="f-top">
+                    <h3>{p.title}</h3>
+                    <span className={`chip ${p.status}`}>{p.status}</span>
+                  </div>
+                  <div className="one">{p.oneLiner}</div>
+                  <p className="story">{p.story}</p>
+                  <ul>
+                    {p.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                  <div className="tech-row">
+                    {p.techStack.map((t) => (
+                      <span key={t}>{t}</span>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="chapter" id="shipped">
+          <div className="container">
+            <div className="ch-head" data-reveal>
+              <span className="ch-no">CH.03</span>
+              <h2>Everything shipped</h2>
+            </div>
+            <p className="ch-lede" data-reveal>
+              {catalogStats.total} projects since 2024, statuses worn honestly — live means live,
+              parked means parked, and dead things stay on the shelf with their lessons. Evolved
+              projects point at what they became.
+            </p>
+            <CatalogGrid />
+          </div>
+        </section>
+
+        <section className="chapter twin-cta" id="twin">
+          <div className="container">
+            <div className="twin-box" data-reveal>
+              <h2>
+                Don&rsquo;t take my word for it. <span className="accent">Interrogate the twin.</span>
+              </h2>
+              <p>
+                My digital twin answers from my real memories — projects, decisions, opinions —
+                retrieved semantically per question, restricted to what I&rsquo;ve made public. Its
+                voice model is fine-tuned on 31,788 of my own messages by a training rig that feeds
+                itself.
+              </p>
+              <p className="mono-note">PRIVACY-GATED · MEMORY-BACKED · NOT A SCRIPT</p>
+              <a className="btn btn-primary" href="/twin">
+                Open the twin →
               </a>
-              <Link href="/privacy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors">
-                Privacy
-              </Link>
             </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="footer" id="contact">
+        <div className="container">
+          <div className="fm">
+            NEO TODAK LABS
+            <br />
+            <a href="mailto:neo@todak.com">neo@todak.com</a>
+            <br />
+            <a href="https://todakstudios.com" target="_blank" rel="noopener noreferrer">
+              Todak Studios ↗
+            </a>
+          </div>
+          <div className="fm" style={{ textAlign: 'right' }}>
+            © {new Date().getFullYear()} Neo Todak — built by the fleet it describes.
+            <br />
+            Statuses verified {catalogStats.verifiedOn}.
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </>
+  )
 }
