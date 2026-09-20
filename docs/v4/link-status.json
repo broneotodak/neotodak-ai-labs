@@ -1,0 +1,70 @@
+{
+  "checkedAt": "2026-09-20T16:00:58.192Z",
+  "method": "Unauthenticated GET, redirects followed",
+  "links": [
+    {
+      "label": "ApaNakMakan",
+      "url": "https://apanakmakan.com/",
+      "status": 200,
+      "finalUrl": "https://apanakmakan.com/",
+      "title": "ApaNakMakan? — Slide to get food"
+    },
+    {
+      "label": "NACA City",
+      "url": "https://naca.neotodak.com/",
+      "status": 200,
+      "finalUrl": "https://naca.neotodak.com/",
+      "title": "NACA City — An atlas of your AI"
+    },
+    {
+      "label": "RUSH — App Store",
+      "url": "https://apps.apple.com/my/app/police-sentri-rush/id6812404214",
+      "status": 200,
+      "finalUrl": "https://apps.apple.com/my/app/police-sentri-rush/id6812404214",
+      "title": "‎police sentri : RUSH App - App Store"
+    },
+    {
+      "label": "RUSH — Google Play",
+      "url": "https://play.google.com/store/apps/details?id=com.todakstudios.policesentrirush",
+      "status": 200,
+      "finalUrl": "https://play.google.com/store/apps/details?id=com.todakstudios.policesentrirush",
+      "title": "police sentri : RUSH - Apps on Google Play",
+      "matchingDescription": true
+    },
+    {
+      "label": "Todak Studios",
+      "url": "https://todakstudios.com/",
+      "status": 200,
+      "finalUrl": "https://todakstudios.com/",
+      "title": "Todak Studios — Creativity, leveled up."
+    },
+    {
+      "label": "GitHub",
+      "url": "https://github.com/broneotodak",
+      "status": 200,
+      "finalUrl": "https://github.com/broneotodak",
+      "title": "broneotodak (broneotodak) · GitHub"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/broneotodak/",
+      "status": 999,
+      "finalUrl": "https://www.linkedin.com/in/broneotodak",
+      "title": null
+    },
+    {
+      "label": "Food photograph credit",
+      "url": "https://commons.wikimedia.org/wiki/File:Nasi_Lemak_dengan_Chili_Nasi_Lemak_dan_Sotong_Pedas,_di_Penang_Summer_Restaurant.jpg",
+      "status": 200,
+      "finalUrl": "https://commons.wikimedia.org/wiki/File:Nasi_Lemak_dengan_Chili_Nasi_Lemak_dan_Sotong_Pedas,_di_Penang_Summer_Restaurant.jpg",
+      "title": "File:Nasi Lemak dengan Chili Nasi Lemak dan Sotong Pedas, di Penang Summer Restaurant.jpg - Wikimedia Commons"
+    },
+    {
+      "label": "Food photograph licence",
+      "url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "status": 200,
+      "finalUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "title": "Deed - Attribution-ShareAlike 4.0 International - Creative Commons"
+    }
+  ]
+}
