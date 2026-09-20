@@ -2,7 +2,7 @@ import React from 'react'
 import type { Metadata, Viewport } from 'next'
 import { Space_Grotesk, JetBrains_Mono } from 'next/font/google'
 import GoogleAnalytics from '@/components/analytics/GoogleAnalytics'
-import './globals.css'
+import '../globals.css'
 
 const grotesk = Space_Grotesk({ subsets: ['latin'], weight: ['500', '600', '700'], variable: '--font-grotesk' })
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-mono' })

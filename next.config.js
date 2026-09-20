@@ -219,6 +219,14 @@ const nextConfig = {
           },
         ],
       },
+      {
+        // This redirect depends on the visitor's language cookie.
+        source: '/',
+        headers: [
+          { key: 'Cache-Control', value: 'private, no-store' },
+          { key: 'Vary', value: 'Cookie' },
+        ],
+      },
     ];
   },
   
@@ -232,18 +240,18 @@ const nextConfig = {
       },
       {
         source: '/projects',
-        destination: '/#shipped',
-        permanent: false,
+        destination: '/en/work/',
+        statusCode: 302,
       },
       {
         source: '/projects/:slug*',
-        destination: '/#shipped',
-        permanent: false,
+        destination: '/en/work/',
+        statusCode: 302,
       },
       {
         source: '/tech-stack',
-        destination: '/#lab',
-        permanent: false,
+        destination: '/en/work/ai/',
+        statusCode: 302,
       },
     ];
   },

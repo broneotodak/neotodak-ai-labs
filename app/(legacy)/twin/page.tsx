@@ -23,10 +23,10 @@ export default function TwinPage() {
             Neo Todak <span style={{ color: "var(--accent)" }}>Labs</span>
           </a>
           <nav className="nav" aria-label="Sections">
-            <a href="/#operator">The Operator</a>
-            <a href="/#lab">The Lab</a>
-            <a href="/#shipped">Shipped</a>
-            <a href="/#contact">Contact</a>
+            <a href="/en/about/">The Operator</a>
+            <a href="/en/work/ai/">The Lab</a>
+            <a href="/en/work/">Shipped</a>
+            <a href="/en/contact/">Contact</a>
           </nav>
           <span className="chip live">TWIN · ONLINE</span>
         </div>
