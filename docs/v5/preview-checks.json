@@ -1,0 +1,43 @@
+{
+  "checkedAt": "2026-09-20T16:59:12.905Z",
+  "origin": "https://deploy-preview-5--loquacious-bublanina-6dc420.netlify.app",
+  "results": [
+    {
+      "locale": "en",
+      "status": 200,
+      "lang": "en",
+      "images": "loaded",
+      "icon": "200",
+      "overflow": false
+    },
+    {
+      "locale": "ms",
+      "status": 200,
+      "lang": "ms",
+      "images": "loaded",
+      "icon": "200",
+      "overflow": false
+    },
+    {
+      "locale": "id",
+      "status": 200,
+      "lang": "id",
+      "images": "loaded",
+      "icon": "200",
+      "overflow": false
+    },
+    {
+      "locale": "zh",
+      "status": 200,
+      "lang": "zh-Hans",
+      "images": "loaded",
+      "icon": "200",
+      "overflow": false
+    }
+  ],
+  "root": {
+    "status": 302,
+    "location": "/zh/",
+    "cache": "private,no-store"
+  }
+}

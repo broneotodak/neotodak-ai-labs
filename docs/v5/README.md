@@ -2,6 +2,8 @@
 
 Built from main `7c21db7` (v4 + the approved cinematic portrait), on isolated branch `codex/portfolio-v5`. **Neo must approve the working preview before any merge. Claude Code verifies and deploys afterward.**
 
+**[Open v5 for visual review](https://deploy-preview-5--loquacious-bublanina-6dc420.netlify.app/en/?ntl-drawer-state=hidden)** · [Draft PR #5](https://github.com/broneotodak/neotodak-ai-labs/pull/5)
+
 ## Design
 
 Near-black canvas, blue and amber light, condensed film-title typography and a portrait that blends into the composition. Recent work uses two different treatments: an angled, framed app screen with a warm pool of light, followed by large game artwork that extends beyond the content column. NACA becomes a tilted map window; About, more work and Contact each have their own composition. There is no repeating card grid.
@@ -49,7 +51,8 @@ Captured from the production build in Chrome at 1440 × 1000 and 390 × 844, wit
 - Added motion, no-JS visibility, 320px layout and source-preservation checks.
 - [Browser results](browser-checks.json) and [motion/preservation results](motion-and-preservation.json).
 - [Every external link and observed HTTP status](LINK-CHECKLIST.md). Both exact RUSH store pages return 200. LinkedIn blocks automated requests (999), as in v4.
-- [Mobile Lighthouse reports](LIGHTHOUSE.md), using Lighthouse 12.8.2 default mobile simulation. Performance target: at least 90.
+- [Mobile Lighthouse reports](LIGHTHOUSE.md): hosted preview 98–99 in all languages with Netlify’s review drawer hidden; local production build 94 in all languages. Lighthouse 12.8.2 default mobile simulation.
+- [Hosted page/image/icon/language/redirect checks](preview-checks.json): passed.
 
 ```sh
 npm ci
