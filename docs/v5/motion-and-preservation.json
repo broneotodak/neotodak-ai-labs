@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-09-20T16:55:08.702Z",
+  "origin": "http://127.0.0.1:4318",
+  "base": "7c21db71934088bab9317b111d58d962e2993893",
+  "preserved": [
+    "lib/portfolio",
+    "public",
+    "app/(legacy)",
+    "app/api",
+    "app/route.ts",
+    "app/sitemap.ts",
+    "app/[locale]/[[...path]]/page.tsx",
+    "next.config.js",
+    "netlify.toml",
+    "package.json",
+    "package-lock.json",
+    "app/icon.png"
+  ],
+  "results": [
+    "Desktop hero art moves with scroll; text stays stationary",
+    "Every scroll reveal becomes fully visible",
+    "Changing reduced-motion preference immediately removes reveals, parallax and hover motion",
+    "Phone composition does not use desktop parallax",
+    "No horizontal overflow at 320px in any language",
+    "All sections visible without JavaScript",
+    "Approved copy, catalogues, original assets, routes, redirects, APIs and production dependencies match main byte-for-byte"
+  ]
+}
