@@ -127,9 +127,10 @@ a:hover > .arrow { transform: translate(3px, -3px); }
 .footer-invite h2 { font-size: clamp(70px, 8.5vw, 122px); text-transform: uppercase; max-width: 12ch; }
 .footer-invite .button { width: 154px; height: 154px; border-radius: 50%; flex-direction: column-reverse; justify-content: center; gap: 16px; background: transparent; color: var(--amber) !important; border: 1px solid #d8a16b80; box-shadow: 0 0 65px #e7a4680d, inset 0 0 30px #b9783411; flex-shrink: 0; }
 .footer-invite .arrow { font-size: 35px; }
-.footer-bottom { display: flex; align-items: center; gap: 40px; border-top: 1px solid var(--line); padding-top: 28px; color: #aab1bd; font-size: 12px; }
+.footer-bottom { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 40px; border-top: 1px solid var(--line); padding-top: 28px; color: #aab1bd; font-size: 12px; }
 .footer-bottom .wordmark { color: var(--ink); }
-.footer-bottom > div { display: flex; gap: 28px; margin-left: auto; }
+.footer-socials { margin-left: auto; }
+.footer-socials ul { display: flex; flex-wrap: wrap; gap: 0 24px; }
 .footer-bottom a { min-height: 44px; display: inline-flex; align-items: center; text-decoration: none; }
 /* The rest of the collection shares the art direction, not a stack of card boxes. */
 .page-intro { padding-block: 88px 65px; position: relative; max-width: 1050px; }
@@ -175,11 +176,14 @@ a:hover > .arrow { transform: translate(3px, -3px); }
 .about-page figcaption { position: absolute; bottom: 0; left: 25px; }
 .about-prose p { margin-bottom: 26px; color: var(--muted); font-size: 18px; }
 .about-prose .roles { font-size: 13px; margin-top: 0 !important; color: var(--amber); padding-bottom: 24px; }
-.contact-grid { display: grid; grid-template-columns: 1.6fr .8fr; gap: 90px; padding-block: 40px 75px; }
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); align-items: start; gap: 80px; padding-block: 40px 75px; }
 .email-card { padding-block: 15px 30px; border-bottom: 1px solid #e8b38066; }
 .email-card > a { display: flex; justify-content: space-between; gap: 20px; align-items: center; font-family: var(--font-display), sans-serif; font-size: clamp(40px, 5.3vw, 76px); text-decoration: none; }
-.contact-socials { display: flex; align-items: start; flex-direction: column; gap: 8px; }
-.contact-socials h2 { font-size: 32px; margin-bottom: 10px; }
+.contact-socials h2 { font-size: 32px; margin-bottom: 22px; }
+.social-links ul { list-style: none; padding: 0; margin: 0; }
+.contact-socials ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; }
+.contact-socials a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; border-bottom: 1px solid var(--line); font-size: 14px; text-decoration: none; }
+.contact-socials .arrow { font-size: 18px; color: var(--amber); }
 .studio-contact .lede { margin-block: 24px; }
 .twin-invitation { display: flex; align-items: center; justify-content: space-between; gap: 45px; }
 .twin-invitation .lede { margin-top: 25px; }
@@ -295,7 +299,8 @@ html[lang='ms'] .hero-headline,html[lang='id'] .hero-headline { font-size: clamp
   .footer-invite .arrow { font-size: 27px; }
   .footer-bottom { flex-wrap: wrap; gap: 12px 20px; padding-top: 22px; }
   .footer-bottom p { order: 3; width: 100%; font-size: 11px; }
-  .footer-bottom > div { font-size: 11px; gap: 18px; }
+  .footer-socials { width: 100%; margin-left: 0; font-size: 12px; }
+  .footer-socials ul { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 16px; }
   .page-intro { padding-block: 45px 40px; }
   .portfolio .page-intro h1 { font-size: 59px; }
   .page-intro .lede { margin-top: 25px; }
@@ -331,8 +336,8 @@ html[lang='ms'] .hero-headline,html[lang='id'] .hero-headline { font-size: clamp
   .about-page figure { margin-inline: -22px !important; }
   .about-page figcaption { left: 24px; }
   .about-prose p { font-size: 16px; }
-  .contact-grid { grid-template-columns: 1fr; gap: 38px; padding-block: 15px 35px; }
-  .email-card > a { font-size: 45px; }
+  .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 38px; padding-block: 15px 35px; }
+  .email-card > a { font-size: clamp(37px, 11.54vw, 45px); }
   .twin-invitation { align-items: start; flex-direction: column; gap: 25px; }
   html[lang='ms'] .hero-headline,html[lang='id'] .hero-headline { font-size: 64px; max-width: 13ch; }
   html[lang='zh-Hans'] .hero-headline { font-size: clamp(43px, 12.82vw, 50px); max-width: 100%; line-height: 1.2; }

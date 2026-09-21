@@ -1,0 +1,435 @@
+{
+  "checkedAt": "2026-09-21T02:57:55.264Z",
+  "origin": "http://127.0.0.1:4321",
+  "results": [
+    {
+      "path": "/en/",
+      "width": 1440,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/",
+      "width": 1440,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/apanakmakan/",
+      "width": 1440,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/police-sentri-rush/",
+      "width": 1440,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/ai/",
+      "width": 1440,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/about/",
+      "width": 1440,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/contact/",
+      "width": 1440,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/ms/",
+      "width": 1440,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/",
+      "width": 1440,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/apanakmakan/",
+      "width": 1440,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/police-sentri-rush/",
+      "width": 1440,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/ai/",
+      "width": 1440,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/about/",
+      "width": 1440,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/contact/",
+      "width": 1440,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/id/",
+      "width": 1440,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/",
+      "width": 1440,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/apanakmakan/",
+      "width": 1440,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/police-sentri-rush/",
+      "width": 1440,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/ai/",
+      "width": 1440,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/about/",
+      "width": 1440,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/contact/",
+      "width": 1440,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/zh/",
+      "width": 1440,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/",
+      "width": 1440,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/apanakmakan/",
+      "width": 1440,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/police-sentri-rush/",
+      "width": 1440,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/ai/",
+      "width": 1440,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/about/",
+      "width": 1440,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/contact/",
+      "width": 1440,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/en/",
+      "width": 390,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/",
+      "width": 390,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/apanakmakan/",
+      "width": 390,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/police-sentri-rush/",
+      "width": 390,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/work/ai/",
+      "width": 390,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/about/",
+      "width": 390,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/en/contact/",
+      "width": 390,
+      "status": 200,
+      "lang": "en",
+      "overflow": false
+    },
+    {
+      "path": "/ms/",
+      "width": 390,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/",
+      "width": 390,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/apanakmakan/",
+      "width": 390,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/police-sentri-rush/",
+      "width": 390,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/work/ai/",
+      "width": 390,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/about/",
+      "width": 390,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/ms/contact/",
+      "width": 390,
+      "status": 200,
+      "lang": "ms",
+      "overflow": false
+    },
+    {
+      "path": "/id/",
+      "width": 390,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/",
+      "width": 390,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/apanakmakan/",
+      "width": 390,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/police-sentri-rush/",
+      "width": 390,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/work/ai/",
+      "width": 390,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/about/",
+      "width": 390,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/id/contact/",
+      "width": 390,
+      "status": 200,
+      "lang": "id",
+      "overflow": false
+    },
+    {
+      "path": "/zh/",
+      "width": 390,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/",
+      "width": 390,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/apanakmakan/",
+      "width": 390,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/police-sentri-rush/",
+      "width": 390,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/work/ai/",
+      "width": 390,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/about/",
+      "width": 390,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    },
+    {
+      "path": "/zh/contact/",
+      "width": 390,
+      "status": 200,
+      "lang": "zh-Hans",
+      "overflow": false
+    }
+  ],
+  "checks": [
+    "SSR language and complete page matrix",
+    "canonical and hreflang",
+    "image loading and localised alt",
+    "no horizontal overflow",
+    "no embeds or new third-party scripts",
+    "keyboard mobile menu and Escape focus",
+    "equivalent-page language switching with query/hash",
+    "saved preference and explicit URL precedence",
+    "root 302 and private cache",
+    "unknown paths 404",
+    "all discovered internal links",
+    "legacy route availability",
+    "Chinese page without JavaScript",
+    "no browser runtime errors"
+  ],
+  "externalLinks": [
+    "https://apanakmakan.com/",
+    "https://api.whatsapp.com/send?phone=60177519610",
+    "https://apps.apple.com/my/app/police-sentri-rush/id6812404214",
+    "https://commons.wikimedia.org/wiki/File:Nasi_Lemak_dengan_Chili_Nasi_Lemak_dan_Sotong_Pedas,_di_Penang_Summer_Restaurant.jpg",
+    "https://creativecommons.org/licenses/by-sa/4.0/",
+    "https://discord.gg/neMBzFkFf9",
+    "https://github.com/broneotodak",
+    "https://linktr.ee/broneotodak",
+    "https://naca.neotodak.com/",
+    "https://paypal.me/neotodak",
+    "https://play.google.com/store/apps/details?id=com.todakstudios.policesentrirush",
+    "https://todakstudios.com/",
+    "https://www.facebook.com/neo.macho/",
+    "https://www.instagram.com/broneotodak",
+    "https://www.linkedin.com/in/broneotodak/",
+    "https://www.reddit.com/user/neotodak/",
+    "https://www.tiktok.com/@broneotodak",
+    "https://www.twitch.tv/broneotodak",
+    "https://www.youtube.com/@broneotodak"
+  ]
+}
