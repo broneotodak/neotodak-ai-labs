@@ -12,5 +12,7 @@ export const socialLinks = [
   { name: 'Twitch', href: 'https://www.twitch.tv/broneotodak', footer: false },
   { name: 'Reddit', href: 'https://www.reddit.com/user/neotodak/', footer: false },
   { name: 'Discord', href: 'https://discord.gg/neMBzFkFf9', footer: false },
+  { name: 'WhatsApp', href: 'https://api.whatsapp.com/send?phone=60177519610', footer: false },
+  { name: 'PayPal', href: 'https://paypal.me/neotodak', footer: false },
   { name: 'Linktree', href: 'https://linktr.ee/broneotodak', footer: true },
 ] as const

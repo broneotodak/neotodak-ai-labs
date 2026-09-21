@@ -2,11 +2,11 @@
 
 Neo asked to add the contacts missing from the current portfolio and supplied [his Linktree](https://linktr.ee/broneotodak). The public page's hydrated profile data contains more accounts than its initial HTML anchors. The update uses those exact account destinations, plus the GitHub profile already on the portfolio.
 
-The four translated contact pages show TikTok, Instagram, YouTube, Facebook, LinkedIn, GitHub, Twitch, Reddit, Discord and Linktree. The footer shows six compact links: TikTok, Instagram, YouTube, LinkedIn, GitHub and Linktree. Existing email and studio contacts remain. Brand names stay the same in each language; headings and navigation labels use the existing translations.
+The four translated contact pages show TikTok, Instagram, YouTube, Facebook, LinkedIn, GitHub, Twitch, Reddit, Discord, WhatsApp, PayPal and Linktree. The footer shows six compact links: TikTok, Instagram, YouTube, LinkedIn, GitHub and Linktree. Existing email and studio contacts remain. Brand names stay the same in each language; headings and navigation labels use the existing translations.
 
 Links are plain server-rendered anchors, with no embeds, social SDKs or additional client JavaScript. The existing cinematic design remains. Contact links use two columns, and the phone footer uses two rows of three. The email size adapts to 320px screens.
 
-WhatsApp and PayPal also appear on Linktree. They are not included in this preview while Neo's preference is pending; neither is required for the social-profile list above.
+Neo explicitly approved including both the public WhatsApp contact and PayPal link on 2026-09-21. The WhatsApp destination matches Linktree; PayPal uses the same account without the optional country/language query parameters, so it does not force English for visitors using other languages.
 
 ## Source and destination checklist
 
@@ -24,6 +24,8 @@ Checked 2026-09-21 MYT using public HTTP GET requests. A successful HTTP respons
 | Twitch | <https://www.twitch.tv/broneotodak> | Linktree account match; HTTP 200 app shell; manual channel check recommended |
 | Reddit | <https://www.reddit.com/user/neotodak/> | Linktree account match; HTTP 403 restriction; manual profile check pending |
 | Discord | <https://discord.gg/neMBzFkFf9> | HTTP 200; public invite API confirms “TODAK® COMMUNITY”, no expiration. This is a community invitation, not a personal DM link |
+| WhatsApp | <https://api.whatsapp.com/send?phone=60177519610> | Neo approved publication; matches Linktree; HTTP 200, title “Share on WhatsApp”; no message sent |
+| PayPal | <https://paypal.me/neotodak> | Neo approved publication; matches Linktree account; redirects to `https://www.paypal.com/paypalme/neotodak`, HTTP 200; no payment initiated |
 | Linktree | <https://linktr.ee/broneotodak> | HTTP 200, matching public profile |
 
 ## Review evidence

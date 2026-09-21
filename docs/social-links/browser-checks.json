@@ -1,149 +1,166 @@
 {
-  "checkedAt": "2026-09-21T02:48:30.917Z",
+  "checkedAt": "2026-09-21T02:57:34.848Z",
+  "origin": "http://127.0.0.1:4321",
   "results": [
     {
       "locale": "en",
       "width": 1440,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "ms",
       "width": 1440,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "id",
       "width": 1440,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "zh",
       "width": 1440,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "en",
       "width": 768,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "ms",
       "width": 768,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "id",
       "width": 768,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "zh",
       "width": 768,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "en",
       "width": 390,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "ms",
       "width": 390,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "id",
       "width": 390,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "zh",
       "width": 390,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "en",
       "width": 320,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "ms",
       "width": 320,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "id",
       "width": 320,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     },
     {
       "locale": "zh",
       "width": 320,
-      "links": 10,
+      "links": 12,
       "footerLinks": 6,
       "overflow": false,
       "keyboardFocus": true,
-      "minTouchHeight": 44
+      "minTouchHeight": 44,
+      "whatsAppAndPayPal": true
     }
   ],
   "noJS": true
