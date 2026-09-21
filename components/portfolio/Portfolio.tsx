@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { copy } from '@/lib/portfolio/copy'
 import { localPath, type Locale } from '@/lib/portfolio/locales'
 import { links, projects, studioGames, words } from '@/lib/portfolio/projects'
+import { socialLinks } from '@/lib/portfolio/contact'
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) { return <span className="arrow" aria-hidden="true">{diagonal ? '↗' : '↘'}</span> }
 function External({ href, children, className = 'text-link' }: { href: string; children: React.ReactNode; className?: string }) {
@@ -107,12 +108,19 @@ export function About({ locale }: { locale: Locale }) {
   return <div className="shell"><Intro eyebrow={c.about} title={c.aboutTitle} description={c.aboutIntro}/><section className="about-page"><figure><Image src="/neo.jpg" alt={c.portraitAlt} width={800} height={800} sizes="(max-width: 700px) 100vw, 450px" priority/><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure><div className="about-prose"><p className="roles">{c.roles}</p><p>{c.aboutBody}</p><p>{c.aboutBody2}</p><Link className="button" href={localPath(locale, 'work')}>{c.aboutLink}<Arrow/></Link></div></section></div>
 }
 
+function SocialLinks({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
+  const items = compact ? socialLinks.filter(link => link.footer) : socialLinks
+  return <nav className={compact ? 'social-links footer-socials' : 'social-links'} aria-label={copy[locale].elsewhere}>
+    <ul>{items.map(link => <li key={link.name}><a href={link.href}>{link.name}{!compact && <Arrow diagonal/>}</a></li>)}</ul>
+  </nav>
+}
+
 export function Contact({ locale }: { locale: Locale }) {
   const c = copy[locale]
-  return <div className="shell"><Intro eyebrow={c.contact} title={c.contactTitle} description={c.contactIntro}/><div className="contact-grid"><section className="email-card"><p className="eyebrow">{c.email}</p><a href={links.email}>neo@todak.com<Arrow diagonal/></a></section><section className="contact-socials"><h2>{c.elsewhere}</h2><External href={links.linkedin}>LinkedIn</External><External href={links.github}>GitHub</External></section></div><section className="section studio-contact"><h2>{c.studioContact}</h2><p className="lede">{c.studioContactText}</p><External href={links.studio}>{c.visitStudio}</External></section></div>
+  return <div className="shell"><Intro eyebrow={c.contact} title={c.contactTitle} description={c.contactIntro}/><div className="contact-grid"><section className="email-card"><p className="eyebrow">{c.email}</p><a href={links.email}>neo@todak.com<Arrow diagonal/></a></section><section className="contact-socials"><h2>{c.elsewhere}</h2><SocialLinks locale={locale}/></section></div><section className="section studio-contact"><h2>{c.studioContact}</h2><p className="lede">{c.studioContactText}</p><External href={links.studio}>{c.visitStudio}</External></section></div>
 }
 
 export function Footer({ locale }: { locale: Locale }) {
   const c = copy[locale]
-  return <footer className="shell site-footer"><div className="footer-invite" data-reveal><h2>{c.contactTitle}</h2><Link className="button button-warm" href={localPath(locale, 'contact')}>{c.talk}<Arrow diagonal/></Link></div><div className="footer-bottom"><Link className="wordmark" href={localPath(locale)}>Neo Todak<span>.</span></Link><p>{c.footerLine}</p><div><a href={links.linkedin}>LinkedIn</a><a href={links.github}>GitHub</a></div></div></footer>
+  return <footer className="shell site-footer"><div className="footer-invite" data-reveal><h2>{c.contactTitle}</h2><Link className="button button-warm" href={localPath(locale, 'contact')}>{c.talk}<Arrow diagonal/></Link></div><div className="footer-bottom"><Link className="wordmark" href={localPath(locale)}>Neo Todak<span>.</span></Link><p>{c.footerLine}</p><SocialLinks locale={locale} compact/></div></footer>
 }

@@ -1,0 +1,150 @@
+{
+  "checkedAt": "2026-09-21T02:48:30.917Z",
+  "results": [
+    {
+      "locale": "en",
+      "width": 1440,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "ms",
+      "width": 1440,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "id",
+      "width": 1440,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "zh",
+      "width": 1440,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "en",
+      "width": 768,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "ms",
+      "width": 768,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "id",
+      "width": 768,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "zh",
+      "width": 768,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "en",
+      "width": 390,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "ms",
+      "width": 390,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "id",
+      "width": 390,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "zh",
+      "width": 390,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "en",
+      "width": 320,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "ms",
+      "width": 320,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "id",
+      "width": 320,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    },
+    {
+      "locale": "zh",
+      "width": 320,
+      "links": 10,
+      "footerLinks": 6,
+      "overflow": false,
+      "keyboardFocus": true,
+      "minTouchHeight": 44
+    }
+  ],
+  "noJS": true
+}
