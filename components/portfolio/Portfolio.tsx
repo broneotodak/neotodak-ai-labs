@@ -13,49 +13,52 @@ function FoodCredit({ locale }: { locale: Locale }) {
   return <span className="photo-credit">{copy[locale].photoCredit}: <a href="https://commons.wikimedia.org/wiki/File:Nasi_Lemak_dengan_Chili_Nasi_Lemak_dan_Sotong_Pedas,_di_Penang_Summer_Restaurant.jpg">Meandkancil2020</a> · <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></span>
 }
 function FoodScreen({ locale, priority = false }: { locale: Locale; priority?: boolean }) {
-  return <Image src="/portfolio/apanakmakan-swipe.png" alt={copy[locale].foodAlt} width={590} height={1280} sizes="(max-width: 700px) 260px, 310px" className="food-screen" priority={priority} />
+  return <Image src="/portfolio/apanakmakan-swipe.png" alt={copy[locale].foodAlt} width={590} height={1280} sizes="(max-width: 700px) 230px, 310px" className="food-screen" priority={priority} />
 }
 
 export function Recent({ locale }: { locale: Locale }) {
   const c = copy[locale]
   return <div className="project-grid">
-    <article className="project-card">
-      <div className="project-visual food-visual"><div className="food-art-copy" aria-hidden="true">Apa<br/>Nak<br/>Makan<span>?</span></div><FoodScreen locale={locale} /></div>
-      <div className="project-meta"><span>{c.app}</span><span className="status"><i/>{c.testing}</span></div>
+    <article className="project-card food-project" data-reveal>
+      <div className="project-visual food-visual"><div className="food-art-copy" aria-hidden="true">Apa<br/>Nak<br/>Makan<span>?</span></div><div className="phone-mock"><FoodScreen locale={locale} /></div></div>
+      <div className="project-caption"><div className="project-meta"><span>{c.app}</span><span className="status"><i/>{c.testing}</span></div>
       <h3><Link href={localPath(locale, 'work/apanakmakan')}>ApaNakMakan</Link></h3>
       <p>{c.foodTagline}</p>
       <External href={links.app}>{c.exploreApp}</External>
-      <FoodCredit locale={locale} />
+      <FoodCredit locale={locale} /></div>
     </article>
-    <article className="project-card">
-      <div className="project-visual rush-visual"><Image src="/portfolio/police-sentri-rush.png" alt={c.rushAlt} width={1600} height={900} sizes="(max-width: 700px) 100vw, 600px" /></div>
-      <div className="project-meta"><span>{c.game}</span><span>{c.released}</span></div>
+    <article className="project-card rush-project" data-reveal>
+      <div className="project-visual rush-visual"><Image src="/portfolio/police-sentri-rush.png" alt={c.rushAlt} width={1600} height={900} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 85vw, 1040px" /></div>
+      <div className="project-caption"><div className="project-meta"><span>{c.game}</span><span>{c.released}</span></div>
       <h3><Link href={localPath(locale, 'work/police-sentri-rush')}>police sentri : RUSH</Link></h3>
       <p>{c.rushTagline}</p>
-      <Link className="text-link" href={localPath(locale, 'work/police-sentri-rush')}>{c.seeGame}<Arrow diagonal /></Link>
+      <Link className="text-link" href={localPath(locale, 'work/police-sentri-rush')}>{c.seeGame}<Arrow diagonal /></Link></div>
     </article>
   </div>
 }
 
 export function City({ locale }: { locale: Locale }) {
   const c = copy[locale]
-  return <section className="city-section section" id="ai-world" aria-labelledby="city-title">
+  return <section className="city-section section" id="ai-world" aria-labelledby="city-title" data-reveal>
     <div className="section-heading"><div><p className="eyebrow">NACA City</p><h2 id="city-title">{c.peek}</h2><p className="lede">{c.citySummary}</p></div><External href={links.city}>{c.openCity}</External></div>
-    <figure className="city-figure"><Image src="/portfolio/naca-city.png" alt={c.cityAlt} width={1370} height={860} sizes="(max-width: 1200px) 100vw, 1180px" /><figcaption>{c.cityCaption}</figcaption></figure>
+    <figure className="city-figure"><div className="city-window"><Image src="/portfolio/naca-city.png" alt={c.cityAlt} width={1370} height={860} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 65vw, 860px" /></div><figcaption>{c.cityCaption}</figcaption></figure>
   </section>
 }
 
 export function Home({ locale }: { locale: Locale }) {
   const c = copy[locale]
-  return <div className="shell">
+  // Keep Chinese phrases together without changing any approved copy.
+  const headline = locale === 'zh' ? c.headline.split(/(?<=、)|(?= AI)/u).map(part => <span className="headline-phrase" key={part}>{part}</span>) : c.headline
+  return <div className="shell home-page">
     <section className="hero" aria-labelledby="intro-title">
-      <div className="hero-copy"><p className="eyebrow">{c.eyebrow}</p><h1 id="intro-title"><span>{c.hello}</span>{c.headline}</h1><p className="intro">{c.intro}</p><p className="roles">{c.roles}</p><div className="actions"><Link className="button" href={localPath(locale, 'work')}>{c.explore}<Arrow /></Link><Link className="text-link" href={localPath(locale, 'about')}>{c.moreAbout}</Link></div></div>
-      <figure className="hero-portrait"><Image src="/neo.jpg" alt={c.portraitAlt} width={800} height={800} sizes="(max-width: 700px) 200px, (max-width: 1000px) 42vw, 480px" priority /><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure>
+      <div className="hero-copy"><p className="eyebrow">{c.eyebrow}</p><h1 id="intro-title"><span className="hero-hello">{c.hello}</span><span className="hero-headline">{headline}</span></h1><div className="hero-context"><p className="intro">{c.intro}</p><p className="roles">{c.roles}</p><div className="actions"><Link className="button" href={localPath(locale, 'work')}>{c.explore}<Arrow /></Link><Link className="text-link" href={localPath(locale, 'about')}>{c.moreAbout}</Link></div></div></div>
+      <figure className="hero-portrait"><Image src="/neo.jpg" alt={c.portraitAlt} width={1600} height={1600} sizes="(max-width: 700px) 460px, (max-width: 1100px) 760px, 880px" priority fetchPriority="high" /><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure>
+      <span className="hero-orbit" aria-hidden="true" />
     </section>
-    <section className="section recent-section" id="recent-work"><div className="section-heading"><h2>{c.recent}</h2><Link className="text-link" href={localPath(locale, 'work')}>{c.allProjects}<Arrow diagonal /></Link></div><Recent locale={locale}/></section>
+    <section className="section recent-section" id="recent-work"><div className="section-heading" data-reveal><h2>{c.recent}</h2><Link className="text-link" href={localPath(locale, 'work')}>{c.allProjects}<Arrow diagonal /></Link></div><Recent locale={locale}/></section>
     <City locale={locale}/>
-    <section className="section about-summary" id="about"><h2>{c.aboutTitle}</h2><div><p className="lede">{c.aboutSummary}</p><p className="roles">{c.roles}</p><Link className="text-link" href={localPath(locale, 'about')}>{c.moreAbout}<Arrow diagonal /></Link></div></section>
-    <nav className="more-work" aria-label={c.moreWork}><h2>{c.moreWork}</h2><Link href={localPath(locale, 'work/ai')}>{c.ai}<Arrow diagonal /></Link><Link href={`${localPath(locale, 'work')}#studio`}>{c.studio}<Arrow diagonal /></Link><Link href={localPath(locale, 'about')}>{c.story}<Arrow diagonal /></Link></nav>
+    <section className="section about-summary" id="about" data-reveal><h2>{c.aboutTitle}</h2><div><p className="lede">{c.aboutSummary}</p><p className="roles">{c.roles}</p><Link className="text-link" href={localPath(locale, 'about')}>{c.moreAbout}<Arrow diagonal /></Link></div></section>
+    <nav className="more-work" aria-label={c.moreWork} data-reveal><h2>{c.moreWork}</h2><div><Link href={localPath(locale, 'work/ai')}>{c.ai}<Arrow diagonal /></Link><Link href={`${localPath(locale, 'work')}#studio`}>{c.studio}<Arrow diagonal /></Link><Link href={localPath(locale, 'about')}>{c.story}<Arrow diagonal /></Link></div></nav>
   </div>
 }
 
@@ -111,5 +114,5 @@ export function Contact({ locale }: { locale: Locale }) {
 
 export function Footer({ locale }: { locale: Locale }) {
   const c = copy[locale]
-  return <footer className="shell site-footer"><div className="footer-invite"><h2>{c.contactTitle}</h2><Link className="button button-warm" href={localPath(locale, 'contact')}>{c.talk}<Arrow diagonal/></Link></div><div className="footer-bottom"><Link className="wordmark" href={localPath(locale)}>Neo Todak<span>.</span></Link><p>{c.footerLine}</p><div><a href={links.linkedin}>LinkedIn</a><a href={links.github}>GitHub</a></div></div></footer>
+  return <footer className="shell site-footer"><div className="footer-invite" data-reveal><h2>{c.contactTitle}</h2><Link className="button button-warm" href={localPath(locale, 'contact')}>{c.talk}<Arrow diagonal/></Link></div><div className="footer-bottom"><Link className="wordmark" href={localPath(locale)}>Neo Todak<span>.</span></Link><p>{c.footerLine}</p><div><a href={links.linkedin}>LinkedIn</a><a href={links.github}>GitHub</a></div></div></footer>
 }

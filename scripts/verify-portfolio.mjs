@@ -3,7 +3,8 @@ import assert from 'node:assert/strict'
 import { mkdir, writeFile } from 'node:fs/promises'
 
 const origin = process.env.PORTFOLIO_URL || 'http://127.0.0.1:4317'
-const output = 'docs/v4/screenshots'
+const reportDirectory = process.env.PORTFOLIO_REPORT_DIR || 'docs/v4'
+const output = `${reportDirectory}/screenshots`
 await mkdir(output, { recursive: true })
 const locales = ['en', 'ms', 'id', 'zh']
 const tags = { en: 'en', ms: 'ms', id: 'id', zh: 'zh-Hans' }
@@ -49,6 +50,7 @@ try {
         }
         if (route === '' || route === 'work/apanakmakan' || route === 'work/police-sentri-rush') {
           const label = route ? route.split('/').at(-1) : 'home'
+          if (route === '') await page.screenshot({ path: `${output}/${locale}-opening-${width}.jpg`, type: 'jpeg', quality: 90 })
           await page.screenshot({ path: `${output}/${locale}-${label}-${width}.jpg`, type: 'jpeg', quality: 88, fullPage: true })
         }
         if (route === '') {
@@ -112,6 +114,6 @@ try {
   await noJS.close()
   await context.close()
   assert.deepEqual(errors, [], 'Browser runtime errors')
-  await writeFile('docs/v4/browser-checks.json', JSON.stringify({ checkedAt: new Date().toISOString(), origin, results, checks: ['SSR language and complete page matrix', 'canonical and hreflang', 'image loading and localised alt', 'no horizontal overflow', 'no embeds or new third-party scripts', 'keyboard mobile menu and Escape focus', 'equivalent-page language switching with query/hash', 'saved preference and explicit URL precedence', 'root 302 and private cache', 'unknown paths 404', 'all discovered internal links', 'legacy route availability', 'Chinese page without JavaScript', 'no browser runtime errors'], externalLinks: [...externalLinks].sort() }, null, 2))
+  await writeFile(`${reportDirectory}/browser-checks.json`, JSON.stringify({ checkedAt: new Date().toISOString(), origin, results, checks: ['SSR language and complete page matrix', 'canonical and hreflang', 'image loading and localised alt', 'no horizontal overflow', 'no embeds or new third-party scripts', 'keyboard mobile menu and Escape focus', 'equivalent-page language switching with query/hash', 'saved preference and explicit URL precedence', 'root 302 and private cache', 'unknown paths 404', 'all discovered internal links', 'legacy route availability', 'Chinese page without JavaScript', 'no browser runtime errors'], externalLinks: [...externalLinks].sort() }, null, 2))
   console.log(`PASS: ${results.length} page/viewport checks, navigation, metadata, preference and legacy routes. Screenshots: ${output}`)
 } finally { await browser.close() }
