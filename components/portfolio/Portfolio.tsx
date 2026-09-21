@@ -21,15 +21,15 @@ export function Recent({ locale }: { locale: Locale }) {
   const c = copy[locale]
   return <div className="project-grid">
     <article className="project-card food-project" data-reveal>
-      <div className="project-visual food-visual"><div className="food-art-copy" aria-hidden="true">Apa<br/>Nak<br/>Makan<span>?</span></div><div className="phone-mock"><FoodScreen locale={locale} /></div></div>
+      <div className="project-visual food-visual" data-parallax-scene><div className="food-art-copy" aria-hidden="true" data-parallax="120" data-parallax-mobile="72">Apa<br/>Nak<br/>Makan<span>?</span></div><div className="phone-mock" data-parallax="-180" data-parallax-mobile="-96" data-parallax-turn="3"><FoodScreen locale={locale} /></div></div>
       <div className="project-caption"><div className="project-meta"><span>{c.app}</span><span className="status"><i/>{c.testing}</span></div>
       <h3><Link href={localPath(locale, 'work/apanakmakan')}>ApaNakMakan</Link></h3>
       <p>{c.foodTagline}</p>
       <External href={links.app}>{c.exploreApp}</External>
       <FoodCredit locale={locale} /></div>
     </article>
-    <article className="project-card rush-project" data-reveal>
-      <div className="project-visual rush-visual"><Image src="/portfolio/police-sentri-rush.png" alt={c.rushAlt} width={1600} height={900} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 85vw, 1040px" /></div>
+    <article className="project-card rush-project" data-reveal data-parallax-scene>
+      <div className="project-visual rush-visual" data-parallax="-120" data-parallax-mobile="-64" data-parallax-turn="2"><Image src="/portfolio/police-sentri-rush.png" alt={c.rushAlt} width={1600} height={900} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 85vw, 1040px" /></div>
       <div className="project-caption"><div className="project-meta"><span>{c.game}</span><span>{c.released}</span></div>
       <h3><Link href={localPath(locale, 'work/police-sentri-rush')}>police sentri : RUSH</Link></h3>
       <p>{c.rushTagline}</p>
@@ -40,9 +40,9 @@ export function Recent({ locale }: { locale: Locale }) {
 
 export function City({ locale }: { locale: Locale }) {
   const c = copy[locale]
-  return <section className="city-section section" id="ai-world" aria-labelledby="city-title" data-reveal>
+  return <section className="city-section section" id="ai-world" aria-labelledby="city-title" data-reveal data-parallax-scene>
     <div className="section-heading"><div><p className="eyebrow">NACA City</p><h2 id="city-title">{c.peek}</h2><p className="lede">{c.citySummary}</p></div><External href={links.city}>{c.openCity}</External></div>
-    <figure className="city-figure"><div className="city-window"><Image src="/portfolio/naca-city.png" alt={c.cityAlt} width={1370} height={860} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 65vw, 860px" /></div><figcaption>{c.cityCaption}</figcaption></figure>
+    <figure className="city-figure" data-parallax="-130" data-parallax-mobile="-64"><div className="city-window"><Image src="/portfolio/naca-city.png" alt={c.cityAlt} width={1370} height={860} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 65vw, 860px" /></div><figcaption>{c.cityCaption}</figcaption></figure>
   </section>
 }
 
@@ -51,10 +51,10 @@ export function Home({ locale }: { locale: Locale }) {
   // Keep Chinese phrases together without changing any approved copy.
   const headline = locale === 'zh' ? c.headline.split(/(?<=、)|(?= AI)/u).map(part => <span className="headline-phrase" key={part}>{part}</span>) : c.headline
   return <div className="shell home-page">
-    <section className="hero" aria-labelledby="intro-title">
+    <section className="hero" aria-labelledby="intro-title" data-parallax-scene="hero">
       <div className="hero-copy"><p className="eyebrow">{c.eyebrow}</p><h1 id="intro-title"><span className="hero-hello">{c.hello}</span><span className="hero-headline">{headline}</span></h1><div className="hero-context"><p className="intro">{c.intro}</p><p className="roles">{c.roles}</p><div className="actions"><Link className="button" href={localPath(locale, 'work')}>{c.explore}<Arrow /></Link><Link className="text-link" href={localPath(locale, 'about')}>{c.moreAbout}</Link></div></div></div>
-      <figure className="hero-portrait"><Image src="/neo.jpg" alt={c.portraitAlt} width={1600} height={1600} sizes="(max-width: 700px) 460px, (max-width: 1100px) 760px, 880px" priority fetchPriority="high" /><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure>
-      <span className="hero-orbit" aria-hidden="true" />
+      <figure className="hero-portrait" data-parallax="140" data-parallax-mobile="80"><Image src="/neo.jpg" alt={c.portraitAlt} width={1600} height={1600} sizes="(max-width: 700px) 460px, (max-width: 1100px) 760px, 880px" priority fetchPriority="high" /><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure>
+      <span className="hero-orbit" aria-hidden="true" data-parallax="240" data-parallax-mobile="128" />
     </section>
     <section className="section recent-section" id="recent-work"><div className="section-heading" data-reveal><h2>{c.recent}</h2><Link className="text-link" href={localPath(locale, 'work')}>{c.allProjects}<Arrow diagonal /></Link></div><Recent locale={locale}/></section>
     <City locale={locale}/>
@@ -105,7 +105,7 @@ export function AI({ locale }: { locale: Locale }) {
 
 export function About({ locale }: { locale: Locale }) {
   const c = copy[locale]
-  return <div className="shell"><Intro eyebrow={c.about} title={c.aboutTitle} description={c.aboutIntro}/><section className="about-page"><figure><Image src="/neo.jpg" alt={c.portraitAlt} width={800} height={800} sizes="(max-width: 700px) 100vw, 450px" priority/><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure><div className="about-prose"><p className="roles">{c.roles}</p><p>{c.aboutBody}</p><p>{c.aboutBody2}</p><Link className="button" href={localPath(locale, 'work')}>{c.aboutLink}<Arrow/></Link></div></section></div>
+  return <div className="shell"><Intro eyebrow={c.about} title={c.aboutTitle} description={c.aboutIntro}/><section className="about-page" data-parallax-scene><figure data-parallax="-100" data-parallax-mobile="-36"><Image src="/neo.jpg" alt={c.portraitAlt} width={800} height={800} sizes="(max-width: 700px) 100vw, 450px" priority/><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure><div className="about-prose"><p className="roles">{c.roles}</p><p>{c.aboutBody}</p><p>{c.aboutBody2}</p><Link className="button" href={localPath(locale, 'work')}>{c.aboutLink}<Arrow/></Link></div></section></div>
 }
 
 function SocialLinks({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
