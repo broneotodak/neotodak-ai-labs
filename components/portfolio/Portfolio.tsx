@@ -41,7 +41,7 @@ export function Recent({ locale }: { locale: Locale }) {
 export function City({ locale }: { locale: Locale }) {
   const c = copy[locale]
   return <section className="city-section section" id="ai-world" aria-labelledby="city-title" data-reveal data-parallax-scene>
-    <div className="section-heading"><div><p className="eyebrow">NACA City</p><h2 id="city-title">{c.peek}</h2><p className="lede">{c.citySummary}</p></div><External href={links.city}>{c.openCity}</External></div>
+    <div className="section-heading"><div><p className="eyebrow">NACA City</p><h2 id="city-title">{c.peek}</h2><p className="lede">{c.citySummary}</p></div>{links.city ? <External href={links.city}>{c.openCity}</External> : null}</div>
     <figure className="city-figure" data-parallax="-130" data-parallax-mobile="-64"><div className="city-window"><Image src="/portfolio/naca-city.png" alt={c.cityAlt} width={1370} height={860} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 65vw, 860px" /></div><figcaption>{c.cityCaption}</figcaption></figure>
   </section>
 }
@@ -78,7 +78,7 @@ export function Work({ locale }: { locale: Locale }) {
     <nav className="collection-nav" aria-label={c.work}><a href="#latest">{c.latest}</a><a href="#studio">{c.studio}</a><a href="#lab">{c.lab}</a><a href="#earlier">{c.earlier}</a></nav>
     <section className="section" id="latest"><h2 className="section-title">{c.latest}</h2><Recent locale={locale}/></section>
     <section className="section" id="studio"><div className="section-heading"><div><h2>{c.studio}</h2><p className="lede">{c.studioIntro}</p></div><External href={links.studio}>{c.visitStudio}</External></div><div className="studio-games">{studioGames.map(g => <article key={g.name}><h3>{g.name}</h3><p>{words(g.description, locale)}</p></article>)}</div></section>
-    <section className="section" id="lab"><div className="section-heading"><h2>{c.lab}</h2><Link className="text-link" href={localPath(locale, 'work/ai')}>{c.ai}<Arrow diagonal/></Link></div><div className="city-collection"><h3>NACA City</h3><p>{c.citySummary}</p><External href={links.city}>{c.openCity}</External></div><ProjectList locale={locale}/></section>
+    <section className="section" id="lab"><div className="section-heading"><h2>{c.lab}</h2><Link className="text-link" href={localPath(locale, 'work/ai')}>{c.ai}<Arrow diagonal/></Link></div><div className="city-collection"><h3>NACA City</h3><p>{c.citySummary}</p>{links.city ? <External href={links.city}>{c.openCity}</External> : null}</div><ProjectList locale={locale}/></section>
     <section className="section" id="earlier"><h2>{c.earlier}</h2><p className="lede">{c.earlierIntro}</p><ProjectList locale={locale} earlier /></section>
   </div>
 }
