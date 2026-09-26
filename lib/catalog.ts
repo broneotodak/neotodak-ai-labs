@@ -21,7 +21,6 @@ export interface CatalogProject {
 }
 
 export const catalog: CatalogProject[] = [
-  // ───────────────────────── 2026 FLAGSHIPS — the fleet ─────────────────────────
   {
     id: 'siti',
     title: 'Siti — AI Chief of Staff',
@@ -221,8 +220,6 @@ export const catalog: CatalogProject[] = [
     techStack: ['HealthKit', 'JavaScript', 'Netlify', 'Supabase'],
     highlights: ['Continuous Apple Watch ingestion', 'Private-by-default dashboards'],
   },
-
-  // ───────────────────────── The proven stack (still running) ─────────────────────────
   {
     id: 'claude-tools-kit',
     title: 'Claude Tools Kit (CTK)',
@@ -241,34 +238,6 @@ export const catalog: CatalogProject[] = [
     links: [{ label: 'GitHub', url: 'https://github.com/broneotodak/claude-tools-kit' }],
   },
   {
-    id: 'clauden',
-    title: 'ClaudeN Dashboard',
-    oneLiner: 'The admin cockpit and API behind the digital twin.',
-    story:
-      'ClaudeN is the ops surface for the twin: an admin dashboard plus the API layer that serves twin conversations, with origin-aware privacy so public callers only ever reach public memories.',
-    category: 'tool',
-    status: 'live',
-    era: '2025–2026',
-    techStack: ['Next.js', 'Netlify', 'Supabase', 'OpenAI', 'Gemini'],
-    highlights: [
-      'Serves the public twin chat with privacy-gated retrieval',
-      'Admin view over conversations and memory',
-    ],
-  },
-  {
-    id: 'presentai',
-    title: 'PresentAI Hub',
-    oneLiner: 'The AI SaaS shopfront — MeetingMind and TwinAI as products.',
-    story:
-      'The lab’s productization corner: a hub site offering AI services built from the same stack the fleet runs on — meeting intelligence and personal-twin products, packaged for subscription.',
-    category: 'saas',
-    status: 'live',
-    era: '2025–2026',
-    techStack: ['Next.js', 'Netlify', 'Supabase'],
-    highlights: ['MeetingMind and TwinAI product lines', 'Runs on the same infrastructure as the internal fleet'],
-    links: [{ label: 'presentation.neotodak.com', url: 'https://presentation.neotodak.com' }],
-  },
-  {
     id: 'thr-intelligence',
     title: 'THR — Group HRMS',
     oneLiner: 'The HR system running a 250-person group — built in-house, run in production.',
@@ -284,8 +253,6 @@ export const catalog: CatalogProject[] = [
       'Handed to a non-developer owner who maintains it with AI tooling',
     ],
   },
-
-  // ───────────────────────── Evolved — the work lives on ─────────────────────────
   {
     id: 'openclaw',
     title: 'OpenClaw',
@@ -304,19 +271,6 @@ export const catalog: CatalogProject[] = [
     ],
   },
   {
-    id: 'todak-ai-bot',
-    title: 'TODAK AI Bot (Sofia)',
-    oneLiner: 'The first company WhatsApp assistant — Siti’s ancestor.',
-    story:
-      'Sofia answered company WhatsApp queries with n8n workflows and GPT-4 — the proof that staff would happily talk to an AI colleague. Her descendants got memory, hands and a work ethic.',
-    category: 'ai',
-    status: 'evolved',
-    evolvedInto: 'siti',
-    era: '2024–2025',
-    techStack: ['n8n', 'OpenAI', 'WhatsApp API', 'Supabase'],
-    highlights: ['First company-facing WhatsApp AI', 'HR self-service via chat', 'Multi-language from day one'],
-  },
-  {
     id: 'llm-dataset',
     title: 'TODAK LLM Dataset',
     oneLiner: 'The first personal-corpus fine-tune experiments — The Forge’s origin story.',
@@ -330,21 +284,6 @@ export const catalog: CatalogProject[] = [
     highlights: ['End-to-end fine-tune toolchain proven for under RM1 of compute', 'Honest eval culture: 60% Neo-likeness meant no deploy'],
   },
   {
-    id: 'flowstate-ai',
-    title: 'FlowState AI',
-    oneLiner: 'The first cross-tool AI memory — replaced by neo-brain.',
-    story:
-      'FlowState tracked activity across every AI tool in the workflow and stored it as shared memory — the proof-of-concept that a unified memory layer changes everything. neo-brain is its production-grade successor.',
-    category: 'ai',
-    status: 'archived',
-    evolvedInto: 'neo-brain',
-    era: '2024–2025',
-    techStack: ['JavaScript', 'Supabase', 'pgVector', 'Edge Functions'],
-    highlights: ['Unified activity memory across 4+ AI tools', 'Direct ancestor of the neo-brain architecture'],
-  },
-
-  // ───────────────────────── Delivered / parked ─────────────────────────
-  {
     id: 'todak-academy-v2',
     title: 'Todak Academy Portal V2',
     oneLiner: 'Laravel-to-modern-stack rewrite of a 3,000-student portal — delivered, cutover parked.',
@@ -357,18 +296,6 @@ export const catalog: CatalogProject[] = [
     highlights: ['3,141 students / 59 courses migrated with verification', 'Monthly cost cut from ~RM400 to ~RM25'],
   },
   {
-    id: 'ars-intelligence',
-    title: 'ARS Intelligence',
-    oneLiner: 'AI voice interviews for recruitment screening.',
-    story:
-      'Automated first-round interviews: an AI voice calls candidates, holds a natural conversation, and produces transcripts and scores. Delivered as a working system; parked pending a hiring push worth pointing it at.',
-    category: 'saas',
-    status: 'parked',
-    era: '2024–2025',
-    techStack: ['Python', 'ElevenLabs', 'OpenAI', 'Twilio', 'n8n', 'Supabase'],
-    highlights: ['AI-voiced interviews available 24/7', 'Transcripts, sentiment and scoring per candidate'],
-  },
-  {
     id: 'tad-event-system',
     title: 'TAD Event System',
     oneLiner: 'QR check-in, live trivia and dramatic lucky draws for corporate events.',
@@ -379,29 +306,6 @@ export const catalog: CatalogProject[] = [
     era: '2024–2025',
     techStack: ['JavaScript', 'Supabase', 'WebSockets', 'Netlify Functions'],
     highlights: ['AI import from PDF/Excel participant lists', 'Real-time trivia and animated draws for hundreds of guests'],
-  },
-  {
-    id: 'firasah-ai',
-    title: 'Firasah AI',
-    oneLiner: 'Classical Islamic physiognomy texts meet computer vision.',
-    story:
-      'A cultural-heritage experiment: facial analysis interpreted through digitized classical Firasah texts, bilingual output, zero data retention. A genuinely unusual corner of the lab.',
-    category: 'ai',
-    status: 'parked',
-    era: '2024–2025',
-    techStack: ['Next.js', 'Replicate', 'LLaVA', 'OpenAI'],
-    highlights: ['Classical Kitab Firasat texts integrated into AI analysis', 'Privacy-first: nothing retained'],
-  },
-  {
-    id: 'venture-canvas',
-    title: 'VentureCanvas',
-    oneLiner: 'AI-assisted business-model canvassing.',
-    story: 'A tool for sketching and stress-testing business models with AI assistance. Functional, parked.',
-    category: 'saas',
-    status: 'parked',
-    era: '2025',
-    techStack: ['React', 'Supabase', 'OpenAI'],
-    highlights: ['AI-guided canvas building'],
   },
   {
     id: 'classroom-neo',
@@ -425,31 +329,6 @@ export const catalog: CatalogProject[] = [
     era: '2025–2026',
     techStack: ['Flipper Zero', 'Python', 'LLM analysis'],
     highlights: ['Authorized-only security research', 'Feeds the security-agent experiments'],
-  },
-
-  // ───────────────────────── Archived — honest shelf ─────────────────────────
-  {
-    id: 'atlas-ai',
-    title: 'ATLAS AI',
-    oneLiner: 'Enterprise asset management — superseded by its successor, TAM.',
-    story:
-      'ATLAS tracked company assets and maintenance. It was retired when TAM replaced it — notably built and run by a non-developer colleague using AI coding tools, exactly the future this lab keeps betting on.',
-    category: 'saas',
-    status: 'archived',
-    era: '2024–2025',
-    techStack: ['React', 'Supabase', 'Material-UI'],
-    highlights: ['Full asset lifecycle tracking in production', 'Succeeded by TAM, built by a non-developer with AI'],
-  },
-  {
-    id: 'kenal-admin',
-    title: 'KENAL Admin',
-    oneLiner: 'User management and role-based access console.',
-    story: 'Admin console for a user platform — served its purpose, archived cleanly.',
-    category: 'saas',
-    status: 'archived',
-    era: '2024–2025',
-    techStack: ['React', 'Supabase'],
-    highlights: ['Role-based access control in production'],
   },
   {
     id: 'n8n-hub',
