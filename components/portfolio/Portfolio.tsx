@@ -31,7 +31,7 @@ export function Recent({ locale }: { locale: Locale }) {
     <article className="project-card rush-project" data-reveal data-parallax-scene>
       <div className="project-visual rush-visual" data-parallax="-120" data-parallax-mobile="-64" data-parallax-turn="2"><Image src="/portfolio/police-sentri-rush.png" alt={c.rushAlt} width={1600} height={900} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 85vw, 1040px" /></div>
       <div className="project-caption"><div className="project-meta"><span>{c.game}</span><span>{c.released}</span></div>
-      <h3><Link href={localPath(locale, 'work/police-sentri-rush')}>police sentri : RUSH</Link></h3>
+      <h3><Link href={localPath(locale, 'work/police-sentri-rush')}>police sentri&nbsp;: RUSH</Link></h3>
       <p>{c.rushTagline}</p>
       <Link className="text-link" href={localPath(locale, 'work/police-sentri-rush')}>{c.seeGame}<Arrow diagonal /></Link></div>
     </article>
@@ -42,7 +42,7 @@ export function City({ locale }: { locale: Locale }) {
   const c = copy[locale]
   return <section className="city-section section" id="ai-world" aria-labelledby="city-title" data-reveal data-parallax-scene>
     <div className="section-heading"><div><p className="eyebrow">NACA City</p><h2 id="city-title">{c.peek}</h2><p className="lede">{c.citySummary}</p></div>{links.city ? <External href={links.city}>{c.openCity}</External> : null}</div>
-    <figure className="city-figure" data-parallax="-130" data-parallax-mobile="-64"><div className="city-window"><Image src="/portfolio/naca-city.png" alt={c.cityAlt} width={1370} height={860} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 65vw, 860px" /></div><figcaption>{c.cityCaption}</figcaption></figure>
+    <figure className="city-figure" data-parallax="-130" data-parallax-mobile="-64"><div className="city-window"><Image src="/portfolio/naca-city.png" alt={c.cityAlt} width={1370} height={860} sizes="(max-width: 700px) 100vw, (max-width: 1200px) 65vw, 860px" /></div><figcaption>{c.cityCaption.split(/(?<=[.。])/u)[0]}</figcaption></figure>
   </section>
 }
 
@@ -85,7 +85,7 @@ export function Work({ locale }: { locale: Locale }) {
 
 export function Project({ locale, kind }: { locale: Locale; kind: 'food' | 'rush' }) {
   const c = copy[locale], food = kind === 'food'
-  const title = food ? 'ApaNakMakan' : 'police sentri : RUSH'
+  const title = food ? 'ApaNakMakan' : 'police sentri\u00a0: RUSH'
   const paragraphs = food ? [c.foodWhat, c.foodWhy, c.foodRole, c.foodToday] : [c.rushWhat, c.rushWhy, c.rushRole, c.rushToday]
   return <div className="shell detail-page">
     <Link className="back-link" href={localPath(locale, 'work')}><span aria-hidden="true">←</span> {c.back}</Link>
