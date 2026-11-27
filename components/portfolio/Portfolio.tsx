@@ -53,7 +53,7 @@ export function Home({ locale }: { locale: Locale }) {
   return <div className="shell home-page">
     <section className="hero" aria-labelledby="intro-title" data-parallax-scene="hero">
       <div className="hero-copy"><p className="eyebrow">{c.eyebrow}</p><h1 id="intro-title"><span className="hero-hello">{c.hello}</span><span className="hero-headline">{headline}</span></h1><div className="hero-context"><p className="intro">{c.intro}</p><p className="roles">{c.roles}</p><div className="actions"><Link className="button" href={localPath(locale, 'work')}>{c.explore}<Arrow /></Link><Link className="text-link" href={localPath(locale, 'about')}>{c.moreAbout}</Link></div></div></div>
-      <figure className="hero-portrait" data-parallax="140" data-parallax-mobile="80"><Image src="/neo.jpg" alt={c.portraitAlt} width={1600} height={1600} sizes="(max-width: 700px) 460px, (max-width: 1100px) 760px, 880px" priority fetchPriority="high" /><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure>
+      <figure className="hero-portrait"><Image src="/neo.jpg" alt={c.portraitAlt} width={1600} height={1600} sizes="(max-width: 700px) 460px, (max-width: 1100px) 760px, 880px" priority fetchPriority="high" /><figcaption>Ahmad Fadli · Neo Todak</figcaption></figure>
       <span className="hero-orbit" aria-hidden="true" data-parallax="240" data-parallax-mobile="128" />
     </section>
     <section className="section recent-section" id="recent-work"><div className="section-heading" data-reveal><h2>{c.recent}</h2><Link className="text-link" href={localPath(locale, 'work')}>{c.allProjects}<Arrow diagonal /></Link></div><Recent locale={locale}/></section>
